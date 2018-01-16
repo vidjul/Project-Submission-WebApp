@@ -4,12 +4,12 @@ import Nav from './components/nav/Nav.js';
 import Element1 from './components/element1/Element1.js';
 import Element2 from './components/element1/Element2.js';
 class App extends Component {
-  state = {tasks: []}
+  state = {users: []}
   
     componentDidMount() {
       fetch('/tasks')
         .then(res => res.json())
-        .then(tasks => this.setState({ tasks }));
+        .then(users => this.setState({ users }));
     }
   
     render() {
