@@ -25,10 +25,6 @@ var routes = require('./api/routes/todoListRoutes'); //importing route
 routes(app); //register the route
 
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
