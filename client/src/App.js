@@ -25,7 +25,7 @@ class App extends Component {
         </div>
 
           <h1>Tasks</h1>
-          {this.state.tasks.map(user =>
+          {this.state.users.map(user =>
             <div key={user.id}>{user.name}</div>
           )}
         </div>
