@@ -10,6 +10,21 @@ var users = require('./routes/users');
 
 var app = express();
 
+mongoose = require('mongoose'),
+Task = require('./api/models/todoListModel'), //created model loading here
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/Tododb'); 
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+var routes = require('./api/routes/todoListRoutes'); //importing route
+routes(app); //register the route
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -17,8 +32,8 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
