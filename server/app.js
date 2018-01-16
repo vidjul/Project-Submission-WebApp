@@ -14,7 +14,7 @@ mongoose = require('mongoose'),
 Task = require('./api/models/todoListModel'), //created model loading here
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/Tododb'); 
+mongoose.connect('mongodb://pi2:csstv2018@ds159187.mlab.com:59187/projectdb');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
