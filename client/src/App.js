@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Nav from './components/nav/Nav.js';
 
 class App extends Component {
   state = {tasks: []}
@@ -13,7 +13,8 @@ class App extends Component {
   
     render() {
       return (
-        <div className="App">
+        <div>
+        <Nav/>
           <h1>Tasks</h1>
           {this.state.tasks.map(user =>
             <div key={user.id}>{user.name}</div>
