@@ -13,7 +13,7 @@ class Nav extends Component {
 					</div>
 
 		
-        			<div className="collapse navbar-collapse" id="navbar-collapse-2">
+        			<div className="" id="navbar-collapse-2">
 						<ul className="nav navbar-nav navbar-right">
 							<li><a href="#">Home</a></li>
 							<li><a href="#">About</a></li>
@@ -22,22 +22,9 @@ class Nav extends Component {
 							<li><a href="#">News</a></li>
 							<li><a href="#">Contact</a></li>
 							<li>
-								<a className="btn btn-default btn-outline btn-circle collapsed" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
+								<a className="btn btn-default btn-outline btn-circle collapsed">Sign in</a>
 							</li>
 						</ul>
-						<div className="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
-							<form className="navbar-form navbar-right form-inline" role="form">
-								<div className="form-group">
-									<label className="sr-only" for="Email">Email</label>
-									<input type="email" className="form-control" id="Email" placeholder="Email" autofocus required />
-								</div>
-								<div className="form-group">
-									<label className="sr-only" for="Password">Password</label>
-									<input type="password" className="form-control" id="Password" placeholder="Password" required />
-								</div>
-								<button type="submit" className="btn btn-success">Sign in</button>
-							</form>
-						</div>
 					</div>
       			</div>
     		</nav>
