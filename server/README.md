@@ -6,7 +6,7 @@ Il faudra placer le contenu du dossier build obtenu avec React dans le dossier P
 # Fonctionnement de l'API
 
 Lorsque des données sont envoyées via la requête HTTP POST, il est possible d'envoyer ces données sous trois types différents:
-* text/plain: un texte brute
+* text/plain: un texte brut
 * application/x-www-form-urlencoded: Les valeurs sont encodées sous forme de couples clé/valeurs. Les caractères autres que les lettres ou les chiffres sont [percent-encoded](https://developer.mozilla.org/fr/docs/Glossaire/percent-encoding)
 * application/form-data: Même chose, sauf que les caractères spéciaux sont envoyés sans encodage. Cependant, les données envoyées sont plus lourdes, donc plus lente à charger.
 
