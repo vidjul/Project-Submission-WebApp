@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/nav/Nav.js';
-import Element1 from './components/element1/Element1.js';
-import Element2 from './components/element1/Element2.js';
 class App extends Component {
   state = {users: []}
   
@@ -16,13 +14,6 @@ class App extends Component {
       return (
         <div>
         <Nav/>
-
-        <div className = "container">
-          <div className="row">
-            <Element1/>
-            <Element2/>
-          </div>
-        </div>
 
           <h1>Tasks</h1>
           {this.state.users.map(user =>
