@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Nav from './components/nav/Nav.js';
+import Nav from '../components/nav/Nav.js';
 class App extends Component {
   state = {users: []}
   

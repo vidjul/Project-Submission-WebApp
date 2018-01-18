@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "history": "^3.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0"
   },
   "scripts": {
@@ -14,5 +16,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3000"
 }
