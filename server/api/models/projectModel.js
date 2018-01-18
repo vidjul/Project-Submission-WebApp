@@ -41,10 +41,16 @@ var ProjectSchema = new Schema({
         type: Date, 
         default: Date.now 
     },
-    edit_link: String,
+    edit_link: {
+        type: String
+    },
 
-    // likes: Array, //(StudentSchema)
-    // comments: Array, //(CommentSchema)
+    likes: {
+        type: Array //(StudentSchema)
+    },
+    comments: {
+        type: Array //(CommentSchema)
+    }, 
 });
 
 module.exports = mongoose.model('Projects', ProjectSchema);
