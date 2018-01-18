@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import Project from './Projects/Project';
 class ProjectGrid extends Component {
 
-    state = { projects: [] };
+    constructor(){
+        super();
+        this.state = { projects: [] };
+    }
 
     componentDidMount() {
         fetch('/api/projects').
-            then(res => res.json).
-            then(projects => this.setState({ projects }));
+            then(response => response.json).
+            then(({results: projects}) => this.setState(projects));
     }
 
     render() {
@@ -20,9 +23,9 @@ class ProjectGrid extends Component {
                     </div>
                         <div className="panel-content">
                             <div className = "list-group"> 
-                                {this.state.projects.map(function(project) {
+                                {this.state.projects.map(project => 
                                     <Project key={project.id} project={project}/>
-                                })}
+                                )}
                             </div>
                         </div>
                     </div>

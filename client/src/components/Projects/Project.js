@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
 class Project extends Component {
     render() {
-    var project = this.props.project;
+    var project = JSON.stringify(this.props.project);
     var projectName = project.title;
       return (
         <div>
