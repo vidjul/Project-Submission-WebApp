@@ -9,7 +9,6 @@ class Projects extends Component {
         return (
             <div>
                 <Nav />
-                Projects Page !
                 <ProjectGrid/>
         </div>
         );

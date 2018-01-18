@@ -4,25 +4,23 @@ class ProjectGrid extends Component {
 
     constructor(){
         super();
-        this.state = { projects: [] };
+        this.state = {projects : []};
     }
 
     componentDidMount() {
-        fetch('/api/projects').
-            then(response => response.json).
-            then(({results: projects}) => this.setState(projects));
+        fetch('/api/Projects').then(response => response.json).then(({results: projects}) => this.setState(projects));
     }
 
     render() {
+        console.log(this.state.projects);
         return (
-            <row>
-                <div className="container-fluid">
+                <div className="container-fluid row">
                     <div className="panel panel-default">
                         <div className="panel-heading">
-                             <p className = "text-center"><h3> Liste des projets publies ! </h3></p>
+                        <h3>  <p className = "text-center"> Liste des projets publies ! </p> </h3>
                     </div>
                         <div className="panel-content">
-                            <div className = "list-group"> 
+                            <div className = "list-group">
                                 {this.state.projects.map(project => 
                                     <Project key={project.id} project={project}/>
                                 )}
@@ -30,7 +28,6 @@ class ProjectGrid extends Component {
                         </div>
                     </div>
                 </div>
-            </row>
         );
     }
 }
