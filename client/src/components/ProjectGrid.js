@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Project from './Projects/Project';
+import './components.css';
 class ProjectGrid extends Component {
 
     constructor(){
@@ -8,21 +9,23 @@ class ProjectGrid extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/Projects').then(response => response.json).then(({results: projects}) => this.setState(projects));
+        fetch('/api/projects')
+            .then(res => res.json())
+            .then(projects => this.setState({ projects }));
     }
 
     render() {
         console.log(this.state.projects);
         return (
-                <div className="container-fluid row">
+                <div className="container centered">
                     <div className="panel panel-default">
                         <div className="panel-heading">
-                        <h3>  <p className = "text-center"> Liste des projets publies ! </p> </h3>
+                        <p className = "text-center"><h3> Liste des projets publies ! </h3></p> 
                     </div>
                         <div className="panel-content">
-                            <div className = "list-group">
-                                {this.state.projects.map(project => 
-                                    <Project key={project.id} project={project}/>
+                            <div className = "list-group"> 
+                                {this.state.projects.map(project =>
+                                    <Project key = {project.id}project = {project}/>
                                 )}
                             </div>
                         </div>
