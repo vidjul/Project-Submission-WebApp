@@ -3,7 +3,7 @@ module.exports = function(app) {
   var project = require('../controllers/projectController');
 
   // todoList Routes
-  app.route('/projects')
+  app.route('/api/projects')
     .get(project.list_all_projects)
     .post(project.create_a_project);
 
