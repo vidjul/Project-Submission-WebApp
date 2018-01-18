@@ -5,11 +5,13 @@ class Project extends Component {
     var project = this.props.project;
     var projectName = project.title;
       return (
-        <div>
+        <div className="container-flex">
             <Link style = {{textDecoration:'none'}}to="/Projects">
-                <div className="list-groupe-item">
-                <h5 className="mb-1">{projectName}</h5>
+                <div className="list-groupe-item border panel">
+                <h5 className="mb-1 panel-header">{projectName}</h5>
                 </div>
+
+                <div className="panel-content">{project.description}</div>
             </Link>
         </div>
       );
