@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import './Nav.css';
+import {Link} from 'react-router-dom';
 
+
+console.log("Passed");
 class Nav extends Component {
+
+	item = []
+
 	render() {
+
 		return (
 			<nav className="navbar navbar-default">
 				<div className="container">
@@ -15,8 +22,8 @@ class Nav extends Component {
 		
         			<div className="" id="navbar-collapse-2">
 						<ul className="nav navbar-nav navbar-right">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">About</a></li>
+							<li><Link to ="/">Home</Link></li>
+							<li><Link to="/Projects">Projects</Link></li>
 							<li><a href="#">Services</a></li>
 							<li><a href="#">Works</a></li>
 							<li><a href="#">News</a></li>
@@ -28,6 +35,7 @@ class Nav extends Component {
 					</div>
       			</div>
     		</nav>
+			
 		);
 	}
 }
