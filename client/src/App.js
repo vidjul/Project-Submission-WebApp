@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
-import Nav from './components/nav/Nav.js';
+import {Route, Switch} from "react-router";
+import Home from './pages/Home';
+import Projects from './pages/Projects';
 class App extends Component {
-  state = {users: []}
-  
-    componentDidMount() {
-      fetch('/tasks')
-        .then(res => res.json())
-        .then(users => this.setState({ users }));
-    }
-  
-    render() {
-      return (
-        <div>
-        <Nav/>
-
-          <h1>Tasks</h1>
-          {this.state.users.map(user =>
-            <div key={user.id}>{user.name}</div>
-          )}
-        </div>
-      );
-    }
+  render() {
+    return (
+      <Switch>
+       <Route exact path = "/" component = {Home}/>
+       <Route exact path = "/Projects" component = {Projects}/>
+       </Switch>
+    )
   }
+}
 
 export default App;
