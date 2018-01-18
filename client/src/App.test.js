@@ -1,9 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React, { Component } from 'react';
+import './Index.css';
+import Nav from '../components/nav/Nav.js';
+class Home extends Component {
+  
+    render() {
+      return (
+        <div>
+        </div>
+      );
+    }
+  }
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+export default Home;

@@ -24,7 +24,7 @@ class Nav extends Component {
 						<ul className="nav navbar-nav navbar-right">
 							<li><Link to ="/">Home</Link></li>
 							<li><Link to="/Projects">Projects</Link></li>
-							<li><a href="#">Services</a></li>
+							<li><a href="/Deposit">Deposer un projet</a></li>
 							<li><a href="#">Works</a></li>
 							<li><a href="#">News</a></li>
 							<li><a href="#">Contact</a></li>
