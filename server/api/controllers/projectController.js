@@ -1,7 +1,7 @@
 'use strict';
 
 
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose');
   Project = mongoose.model('Projects');
 
 exports.list_all_projects = function(req, res) {
@@ -14,6 +14,7 @@ exports.list_all_projects = function(req, res) {
 
 exports.create_a_project = function(req,res) {
   var new_project = new Project(req.body);
+  console.log(new_project);
   new_project.save(function(err, project) {
     if (err)
       res.send(err);

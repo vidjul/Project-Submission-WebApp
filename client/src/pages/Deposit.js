@@ -13,8 +13,8 @@ class Deposit extends Component {
     super(props);
     this.state = {
       title : "",
-      year : "",
-      specialization : "",
+      study_year : "",
+      specialization : [],
       description : "",
       files : []
     }
@@ -27,17 +27,22 @@ class Deposit extends Component {
   }
 
   handleSubmit(event){
-    event.prevendDefault();
+    event.preventDefault();
     const form = {
       title : this.state.title,
-      year : this.state.year,
+      study_year : this.state.year,
       specialization : this.state.specialization,
       description : this.state.description
     }
-    console.log(form.title);
+
+    console.log(form);
     try{
     fetch('/api/projects',{
     method : 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
     body : JSON.stringify(form)})
     }
     catch(error)
