@@ -48,7 +48,7 @@ class Deposit extends Component {
     catch(error)
     {
       console.error(error);
-    }*/
+    }
 
   } 
 
