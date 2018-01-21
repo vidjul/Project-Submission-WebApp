@@ -36,7 +36,7 @@ class Deposit extends Component {
     }
 
     console.log(form);
-    /*try{
+    try{
     fetch('/api/projects',{
     method : 'POST',
     headers: {
@@ -55,10 +55,8 @@ class Deposit extends Component {
   handleTitleChange(e){
     this.setState({title : e.target.value})
   }
-  handleYearChange = (study_year) =>{
-    this.setState(
-      {study_year : study_year}
-    )
+  handleYearChange(e){
+    this.setState({year : e.target.value})
   }
   handleSpeChange(e){
     this.setState({specialization : e.target.value})
