@@ -13,7 +13,7 @@ class Deposit extends Component {
     super(props);
     this.state = {
       title : "",
-      study_year : "",
+      study_year : [],
       specialization : [],
       description : "",
       files : []
@@ -36,7 +36,7 @@ class Deposit extends Component {
     }
 
     console.log(form);
-    try{
+    /*try{
     fetch('/api/projects',{
     method : 'POST',
     headers: {
@@ -48,15 +48,17 @@ class Deposit extends Component {
     catch(error)
     {
       console.error(error);
-    }
+    }*/
 
-  }
+  } 
 
   handleTitleChange(e){
     this.setState({title : e.target.value})
   }
-  handleYearChange(e){
-    this.setState({year : e.target.value})
+  handleYearChange = (study_year) =>{
+    this.setState(
+      {study_year : study_year}
+    )
   }
   handleSpeChange(e){
     this.setState({specialization : e.target.value})
