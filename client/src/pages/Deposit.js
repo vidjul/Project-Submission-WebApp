@@ -36,7 +36,7 @@ class Deposit extends Component {
     }
 
     console.log(form);
-    try{
+    /*try{
     fetch('/api/projects',{
     method : 'POST',
     headers: {
@@ -48,7 +48,7 @@ class Deposit extends Component {
     catch(error)
     {
       console.error(error);
-    }
+    }*/
 
   } 
 
@@ -56,10 +56,27 @@ class Deposit extends Component {
     this.setState({title : e.target.value})
   }
   handleYearChange(e){
+    if(e.target.checked){
+      this.state.study_year.push(e.target.value);
+    }
+    else{
+      var index = this.state.study_year.indexOf(e.target.value)
+      if(index > -1){
+       this.state.study_year.splice(index,1);
+      }
+    }
+    console.log(this.state.study_year);
     this.setState({year : e.target.value})
   }
   handleSpeChange(e){
-    this.setState({specialization : e.target.value})
+    var values = []
+    for(var i = 0 ; i < e.target.options.length;i++){
+      if(e.target.options[i].selected){
+        values.push(e.target.options[i].value);
+      }
+    }
+
+    this.setState({specialization : values})
   }
   handleDescChange(e){
     this.setState({description : e.target.value})
