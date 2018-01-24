@@ -7,6 +7,7 @@ import DescriptionInput2 from './FormComponents/DescriptionInput2';
 import FilesInput from './FormComponents/FilesInput';
 import CompanyInput from './FormComponents/CompanyInput';
 import EmailInput from './FormComponents/EmailInput';
+import KeyWords from './FormComponents/KeyWords';
 
 class FormDeposit extends Component {
 
@@ -109,6 +110,7 @@ class FormDeposit extends Component {
 
                     <SpecializationInput change={this.handleChange} />
                     <DescriptionInput2 change={this.handleChange} />
+                    <KeyWords/>
                     <FilesInput change={this.handleChange} />
                     <div className="form-actions">
                         <div className="row">
