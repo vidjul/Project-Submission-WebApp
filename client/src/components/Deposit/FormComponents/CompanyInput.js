@@ -3,7 +3,7 @@ class CompanyInput extends Component {
 
     render() {
         return (
-            <div>
+            <div className = "form-group">
                 <label className="col-md-3 control-label">Votre entreprise</label>
                 <div className="col-md-5">
                     <div className="input-group">

@@ -11,7 +11,7 @@ class TitleInput extends Component {
                         <span className="input-group-addon input-circle-left">
                             <i className="fa fa-mortar-board"></i>
                         </span>
-                        <input onChange={this.props.change} type="text" id="projectTitle" className="form-control input-circle-right" placeholder="Titre" />
+                        <input name = "title" onChange={this.props.change} type="text" id="projectTitle" className="form-control input-circle-right" placeholder="Titre" />
                     </div>
                 </div>
             </div>

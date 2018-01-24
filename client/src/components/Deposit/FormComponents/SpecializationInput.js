@@ -8,7 +8,7 @@ class SpecializationInput extends Component {
                 <div class="form-group">
                     <label className = "col-md-3 control-label">Specialisation</label>
                     <div className= "col-md-4">
-                        <select onChange= {this.props.change} multiple={true} class="form-control">
+                        <select name = "specialization" onChange= {this.props.change} multiple={true} class="form-control">
                             <option value="IBO">Informatique, BigData et objets connectes</option>
                             <option value = "NE">Nouvelle energie</option>
                             <option value = "IF">Ingenieurie financiaire</option>
