@@ -27,44 +27,53 @@ module.exports = mongoose.model('Person', PersonSchema);
 
 //Student Class
 var StudentSchema = PersonSchema.extend({
-	specialization: String,
-	study_year: Number
+	id_specialization: { type: Number, required: true },
+	study_year: { type: Number, required: true }
 });
 module.exports = mongoose.model('Student', StudentSchema);
 
 //Partner Class
 var PartnerSchema = PersonSchema.extend({
-	company: String, 
-	submitted_projects: Array //(Project) TODO verifier
+	company: { type: String, required: true }, 
+	submitted_projects: Array //(Project) 
 });
 module.exports = mongoose.model('Partner', PartnerSchema);
 
 //Administration Class
 var AdministrationSchema = PersonSchema.extend({
-	specialization: String, 
+	id_specialization: { type: Number, required: true }
 });
 module.exports = mongoose.model('Administration', AdministrationSchema);
 
 //Comment Class
 var CommentSchema = new Schema({
-	author: PersonSchema,
-	content: String
+	author: { type: PersonSchema, required: true },
+	content: { type: String, required: true }
 });
 module.exports = mongoose.model('Comment', CommentSchema);
 
 //Project Class
 var ProjectSchema = new Schema({
-	title: String,
-	description: String,
-	specialization: String,
-	study_year: Array, //(Number)
-	keywords: Array,   //(String)
+	title: { type: String, required: true },
+	description: { type: String, required: true },
+	id_specialization: { type: Array, required: true }, //(Number)
+	study_year: { type: Array, required: true }, //(Number)
+	keywords: { type: Array, required: true },  //(String)
 	media_files: Array, //(String)
-	status: String,
+	status: { type: String, required: true },
 	sub_date: { type: Date, default: Date.now }, 
 	edit_date: { type: Date, default: Date.now }, 
-	edit_link: String, 
+	edit_link: { type: String, required: true }, 
 	likes: Array, //(StudentSchema)
 	comments: Array, //(CommentSchema)
 })
 module.exports = mongoose.model('Project', ProjectSchema);
+
+//Specialization Class
+var SpecializationSchema = new Schema({
+	//attribut id ajouté automatiquement
+	specialization_name: { type: String, required: true },
+	school_name: { type: String, required: true },
+	referent: String
+});
+module.exports = mongoose.model('Specialization', SpecializationSchema);
