@@ -26,7 +26,7 @@ class KeyWords extends Component {
             id: tags.length + 1,
             text: tag
         });
-        this.props.change
+        this.setState({ tags: tags });
     }
 
     handleDrag(tag, currPos, newPos) {
