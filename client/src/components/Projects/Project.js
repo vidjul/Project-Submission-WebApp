@@ -8,11 +8,10 @@ class Project extends Component {
       return (
         <div id="projectContent"className="container-flex border-bottom">
             <Link style = {{textDecoration:'none'}}to="/Projects">
-                <div className="list-groupe-item border panel">
-                <h5 className="mb-1 panel-header">{projectName}</h5>
-                </div>
 
-                <div className="mb-1 panel-content">{project.description}</div>
+            <a href="javascript:;" class="popovers" data-container="body" data-trigger="hover" data-content="Popover body goes here! Popover body goes here!" data-original-title="Another Popover">
+                                                            trigger me on hover </a>
+            
             </Link>
         </div>
       );
