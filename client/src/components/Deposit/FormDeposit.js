@@ -7,6 +7,7 @@ import DescriptionInput2 from './FormComponents/DescriptionInput2';
 import FilesInput from './FormComponents/FilesInput';
 import CompanyInput from './FormComponents/CompanyInput';
 import EmailInput from './FormComponents/EmailInput';
+import KeyWords from './FormComponents/KeyWords';
 
 class FormDeposit extends Component {
 
@@ -17,6 +18,7 @@ class FormDeposit extends Component {
             study_year: [],
             specialization: [],
             description: "",
+            keyWords : [],
             files: []
         }
 
@@ -30,7 +32,8 @@ class FormDeposit extends Component {
             title: this.state.title,
             study_year: this.state.study_year,
             specialization: this.state.specialization,
-            description: this.state.description
+            description: this.state.description,
+            keyWords : this.state.keyWords
         }
 
         console.log(form);
@@ -63,8 +66,6 @@ class FormDeposit extends Component {
                         temp.splice(index, 1);
                     }
                 }
-                console.log(temp);
-                console.log()
                 this.state.study_year = temp;
                 break;
 
@@ -109,6 +110,7 @@ class FormDeposit extends Component {
 
                     <SpecializationInput change={this.handleChange} />
                     <DescriptionInput2 change={this.handleChange} />
+                    <KeyWords tags = {this.props.handleChange}/>
                     <FilesInput change={this.handleChange} />
                     <div className="form-actions">
                         <div className="row">
