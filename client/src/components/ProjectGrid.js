@@ -52,7 +52,7 @@ class ProjectGrid extends Component {
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Developpement mobile</a></li>
                             </ul>   
                         </div>
-
+                        <br/>
                         {this.state.projects.map(project => <Project key = {project.id}project = {project}/>)}
                     </div>             
                 </div>

@@ -4,16 +4,13 @@ import '../components.css'
 class Project extends Component {
     render() {
     var project = this.props.project;
-    var projectName = project.title;
       return (
-        <div id="projectContent"className="container-flex border-bottom">
             <Link style = {{textDecoration:'none'}}to="/Projects">
-
-            <a href="javascript:;" class="popovers" data-container="body" data-trigger="hover" data-content="Popover body goes here! Popover body goes here!" data-original-title="Another Popover">
-                                                            trigger me on hover </a>
-            
+            <div class="panel panel-default">
+              <div class="panel-heading">{project.specialization} - {project.title} :</div>
+              <div class="panel-body">{project.description}</div>
+            </div>  
             </Link>
-        </div>
       );
     }
   }
