@@ -17,20 +17,46 @@ class ProjectGrid extends Component {
     render() {
         console.log(this.state.projects);
         return (
-                <div className="container centered">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-                        <p className = "text-center"><h3> Liste des projets publies ! </h3></p> 
-                    </div>
-                        <div className="panel-content">
-                            <div className = "list-group"> 
-                                {this.state.projects.map(project =>
-                                    <Project key = {project.id}project = {project}/>
-                                )}
-                            </div>
+            <div class="container">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">List of Projects</div>
+                    <div class="panel-body">
+                        <i class="fa fa-filter"></i> Filter by: 
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" multiple>Year   
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A4</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A5</a></li>
+                            </ul>   
                         </div>
-                    </div>
+
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" multiple>Major(s)    
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">IBO</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">IF</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">NE</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">MNM</a></li>
+                            </ul>   
+                        </div>
+
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" multiple>Keywords     
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Big Data</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Developpement web</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Blockchain</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Developpement mobile</a></li>
+                            </ul>   
+                        </div>
+
+                        {this.state.projects.map(project => <Project key = {project.id}project = {project}/>)}
+                    </div>             
                 </div>
+            </div>
         );
     }
 }
