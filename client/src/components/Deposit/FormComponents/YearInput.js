@@ -7,30 +7,30 @@ class YearInput extends Component {
                 <label className="col-md-2 control-label">Annee du projet</label>
                 <div class="md-checkbox-inline">
                     <div class="md-checkbox">
-                        <input value = "A3" type="checkbox"  onChange = {this.props.change} id="checkbox6" class="md-check"/>
-                            <label for="checkbox6">
-                                <span class="inc"></span>
-                                <span class="check"></span>
-                                <span class="box"></span> A3</label>
+                        <input name = "year" value="A3" type="checkbox" onChange={this.props.change} id="checkbox6" class="md-check" />
+                        <label for="checkbox6">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> A3</label>
                     </div>
                     <div class="md-checkbox">
-                        <input value = "A4" type="checkbox" onChange = {this.props.change} id="checkbox7" class="md-check"/>
-                            <label for="checkbox7">
-                                <span class="inc"></span>
-                                <span class="check"></span>
-                                <span class="box"></span> A4 </label>
+                        <input name = "year" value="A4" type="checkbox" onChange={this.props.change} id="checkbox7" class="md-check" />
+                        <label for="checkbox7">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> A4 </label>
                     </div>
                     <div class="md-checkbox">
-                        <input value = "A5" type="checkbox" onChange = {this.props.change} id="checkbox8" class="md-check"/>
+                        <input name = "year" value="A5" type="checkbox" onChange={this.props.change} id="checkbox8" class="md-check" />
                         <label for="checkbox8">
-                                        <span class="inc"></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span> A5
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> A5
                                     </label>
-                            </div>
-                        </div>
                     </div>
-                        );
+                </div>
+            </div>
+        );
     }
 }
 
