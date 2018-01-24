@@ -6,6 +6,7 @@ import SpecializationInput from './FormComponents/SpecializationInput';
 import DescriptionInput2 from './FormComponents/DescriptionInput2';
 import FilesInput from './FormComponents/FilesInput';
 import CompanyInput from './FormComponents/CompanyInput';
+import EmailInput from './FormComponents/EmailInput';
 
 class FormDeposit extends Component {
 
@@ -94,8 +95,12 @@ class FormDeposit extends Component {
 
                 <div className="form-body ">
                 <h4> Parlez nous de vous </h4>
-                    <div className = "row">
+                    <div className = "row" >
                     <CompanyInput/>
+                    </div>
+                    
+                    <div className = "row" style = {{marginTop : 5 + 'px'}}>
+                    <EmailInput/>
                     </div>
                     <hr/>
                 <h4> Presentez votre projet </h4>
