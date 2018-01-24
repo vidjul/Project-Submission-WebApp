@@ -18,6 +18,7 @@ class KeyWords extends Component {
         let tags = this.state.tags;
         tags.splice(i, 1);
         this.setState({ tags: tags });
+        this.props.change(this.state.tags);
     }
 
     handleAddition(tag) {
@@ -27,6 +28,7 @@ class KeyWords extends Component {
             text: tag
         });
         this.setState({ tags: tags });
+        this.props.change(this.state.tags);
     }
 
     handleDrag(tag, currPos, newPos) {
@@ -38,6 +40,7 @@ class KeyWords extends Component {
 
         // re-render 
         this.setState({ tags: tags });
+        this.props.change(this.state.tags);
     }
 
     render() {

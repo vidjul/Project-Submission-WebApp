@@ -24,8 +24,18 @@ class FormDeposit extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleKeyWords = this.handleKeyWords.bind(this);
     }
 
+    handleKeyWords(key){
+
+        var keys = [];
+        key.forEach(element => {
+            keys.push(element.text)
+        });
+        console.log(keys)
+        this.setState({ keyWords : keys});
+    }
     handleSubmit(event) {
         event.preventDefault();
         const form = {
@@ -33,7 +43,7 @@ class FormDeposit extends Component {
             study_year: this.state.study_year,
             specialization: this.state.specialization,
             description: this.state.description,
-            keyWords : this.state.keyWords
+            keywords : this.state.keyWords
         }
 
         console.log(form);
@@ -52,6 +62,7 @@ class FormDeposit extends Component {
         }*/
 
     }
+
 
     handleChange(e) {
         switch (e.target.name) {
@@ -78,6 +89,7 @@ class FormDeposit extends Component {
                 }
                 this.setState({ specialization: values })
                 break;
+
             default:
                 this.setState({
                     [e.target.name]: e.target.value
@@ -110,8 +122,8 @@ class FormDeposit extends Component {
 
                     <SpecializationInput change={this.handleChange} />
                     <DescriptionInput2 change={this.handleChange} />
-                    <KeyWords tags = {this.props.handleChange}/>
-                    <FilesInput change={this.handleChange} />
+                    <KeyWords change = {this.handleKeyWords}/>
+                    <FilesInput change={this.handleKeyWords} />
                     <div className="form-actions">
                         <div className="row">
                             <div className="col-md-offset-3 col-md-9">

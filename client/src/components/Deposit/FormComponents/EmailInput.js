@@ -12,7 +12,7 @@ class EmailInput extends Component {
                         </span>
                         <input type="email" id="company" className="form-control input-circle-right" placeholder="Email" />
                     </div>
-                    <small id="emailHelp" class="form-text text-muted">Un lien vous sera envoyé vous permettant de modifier votre projet.</small>
+                    <small id="emailHelp" class="form-text text-muted"> Un lien vous sera envoyé vous permettant de modifier votre projet.</small>
                 </div>
             </div>
         );
