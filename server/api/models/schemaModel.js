@@ -12,7 +12,7 @@ Array
 });*/
 
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
 	extend = require('mongoose-schema-extend');
 var Schema = mongoose.Schema;
 
@@ -34,7 +34,7 @@ module.exports = mongoose.model('Student', StudentSchema);
 
 //Partner Class
 var PartnerSchema = PersonSchema.extend({
-	company: { type: String, required: true }, 
+	company: String, 
 	submitted_projects: Array //(Project) 
 });
 module.exports = mongoose.model('Partner', PartnerSchema);

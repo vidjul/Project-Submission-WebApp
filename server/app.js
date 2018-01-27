@@ -13,6 +13,7 @@ var app = express();
 mongoose = require('mongoose'),
 Task = require('./api/models/todoListModel'), //created model loading here
 Project = require('./api/models/projectModel'),
+Schema = require('./api/models/schemaModel'),
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://pi2:csstv2018@ds159187.mlab.com:59187/projectdb');
@@ -23,10 +24,11 @@ app.use(bodyParser.json());
 
 
 //var routes = require('./api/routes/todoListRoutes'); //importing route
-var routes = require('./api/routes/projectRoutes');
-routes(app); //register the route
-//projectRoutes(app);
+var project_routes = require('./api/routes/projectRoutes');
+project_routes(app); //register the route
 
+var partner_routes = require('./api/routes/partnerRoutes');
+partner_routes(app);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
