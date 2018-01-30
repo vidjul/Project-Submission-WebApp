@@ -22,7 +22,7 @@ class Carousel extends Component {
   
   <div class="carousel-inner">
     <div class="item active">
-      <img src="C:\Users\ASUS\Desktop\ESILV\A4\S8\PI2\Project-Submission-WebApp\client\src\pictures\projet1.jpg" alt="Projet 1"/>
+      <img src={require('../pictures/projet1.jpg')} alt="Projet 1"/>
       <div class="carousel-caption">
         <h3>CONCEPTION ET DIMENSIONNEMENT D’UN BERCEAU MOTEUR EN MATÉRIAUX COMPOSITES</h3>
         <p>PROJET DE FIN D’ÉTUDES EN 5E ANNÉE, MAJEURE “MÉCANIQUE NUMÉRIQUE ET MODÉLISATION”, ANNÉE 2013-2014</p>
@@ -30,7 +30,7 @@ class Carousel extends Component {
     </div>
 
     <div class="item">
-      <img src="C:\Users\ASUS\Desktop\ESILV\A4\S8\PI2\Project-Submission-WebApp\client\src\pictures\projet2.jpg" alt="Projet 2"/>
+      <img src={require('../pictures/projet2.jpg')} alt="Projet 2"/>
       <div class="carousel-caption">
         <h3>OBJETS CONNECTÉS : SURVEILLANCE DES PERSONNES VULNÉRABLES</h3>
         <p>PROJET D’INNOVATION INDUSTRIELLE DE 5ÈME ANNÉE, MAJEURE INFORMATIQUE, BIG DATA ET OBJETS CONNECTÉS 2014-2015</p>
@@ -38,7 +38,7 @@ class Carousel extends Component {
     </div>
 
     <div class="item">
-      <img src="C:\Users\ASUS\Desktop\ESILV\A4\S8\PI2\Project-Submission-WebApp\client\src\pictures\projet3.jpg" alt="Projet 3"/>
+      <img src={require('../pictures/projet3.jpg')} alt="Projet 3"/>
       <div class="carousel-caption">
         <h3>ÉTUDES DE DONNÉES AMF</h3>
         <p>PROJET 2015-2016 DE 5E ANNÉE DU CURSUS D’ÉLÈVE INGÉNIEUR DE L’ESILV, PROMO 2016, DANS LE CADRE D’UN PROJET DE PARTENARIAT</p>

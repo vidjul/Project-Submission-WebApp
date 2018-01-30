@@ -3,6 +3,7 @@ import './Index.css';
 import Nav from '../components/nav/Nav.js';
 import { Link } from 'react-router';
 import ProjectGrid from '../components/ProjectGrid';
+import Carousel from '../components/Carousel.js'
 class Projects extends Component {
 
     render() {
@@ -10,6 +11,7 @@ class Projects extends Component {
             <div>
                 <Nav />
                 <ProjectGrid/>
+                <Carousel/>
         </div>
         );
     }
