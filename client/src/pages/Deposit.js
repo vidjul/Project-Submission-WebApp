@@ -5,7 +5,7 @@ import FormTitle from '../components/Deposit/FormComponents/FormTitle';
 import YearInput from '../components/Deposit/FormComponents/YearInput';
 import SpecializationInput from '../components/Deposit/FormComponents/SpecializationInput';
 import DescriptionInput2 from '../components/Deposit/FormComponents/DescriptionInput2';
-import FilesInput from '../components/Deposit/FormComponents/FilesInput';
+import FilesInputs from '../components/Deposit/FormComponents/FilesInputs';
 import FormDeposit from '../components/Deposit/FormDeposit';
 
 class Deposit extends Component {

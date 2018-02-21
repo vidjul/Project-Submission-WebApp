@@ -6,7 +6,7 @@ class KeyWords extends Component {
         super(props);
 
         this.state = {
-            tags: [{ id: 1, text: "Big Data" }, { id: 2, text: "BlockChain" }, { id: 3, text: "Aeronautique" }],
+            tags: [],                           //{ id: 1, text: "Big Data" }, { id: 2, text: "BlockChain" }, { id: 3, text: "Aeronautique" }
             suggestions: ["Test", "Test2"]
         };
         this.handleDelete = this.handleDelete.bind(this);
@@ -50,6 +50,7 @@ class KeyWords extends Component {
                 <label className="col-md-3 control-label">KeyWords</label>
                 <div className="col-md-9">
                     <ReactTags
+                        classNames={{tagInputField: "form-control"}}
                         tags={tags}
                         suggestions={suggestions}
                         handleDelete={this.handleDelete}

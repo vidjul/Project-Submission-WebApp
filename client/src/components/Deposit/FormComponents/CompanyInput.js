@@ -10,7 +10,7 @@ class CompanyInput extends Component {
                         <span className="input-group-addon input-circle-left">
                             <i className="fa fa-mortar-bitcoin"></i>
                         </span>
-                        <input type="text" id="company" className="form-control input-circle-right" placeholder="Votre entreprise" />
+                        <input name = "company" onChange = {this.props.change} type="text" id="company" className="form-control input-circle-right" placeholder="Votre entreprise" />
                     </div>
                 </div>
             </div>

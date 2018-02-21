@@ -4,7 +4,7 @@ import FormTitle from './FormComponents/FormTitle';
 import YearInput from './FormComponents/YearInput';
 import SpecializationInput from './FormComponents/SpecializationInput';
 import DescriptionInput2 from './FormComponents/DescriptionInput2';
-import FilesInput from './FormComponents/FilesInput';
+import FilesInputs from './FormComponents/FilesInputs';
 import CompanyInput from './FormComponents/CompanyInput';
 import EmailInput from './FormComponents/EmailInput';
 import KeyWords from './FormComponents/KeyWords';
@@ -15,17 +15,26 @@ class FormDeposit extends Component {
         super(props);
         this.state = {
             title: "",
+            titleValid : false,
             study_year: [],
+            study_yearValid : false,
             specialization: [],
+            specializationValid : false,
             description: "",
+            descriptionValid : false,
             keyWords : [],
-            files: []
+            keyWordsValid : false,
+            files: [],
+            filesValid : false,
+            email : "",
+            company : ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyWords = this.handleKeyWords.bind(this);
     }
+
 
     handleKeyWords(key){
 
@@ -36,6 +45,7 @@ class FormDeposit extends Component {
         console.log(keys)
         this.setState({ keyWords : keys});
     }
+
     handleSubmit(event) {
         event.preventDefault();
         const form = {
@@ -43,7 +53,9 @@ class FormDeposit extends Component {
             study_year: this.state.study_year,
             specialization: this.state.specialization,
             description: this.state.description,
-            keywords : this.state.keyWords
+            keywords : this.state.keyWords,
+            email : this.state.email,
+            company : this.state.company
         }
 
         console.log(form);
@@ -107,23 +119,23 @@ class FormDeposit extends Component {
                 <div className="form-body ">
                     <h4> Parlez nous de vous </h4>
                     <div className="row" >
-                        <CompanyInput />
+                        <CompanyInput change = {this.handleChange}/>
                     </div>
 
                     <div className="row" style={{ marginTop: 5 + 'px' }}>
-                        <EmailInput />
+                        <EmailInput change = {this.handleChange}/>
                     </div>
                     <hr />
                     <h4> Presentez votre projet </h4>
                     <div className="form-group row" style={{ marginTop: 5 + 'px' }}>
-                        <TitleInput change={this.handleChange} />
-                        <YearInput change={this.handleChange} />
+                        <TitleInput change={this.handleChange} valid = {this.state.titleValid}/>
+                        <YearInput change={this.handleChange}/>
                     </div>
 
                     <SpecializationInput change={this.handleChange} />
                     <DescriptionInput2 change={this.handleChange} />
                     <KeyWords change = {this.handleKeyWords}/>
-                    <FilesInput change={this.handleKeyWords} />
+                    <FilesInputs change={this.handleKeyWords} />
                     <div className="form-actions">
                         <div className="row">
                             <div className="col-md-offset-3 col-md-9">
