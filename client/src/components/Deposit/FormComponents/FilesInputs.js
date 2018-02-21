@@ -12,7 +12,7 @@ class FilesInputs extends Component {
         };
 
         this.componentConfig = {
-            iconFiletypes: ['.jpg', '.png', '.gif','.pdf'],
+            iconFiletypes: ['.jpg', '.png', '.gif','.pdf','.csv'],
             showFiletypeIcon: true,
             postUrl: '/uploadHandler'
         };
