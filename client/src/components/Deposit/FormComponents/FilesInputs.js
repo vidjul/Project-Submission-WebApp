@@ -1,50 +1,58 @@
 import React, { Component } from 'react';
-import {DropzoneComponent} from 'react-dropzone-component';
+import Files from 'react-files';
+import ReactDOM from 'react-dom';
 class FilesInputs extends Component {
+
     constructor(props) {
         super(props);
+        this.state = {
+          
+          files: []
+        }
+        this.OnFilesChange = this.OnFilesChange.bind(this);
+    }
 
-        // For a full list of possible configurations,
-        // please consult http://www.dropzonejs.com/#configuration
-        this.djsConfig = {
-            addRemoveLinks: true,
-            acceptedFiles: "image/jpeg,image/png,image/gif"
-        };
+    addViewFile(files) {
+        ReactDOM.render(
+        <a class="file-add list-group-item list-group-item-action">
+        {files[files.length-1].name}
+        </a>
+        ,document.getElementById("addedFiles"))
+    }
 
-        this.componentConfig = {
-            iconFiletypes: ['.jpg', '.png', '.gif','.pdf','.csv'],
-            showFiletypeIcon: true,
-            postUrl: '/uploadHandler'
-        };
+    OnFilesChange(files) {
+        this.setState({ files: files });
+        console.log(this.state);
+        this.addViewFile(files)
+    }
 
-        // If you want to attach multiple callbacks, simply
-        // create an array filled with all your callbacks.
-        this.callbackArray = [() => console.log('Hi!'), () => console.log('Ho!')];
-
-        // Simple callbacks work too, of course
-        this.callback = () => console.log('Hello!');
-
-        this.success = file => console.log('uploaded', file);
-
-        this.removedfile = file => console.log('removing...', file);
-
-        this.dropzone = null;
+    OnFilesError(error, file) {
+        console.log('error code ' + error.code + ': ' + error.message)
     }
 
     render() {
-        const config = this.componentConfig;
-        const djsConfig = this.djsConfig;
-
-        // For a list of all possible events (there are many), see README.md!
-        const eventHandlers = {
-            init: dz => this.dropzone = dz,
-            drop: this.callbackArray,
-            addedfile: this.callback,
-            success: this.success,
-            removedfile: this.removedfile
-        }
-
-        return <DropzoneComponent config={config} eventHandlers={eventHandlers} djsConfig={djsConfig} />
+        return (
+            <div className="form-group">
+                <label className="col-md-3 control-label">Others files</label>
+                <div className="file col-md-5">
+                    <Files
+                        className='files-dropzone'
+                        onChange={this.OnFilesChange}
+                        onError={this.OnFilesError}
+                        accepts={['image/*', 'application/pdf']}
+                        multiple
+                        maxFiles={3}
+                        maxFileSize={10000000}
+                        minFileSize={0}
+                        clickable
+                    >
+                        <p className="lead text-center">Drop files here or click to upload</p>
+                        <p class="text-center help-block">Accepted files : png , pdf , csv ...</p>
+                    </Files>
+                </div>
+                <div id = "addedFiles" className="col-md-4 list-group">
+                </div>
+            </div>);
     }
 }
 

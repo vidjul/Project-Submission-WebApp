@@ -1,3 +1,17 @@
+/*Style for inputFile*/
+.files-dropzone{
+    background-color: #eee;
+    height: 150px;
+    border : dashed;
+    border-width: 5px;
+    cursor: pointer;
+}
+
+.file-add{
+    overflow: hidden;
+}
+
+
 /* Example Styles for React Tags*/
 div.ReactTags__tags {
     position: relative;
