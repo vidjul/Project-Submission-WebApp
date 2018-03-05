@@ -9,7 +9,7 @@ class Home extends Component {
     return (
       <div>
         <Nav />
-        <Carousel/>
+        <Carousel />
       </div>
     );
   }

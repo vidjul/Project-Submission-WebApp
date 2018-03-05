@@ -15,19 +15,19 @@ class FormDeposit extends Component {
         super(props);
         this.state = {
             title: "",
-            titleValid : false,
+            titleValid: false,
             study_year: [],
-            study_yearValid : false,
+            study_yearValid: false,
             specialization: [],
-            specializationValid : false,
+            specializationValid: false,
             description: "",
-            descriptionValid : false,
-            keyWords : [],
-            keyWordsValid : false,
+            descriptionValid: false,
+            keyWords: [],
+            keyWordsValid: false,
             files: [],
-            filesValid : false,
-            email : "",
-            company : ""
+            filesValid: false,
+            email: "",
+            company: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,14 +36,14 @@ class FormDeposit extends Component {
     }
 
 
-    handleKeyWords(key){
+    handleKeyWords(key) {
 
         var keys = [];
         key.forEach(element => {
             keys.push(element.text)
         });
         console.log(keys)
-        this.setState({ keyWords : keys});
+        this.setState({ keyWords: keys });
     }
 
     handleSubmit(event) {
@@ -53,9 +53,9 @@ class FormDeposit extends Component {
             study_year: this.state.study_year,
             specialization: this.state.specialization,
             description: this.state.description,
-            keywords : this.state.keyWords,
-            email : this.state.email,
-            company : this.state.company
+            keywords: this.state.keyWords,
+            email: this.state.email,
+            company: this.state.company
         }
 
         console.log(form);
@@ -119,22 +119,22 @@ class FormDeposit extends Component {
                 <div className="form-body ">
                     <h4> Parlez nous de vous </h4>
                     <div className="row" >
-                        <CompanyInput change = {this.handleChange}/>
+                        <CompanyInput change={this.handleChange} />
                     </div>
 
                     <div className="row" style={{ marginTop: 5 + 'px' }}>
-                        <EmailInput change = {this.handleChange}/>
+                        <EmailInput change={this.handleChange} />
                     </div>
                     <hr />
                     <h4> Presentez votre projet </h4>
                     <div className="form-group row" style={{ marginTop: 5 + 'px' }}>
-                        <TitleInput change={this.handleChange} valid = {this.state.titleValid}/>
-                        <YearInput change={this.handleChange}/>
+                        <TitleInput change={this.handleChange} valid={this.state.titleValid} />
+                        <YearInput change={this.handleChange} />
                     </div>
 
                     <SpecializationInput change={this.handleChange} />
                     <DescriptionInput2 change={this.handleChange} />
-                    <KeyWords change = {this.handleKeyWords}/>
+                    <KeyWords change={this.handleKeyWords} />
                     <FilesInputs change={this.handleKeyWords} />
                     <div className="form-actions">
                         <div className="row">

@@ -10,9 +10,9 @@ class Projects extends Component {
         return (
             <div>
                 <Nav />
-                <ProjectGrid/>
-                <Carousel/>
-        </div>
+                <ProjectGrid />
+                <Carousel />
+            </div>
         );
     }
 }

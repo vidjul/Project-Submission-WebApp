@@ -50,7 +50,7 @@ class KeyWords extends Component {
                 <label className="col-md-3 control-label">KeyWords</label>
                 <div className="col-md-9">
                     <ReactTags
-                        classNames={{tagInputField: "form-control"}}
+                        classNames={{ tagInputField: "form-control" }}
                         tags={tags}
                         suggestions={suggestions}
                         handleDelete={this.handleDelete}

@@ -6,24 +6,24 @@ class FilesInputs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
-          files: []
+
+            files: []
         }
         this.OnFilesChange = this.OnFilesChange.bind(this);
     }
 
     addViewFile(files) {
         ReactDOM.render(
-        <a class="file-add list-group-item list-group-item-action">
-        {files[files.length-1].name}
-        </a>
-        ,document.getElementById("addedFiles"))
+            <a class="file-add list-group-item list-group-item-action">
+                {files[files.length - 1].name}
+            </a>
+            , document.getElementById("addedFiles"))
     }
 
-    OnFilesChange(files) {
-        this.setState({ files: files });
-        console.log(this.state);
-        this.addViewFile(files)
+    OnFilesChange(event) {
+        this.setState({ files: event});
+        console.log(event);
+        this.addViewFile(event)
     }
 
     OnFilesError(error, file) {
@@ -50,7 +50,7 @@ class FilesInputs extends Component {
                         <p class="text-center help-block">Accepted files : png , pdf , csv ...</p>
                     </Files>
                 </div>
-                <div id = "addedFiles" className="col-md-4 list-group">
+                <div id="addedFiles" className="col-md-4 list-group">
                 </div>
             </div>);
     }

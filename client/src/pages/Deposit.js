@@ -16,15 +16,15 @@ class Deposit extends Component {
         <Nav />
         <div className="container">
           <div className="portlet box green">
-            <FormTitle/>
+            <FormTitle />
             <div className="portlet-body form">
-            <FormDeposit/>
-                  </div>
-                </div>
-              </div>
+              <FormDeposit />
             </div>
-            );
-    }
+          </div>
+        </div>
+      </div>
+    );
   }
+}
 
 export default Deposit;

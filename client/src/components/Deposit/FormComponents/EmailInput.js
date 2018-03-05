@@ -10,7 +10,7 @@ class EmailInput extends Component {
                         <span className="input-group-addon input-circle-left">
                             <i className="fa fa-envelope"></i>
                         </span>
-                        <input name = "email" onChange = {this.props.change} type="email" id="company" className="form-control input-circle-right" placeholder="Email" />
+                        <input name="email" onChange={this.props.change} type="email" id="company" className="form-control input-circle-right" placeholder="Email" />
                     </div>
                     <small id="emailHelp" className="form-text text-muted"> Un lien vous sera envoyé vous permettant de modifier votre projet.</small>
                 </div>
