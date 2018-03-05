@@ -15,7 +15,6 @@ const upload = multer({dest: './.uploads/'});
            console.log(file)
            fs.unlinkSync(path.join(__dirname, file.path));
         });
-     
         res.status(200).end();
      });
  };
