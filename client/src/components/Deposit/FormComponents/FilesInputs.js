@@ -21,8 +21,20 @@ class FilesInputs extends Component {
     }
 
     OnFilesChange(event) {
-        this.setState({ files: event});
+        this.setState({ files: event });
         console.log(event);
+
+        var formData = new FormData()
+        Object.keys(this.state.files).forEach((key)=>{
+            const file = this.state.files[key]
+            formData.append(key, new Blob([file], {type : file.type}), file.name || 'file')
+        })
+
+
+        fetch('/api/addFiles', {
+            method: 'POST',
+            body: formData
+            })
         this.addViewFile(event)
     }
 
