@@ -23,12 +23,18 @@ mongoose.connect('mongodb://pi2:csstv2018@ds159187.mlab.com:59187/projectdb');
 app.use(bodyParser.json());
 
 
+// Route for handling File updates.
+let fileUpload = require('./api/routes/filesRoutes');
+fileUpload(app);
+
+
 //var routes = require('./api/routes/todoListRoutes'); //importing route
 var project_routes = require('./api/routes/projectRoutes');
 project_routes(app); //register the route
 
 var partner_routes = require('./api/routes/partnerRoutes');
 partner_routes(app);
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
