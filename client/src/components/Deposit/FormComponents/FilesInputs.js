@@ -25,13 +25,12 @@ class FilesInputs extends Component {
         console.log(event);
 
         var formData = new FormData()
-        Object.keys(this.state.files).forEach((key)=>{
+        Object.keys(this.state.files).forEach((key)=>{  //On parcourt la liste des fichiers
             const file = this.state.files[key]
-            formData.append(key, new Blob([file], {type : file.type}), file.name || 'file')
+            formData.append(key, new Blob([file], {type : file.type}), file.name || 'file') //On ajoute dans le formData le fichier
         })
 
-
-        fetch('/api/addFiles', {
+        fetch('/api/addFile', {
             method: 'POST',
             body: formData
             })
