@@ -29,7 +29,7 @@ class Nav extends Component {
 							<li><a href="#">News</a></li>
 							<li><a href="#">Contact</a></li>
 							<li>
-								<a className="btn btn-default btn-outline btn-circle collapsed">Sign in</a>
+								<Link to ="../../public/admin_3/page_user_login_5.html" className="btn btn-default btn-outline btn-circle collapsed">Sign in</Link>
 							</li>
 						</ul>
 					</div>

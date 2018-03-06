@@ -8,7 +8,7 @@ import FilesInputs from './FormComponents/FilesInputs';
 import CompanyInput from './FormComponents/CompanyInput';
 import EmailInput from './FormComponents/EmailInput';
 import KeyWords from './FormComponents/KeyWords';
-
+import ReactDOM from 'react-dom';
 class FormDeposit extends Component {
 
     constructor(props) {
@@ -33,8 +33,46 @@ class FormDeposit extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyWords = this.handleKeyWords.bind(this);
+        this.handleFiles = this.handleFiles.bind(this);
     }
 
+    FilesUpload() {
+        var formData = new FormData()
+        /*Object.keys(this.state.files).forEach((key)=>{  //On parcourt la liste des fichiers
+            const file = this.state.files[key]
+            formData.append(key, new Blob([file], {type : file.type}), file.name || 'file') //On ajoute dans le formData le fichier
+        })*/
+
+        this.state.files.forEach((file) => {
+            formData.append(file.name, new Blob([file], { type: file.type }), file.name || 'file')
+        })
+
+        fetch('/api/addFile', {
+            method: 'POST',
+            body: formData
+        });
+        this.addViewFile()
+
+    }
+
+    addViewFile() {
+        const html = (
+            this.state.files.map((file,index)=>{
+                return (<a key = {index} class="file-add list-group-item list-group-item-action">
+                {file.name}
+                </a>)
+            })
+        )
+        ReactDOM.render(html,document.getElementById("addedFiles"))
+    }
+
+    handleFiles(event) {
+        console.log(event);
+        this.setState({ files: event },()=> {
+            console.log(this.state.files);
+            this.addViewFile()
+        });
+    }
 
     handleKeyWords(key) {
 
@@ -48,6 +86,7 @@ class FormDeposit extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.FilesUpload();
         const form = {
             title: this.state.title,
             study_year: this.state.study_year,
@@ -135,7 +174,7 @@ class FormDeposit extends Component {
                     <SpecializationInput change={this.handleChange} />
                     <DescriptionInput2 change={this.handleChange} />
                     <KeyWords change={this.handleKeyWords} />
-                    <FilesInputs change={this.handleKeyWords} />
+                    <FilesInputs change={this.handleFiles} />
                     <div className="form-actions">
                         <div className="row">
                             <div className="col-md-offset-3 col-md-9">

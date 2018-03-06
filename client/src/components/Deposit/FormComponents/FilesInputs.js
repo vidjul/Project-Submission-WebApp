@@ -3,40 +3,6 @@ import Files from 'react-files';
 import ReactDOM from 'react-dom';
 class FilesInputs extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-
-            files: []
-        }
-        this.OnFilesChange = this.OnFilesChange.bind(this);
-    }
-
-    addViewFile(files) {
-        ReactDOM.render(
-            <a class="file-add list-group-item list-group-item-action">
-                {files[files.length - 1].name}
-            </a>
-            , document.getElementById("addedFiles"))
-    }
-
-    OnFilesChange(event) {
-        this.setState({ files: event },()=> {
-            console.log(this.state.files);
-            var formData = new FormData()
-            Object.keys(this.state.files).forEach((key)=>{  //On parcourt la liste des fichiers
-                const file = this.state.files[key]
-                formData.append(key, new Blob([file], {type : file.type}), file.name || 'file') //On ajoute dans le formData le fichier
-            })
-    
-            fetch('/api/addFile', {
-                method: 'POST',
-                body: formData
-                })
-            this.addViewFile(event)
-        });
-    }
-
     OnFilesError(error, file) {
         console.log('error code ' + error.code + ': ' + error.message)
     }
@@ -48,7 +14,7 @@ class FilesInputs extends Component {
                 <div className="file col-md-5">
                     <Files
                         className='files-dropzone'
-                        onChange={this.OnFilesChange}
+                        onChange={this.props.change}
                         onError={this.OnFilesError}
                         accepts={['image/*', 'application/pdf']}
                         multiple
