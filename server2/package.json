@@ -4,12 +4,16 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node bin/www",
+    "client": "cd ../client && npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "author": "Thomas Denneulin - Sofian Amirou - Cyrine Bouzayene - Sajeevan Puvikaran - Vidushan Chooriyakumaran",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "debug": "^3.1.0",
     "express": "^4.16.2",
     "mongoose": "^5.0.9",
