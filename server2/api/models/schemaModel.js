@@ -34,8 +34,7 @@ module.exports = mongoose.model('Student', StudentSchema);
 
 //Partner Class
 var PartnerSchema = PersonSchema.extend({
-	company: String, 
-	submitted_projects: Array //(Project) 
+	company: String
 });
 module.exports = mongoose.model('Partner', PartnerSchema);
 
@@ -63,9 +62,10 @@ var ProjectSchema = new Schema({
 	status: { type: String, required: true },
 	sub_date: { type: Date, default: Date.now }, 
 	edit_date: { type: Date, default: Date.now }, 
-	edit_link: { type: String, required: true }, 
+	weblink: { type: String, required: true }, 
 	likes: Array, //(StudentSchema)
 	comments: Array, //(CommentSchema)
+	partner: {type : PartnerSchema, required:true}
 })
 module.exports = mongoose.model('Project', ProjectSchema);
 
