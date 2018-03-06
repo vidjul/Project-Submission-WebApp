@@ -50,8 +50,10 @@ class FormDeposit extends Component {
         fetch('/api/addFile', {
             method: 'POST',
             body: formData
-        });
-        this.addViewFile()
+        })
+        .then((resp)=>{
+            console.log(resp.body);
+        })
 
     }
 
