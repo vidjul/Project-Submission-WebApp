@@ -15,18 +15,12 @@ class FormDeposit extends Component {
         super(props);
         this.state = {
             title: "",
-            titleValid: false,
             study_year: [],
-            study_yearValid: false,
             specialization: [],
-            specializationValid: false,
             description: "",
-            descriptionValid: false,
             keyWords: [],
-            keyWordsValid: false,
             files: [],
-            urls : [],
-            filesValid: false,
+            urls: [],
             email: "",
             company: ""
         }
@@ -38,47 +32,60 @@ class FormDeposit extends Component {
     }
 
     FilesUpload() {
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject) => {
             var formData = new FormData()
             /*Object.keys(this.state.files).forEach((key)=>{  //On parcourt la liste des fichiers
                 const file = this.state.files[key]
                 formData.append(key, new Blob([file], {type : file.type}), file.name || 'file') //On ajoute dans le formData le fichier
             })*/
-    
+
             this.state.files.forEach((file) => {
                 formData.append(file.name, new Blob([file], { type: file.type }), file.name || 'file')
             })
-    
+
             fetch('/api/addFile', {
                 method: 'POST',
                 body: formData
             })
-            .then((resp)=>{
-                resp.json().then((urls)=>{
-                    console.log(urls)
-                    this.setState({urls: urls})
-                    return resolve()
-                });
-            })
-            .catch((err)=> {return reject(err)})
+                .then((resp) => {
+                    resp.json().then((urls) => {
+                        console.log(urls)
+                        this.setState({ urls: urls })
+                        return resolve()
+                    });
+                })
+                .catch((err) => { return reject(err) })
         })
 
     }
 
     addViewFile() {
+
+        var Delete = (e) => {
+            const fileIdToRemove = e.target.getAttribute('data-key')
+            var newState = this.state.files.splice(this.state.files.findIndex((file)=>{
+                return file.id == fileIdToRemove;
+            }),1);
+            this.addViewFile();
+        }
+
         const html = (
-            this.state.files.map((file,index)=>{
-                return (<a key = {index} class="file-add list-group-item list-group-item-action">
-                {file.name}
-                </a>)
+            this.state.files.map((file, index) => {
+                return (
+                    <a key={index} class="justify-content-between file-add list-group-item list-group-item-action">
+                        <div>
+                            <p>{file.name}</p>
+                            <p data-key = {file.id} className="text-right" onClick={Delete}> Delete</p>
+                        </div>
+                    </a>)
             })
         )
-        ReactDOM.render(html,document.getElementById("addedFiles"))
+        ReactDOM.render(html, document.getElementById("addedFiles"))
     }
 
     handleFiles(event) {
         console.log(event);
-        this.setState({ files: event },()=> {
+        this.setState({ files: event }, () => {
             console.log(this.state.files);
             this.addViewFile()
         });
@@ -97,20 +104,20 @@ class FormDeposit extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.FilesUpload()
-        .then(()=>{
-            const form = {
-                title: this.state.title,
-                study_year: this.state.study_year,
-                specialization: this.state.specialization,
-                description: this.state.description,
-                keywords: this.state.keyWords,
-                email: this.state.email,
-                company: this.state.company,
-                urls : this.state.urls
-            }
-    
-            console.log(form);
-        })
+            .then(() => {
+                const form = {
+                    title: this.state.title,
+                    study_year: this.state.study_year,
+                    specialization: this.state.specialization,
+                    description: this.state.description,
+                    keywords: this.state.keyWords,
+                    email: this.state.email,
+                    company: this.state.company,
+                    urls: this.state.urls
+                }
+
+                console.log(form);
+            })
         /*try{
         fetch('/api/projects',{
         method : 'POST',
