@@ -4,23 +4,26 @@ class Card extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          value: null,
-          description:null, 
-          image:null,
-          dimension:null,
-          button:null
+          choice: null
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        this.props.addKey(this.props.value);
     }
 
     render(){
         return(
+            <form onSubmit={this.handleSubmit}>
             <Thumbnail src={this.props.image} alt={this.props.dimension}>
                 <h3>{this.props.value}</h3>
                 <p>{this.props.description}</p>
                 <p>
-                <Button bsStyle="primary">Go</Button>
+                <Button type="submit" bsStyle="primary">Go</Button>
                 </p>
-            </Thumbnail>
+            </Thumbnail></form>
         );
     }
 }
