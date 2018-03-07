@@ -7,10 +7,10 @@ class App extends Component {
   render() {
     return (
       <Switch>
-       <Route exact path = "/" component = {Home}/>
-       <Route exact path = "/Projects" component = {Projects}/>
-       <Route exact path = "/Deposit" component = {Deposit}/>
-       </Switch>
+        <Route exact path = "/" component = {Home}/>
+        <Route exact path = "/Projects" component = {Projects}/>
+        <Route exact path = "/Deposit" component = {Deposit}/>
+      </Switch>
     )
   }
 }
