@@ -25,6 +25,7 @@ class FormDeposit extends Component {
             keyWords: [],
             keyWordsValid: false,
             files: [],
+            urls : [],
             filesValid: false,
             email: "",
             company: ""
@@ -37,22 +38,29 @@ class FormDeposit extends Component {
     }
 
     FilesUpload() {
-        var formData = new FormData()
-        /*Object.keys(this.state.files).forEach((key)=>{  //On parcourt la liste des fichiers
-            const file = this.state.files[key]
-            formData.append(key, new Blob([file], {type : file.type}), file.name || 'file') //On ajoute dans le formData le fichier
-        })*/
-
-        this.state.files.forEach((file) => {
-            formData.append(file.name, new Blob([file], { type: file.type }), file.name || 'file')
-        })
-
-        fetch('/api/addFile', {
-            method: 'POST',
-            body: formData
-        })
-        .then((resp)=>{
-            console.log(resp.body);
+        return new Promise((resolve,reject)=>{
+            var formData = new FormData()
+            /*Object.keys(this.state.files).forEach((key)=>{  //On parcourt la liste des fichiers
+                const file = this.state.files[key]
+                formData.append(key, new Blob([file], {type : file.type}), file.name || 'file') //On ajoute dans le formData le fichier
+            })*/
+    
+            this.state.files.forEach((file) => {
+                formData.append(file.name, new Blob([file], { type: file.type }), file.name || 'file')
+            })
+    
+            fetch('/api/addFile', {
+                method: 'POST',
+                body: formData
+            })
+            .then((resp)=>{
+                resp.json().then((urls)=>{
+                    console.log(urls)
+                    this.setState({urls: urls})
+                    return resolve()
+                });
+            })
+            .catch((err)=> {return reject(err)})
         })
 
     }
@@ -88,18 +96,21 @@ class FormDeposit extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.FilesUpload();
-        const form = {
-            title: this.state.title,
-            study_year: this.state.study_year,
-            specialization: this.state.specialization,
-            description: this.state.description,
-            keywords: this.state.keyWords,
-            email: this.state.email,
-            company: this.state.company
-        }
-
-        console.log(form);
+        this.FilesUpload()
+        .then(()=>{
+            const form = {
+                title: this.state.title,
+                study_year: this.state.study_year,
+                specialization: this.state.specialization,
+                description: this.state.description,
+                keywords: this.state.keyWords,
+                email: this.state.email,
+                company: this.state.company,
+                urls : this.state.urls
+            }
+    
+            console.log(form);
+        })
         /*try{
         fetch('/api/projects',{
         method : 'POST',

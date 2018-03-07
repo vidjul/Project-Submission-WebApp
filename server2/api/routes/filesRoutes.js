@@ -11,10 +11,9 @@ const upload = multer({dest: './.uploads/'});
            return next(new Error('No files uploaded'));
         }
      console.log(req.files);
-        req.files.forEach((file) => {
+       /* req.files.forEach((file) => {
            fs.unlinkSync(path.join(__dirname, file.path));
-        });
-     
-        res.end(req.files);
+        });*/
+        res.send(req.files)
      });
  };
