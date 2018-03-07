@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router';
 import './Index.css';
 import Nav from '../components/nav/Nav.js';
 import { Link } from 'react-router';
@@ -7,13 +8,17 @@ import Carousel from '../components/Carousel.js'
 class Projects extends Component {
 
     render() {
-        return (
-            <div>
-                <Nav />
-                <ProjectGrid />
-                <Carousel />
-            </div>
-        );
+        if(sessionStorage.getItem("Connected") === null){
+            return(<Redirect to='/'/>); 
+        } else {
+            return (
+                <div>
+                    <Nav />
+                    <ProjectGrid />
+                    <Carousel />
+                </div>
+            );
+        }
     }
 }
 
