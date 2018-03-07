@@ -22,6 +22,8 @@ app.use(bodyParser.json());
 var fileUpload = require('./api/routes/filesRoutes');
 fileUpload(app);
 
+var mail = require('./api/routes/mailsRoutes');
+mail(app);
 
 //var routes = require('./api/routes/todoListRoutes'); //importing route
 var project_routes = require('./api/routes/projectRoutes');
