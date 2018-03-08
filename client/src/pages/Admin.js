@@ -31,9 +31,6 @@ class Admin extends Component {
             if(value){
                 return (
                     <div>
-                    <Route 
-                        path={`${match.url}/foo`}
-                        component = {Home}/>
                     <Redirect to = '/'/>
                     </div>
                 )
