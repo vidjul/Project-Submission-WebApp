@@ -17,7 +17,7 @@ class Card extends Component{
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-            <Thumbnail src={this.props.image} alt={this.props.dimension}>
+            <Thumbnail href = {this.props.link} src={this.props.image} alt={this.props.dimension}>
                 <h3>{this.props.titre}</h3>
                 <p>{this.props.description}</p>
                 <p>

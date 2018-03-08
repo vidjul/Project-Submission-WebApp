@@ -12,6 +12,7 @@ class Admin extends Component {
         var redirect = new Map();
         redirect.set("Validation",false);
         redirect.set("EditHome",false);
+        redirect.set("Export",false);
         this.state = {
             myRedirects : redirect
         }
@@ -25,13 +26,14 @@ class Admin extends Component {
     }
 
     render() {
+        console.log(this.props.match.path)
         const redirects = this.state.myRedirects
         for(var [key,value] of redirects){
             console.log(redirects.get(key,value))
             if(value){
                 return (
-                    <div>
-                    <Redirect to = '/'/>
+                    <div>    
+                    <Redirect to = {this.props.match.path + "/"+key}/>
                     </div>
                 )
             }
@@ -48,6 +50,7 @@ class Admin extends Component {
                             value = 'Validation' 
                             description = "Voir la liste des projets en attente de validation."
                             addKey = {this.handleRedirection}
+                            link = {this.props.match.path + "/Validation"}
                             />
                     </Col>
                     <Col xs={6} md={3}>
@@ -58,9 +61,22 @@ class Admin extends Component {
                             value = 'EditHome' 
                             description = "Modifier la page d'accueil du site."
                             addKey = {this.handleRedirection}
+                            link = {this.props.match.path + "/EditHome"}
+                            />
+                    </Col>
+                    <Col xs={6} md={3}>
+                        <Card
+                            titre = "Exporter les projets"
+                            image='./Project_exportation.png'
+                            dimension='200x200'
+                            value = 'Export' 
+                            description = "Exportez tous les projets validé au format pdf."
+                            addKey = {this.handleRedirection}
+                            link = {this.props.match.path + "/Export"}
                             />
                     </Col>
                 </Row>
+                <Route path = {this.props.match.path + "/test"} />
             </div>
         );
     }
