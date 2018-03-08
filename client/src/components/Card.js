@@ -18,14 +18,14 @@ class Card extends Component{
         return(
             <form onSubmit={this.handleSubmit}>
             <Thumbnail src={this.props.image} alt={this.props.dimension}>
-                <h3>{this.props.value}</h3>
+                <h3>{this.props.titre}</h3>
                 <p>{this.props.description}</p>
                 <p>
                 <Button type="submit" bsStyle="primary">Go</Button>
                 </p>
             </Thumbnail></form>
         );
-    }
+    } 
 }
 
 export default Card;

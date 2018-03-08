@@ -27,7 +27,7 @@ class Nav extends Component {
 							<li><Link to="/Deposit">Deposer un projet</Link></li>
 							<li><a href="#">Works</a></li>
 							<li><a href="#">News</a></li>
-							<li><a href="#">Contact</a></li>
+							<li><Link to="/Admin">Admin</Link></li>
 							<li>
 								<Link to ="../../public/admin_3/page_user_login_5.html" className="btn btn-default btn-outline btn-circle collapsed">Sign in</Link>
 							</li>
