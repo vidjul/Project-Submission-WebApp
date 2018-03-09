@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router';
 import './Index.css';
-import Nav from '../components/nav/Nav.js';
+import Navs from '../components/nav/Navs.js';
 import { Link } from 'react-router';
 import ProjectGrid from '../components/ProjectGrid';
 import Carousel from '../components/Carousel.js'
@@ -13,7 +13,7 @@ class Projects extends Component {
         } else {
             return (
                 <div>
-                    <Nav />
+                    <Navs />
                     <ProjectGrid />
                     <Carousel />
                 </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Nav from '../components/nav/Nav.js';
+import Navs from '../components/nav/Navs.js';
 import Card from '../components/Card';
 import { Row, Col } from 'react-bootstrap';
 import {Route} from 'react-router';
@@ -40,7 +40,7 @@ class Admin extends Component {
         }
         return (
             <div>
-                <Nav />
+                <Navs />
                 <Row>
                     <Col xs={6} md={3}>
                         <Card
