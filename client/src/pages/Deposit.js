@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Nav from '../components/nav/Nav.js';
+import Navs from '../components/nav/Navs.js';
 import TitleInput from '../components/Deposit/FormComponents/TitleInput';
 import FormTitle from '../components/Deposit/FormComponents/FormTitle';
 import YearInput from '../components/Deposit/FormComponents/YearInput';
@@ -13,7 +13,7 @@ class Deposit extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Navs />
         <div className="container">
           <div className="portlet box green">
             <FormTitle />

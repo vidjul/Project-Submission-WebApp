@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './Index.css';
-import Nav from '../components/nav/Nav.js';
+import Navs from '../components/nav/Navs.js';
+import JumbotronPULV from '../components/JumbotronPULV.js';
 import Carousel from '../components/Carousel.js'
 import '../components/components.css';
 import Card from '../components/Card';
 import {Row,Col} from 'react-bootstrap';
+import JumbotronPresentation from '../components/JumbotronPresentation';
 class Home extends Component {
   
   handleKeyChosen(key){
@@ -22,7 +24,11 @@ class Home extends Component {
     if(sessionStorage.getItem("Connected") == null){
       return (
           <div>
-            <Nav />
+            <Navs />
+            <JumbotronPresentation />
+            <hr/>
+            <JumbotronPULV />
+            <br/>
             <Row>
               <Col xs={6} md={3}/>
               <Col xs={6} md={3}>
@@ -38,7 +44,8 @@ class Home extends Component {
     } else{
       return (
         <div>
-          <Nav />
+          <Navs />
+          <br/>
           <Carousel />
         </div>
       );

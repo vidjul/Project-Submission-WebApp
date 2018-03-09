@@ -24,7 +24,7 @@ class FilesInputs extends Component {
                         clickable
                     >
                         <p className="lead text-center">Drop files here or click to upload</p>
-                        <p class="text-center help-block">Accepted files : png , pdf , csv ...</p>
+                        <p className="text-center help-block">Accepted files : png , pdf , csv ...</p>
                     </Files>
                 </div>
                 <div id="addedFiles" className="col-md-4 list-group">

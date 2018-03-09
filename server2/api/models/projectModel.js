@@ -41,7 +41,7 @@ var ProjectSchema = new Schema({
         type: Date, 
         default: Date.now 
     },
-    edit_link: {
+    edit_key: {
         type: String
     },
 

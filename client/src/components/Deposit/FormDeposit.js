@@ -30,7 +30,6 @@ class FormDeposit extends Component {
         this.handleKeyWords = this.handleKeyWords.bind(this);
         this.handleFiles = this.handleFiles.bind(this);
     }
-
     FilesUpload() {
         return new Promise((resolve, reject) => {
             var formData = new FormData()
