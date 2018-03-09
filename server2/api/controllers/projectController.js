@@ -37,8 +37,17 @@ exports.read_a_project = (req, res) => {
   });
 }
 
+exports.find_by_edit_key = (req, res) => {
+  Project.findOne({edit_key: req.params.editKey}, (err, project) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(project);
+  })
+}
+
 exports.update_a_project = (req, res) => {
-  Project.findOneAndUpdate({ _id: req.params.projectId }, req, body, { new: true }, (err, project) => {
+  Project.findOneAndUpdate({ _id: req.params.projectId }, req.body, { new: true }, (err, project) => {
     if (err) {
       res.send(err);
     }

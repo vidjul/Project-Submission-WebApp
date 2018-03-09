@@ -11,6 +11,9 @@ module.exports = function(app) {
   .get(project.read_a_project)
   .put(project.update_a_project);
 
+  app.route('/api/edit/:editKey')
+  .get(project.find_by_edit_key);
+
 
   // app.route('/tasks/:taskId')
   //   .get(todoList.read_a_task)

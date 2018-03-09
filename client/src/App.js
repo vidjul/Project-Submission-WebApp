@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Deposit from './pages/Deposit';
 import Admin from './pages/Admin';
+import EditDeposit from './pages/EditDeposit';
+
 class App extends Component {
   render() {
     return (
@@ -12,6 +14,7 @@ class App extends Component {
         <Route exact path = "/Projects" component = {Projects}/>
         <Route exact path = "/Deposit" component = {Deposit}/>
         <Route exact path = "/Admin" component = {Admin}/>
+        <Route exact path = "/Edit/:editKey" component = {EditDeposit}/>
       </Switch>
     )
   }
