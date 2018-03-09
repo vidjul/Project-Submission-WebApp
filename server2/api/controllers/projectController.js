@@ -1,6 +1,6 @@
 'use strict';
 
-
+const generator = require('generate-password');
 var mongoose = require('mongoose');
 Project = mongoose.model('Projects');
 
@@ -13,7 +13,13 @@ exports.list_all_projects = function (req, res) {
 };
 
 exports.create_a_project = function (req, res) {
-  var new_project = new Project(req.body);
+  let json = req.body;
+  let editKey = generator.generate({
+    length:15,
+    numbers:true
+  });
+  json.edit_key = editKey;
+  var new_project = new Project(json);
   console.log(new_project);
   new_project.save(function (err, project) {
     if (err)
