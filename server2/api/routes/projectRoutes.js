@@ -2,10 +2,14 @@
 module.exports = function(app) {
   var project = require('../controllers/projectController');
 
-  // todoList Routes
+  // projects routes
   app.route('/api/projects')
     .get(project.list_all_projects)
     .post(project.create_a_project);
+
+  app.route('/api/projects/:projectId')
+  .get(project.read_a_project)
+  .put(project.update_a_project);
 
 
   // app.route('/tasks/:taskId')
