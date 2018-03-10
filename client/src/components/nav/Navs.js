@@ -10,25 +10,25 @@ class Navs extends React.Component {
 				<NavbarBrand href="/"><img src="./logo_pulv.png" height="50" width="50" /></NavbarBrand>
 				<Nav className="ml-auto">
 					<NavItem>
-						<NavLink href="/">Home</NavLink>
+						<NavLink className="text-secondary h4" href="/">Home</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="/Projects">Projets</NavLink>
+						<NavLink className="text-secondary h4" href="/Projects">Projets</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="/Deposit">Déposer un projet</NavLink>
+						<NavLink className="text-secondary h4" href="/Deposit">Déposer un projet</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="/Connection">Se connecter</NavLink>
+						<NavLink className="text-secondary h4" href="/Connection">Se connecter</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="/Admin">Admin</NavLink>
+						<NavLink className="text-secondary h4" href="/Admin">Admin</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="#">Fr</NavLink>
+						<NavLink className="text-primary h4" href="#">Fr</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="#">En</NavLink>
+						<NavLink className="text-primary h4" href="#">En</NavLink>
 					</NavItem>
 					<hr />
 				</Nav>
