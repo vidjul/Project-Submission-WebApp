@@ -7,7 +7,7 @@ import '../components/components.css';
 import Card from '../components/Card';
 import {Row,Col} from 'react-bootstrap';
 import JumbotronPresentation from '../components/JumbotronPresentation';
-import Navbars from '../components/Navbars';
+
 class Home extends Component {
   
   handleKeyChosen(key){

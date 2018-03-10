@@ -1,6 +1,6 @@
 import React from 'react';
 //import './Navs.css';
-import {Nav, NavItem, NavLink, Row} from 'reactstrap';
+import {Nav, NavItem, NavLink} from 'reactstrap';
 
 
 console.log("Passed");
