@@ -6,25 +6,24 @@ console.log("Passed");
 class Navs extends React.Component {
 	render() {
 		return (
-			
 				<Nav>
 					<NavItem>
 						<img src="./logo_pulv.png" />
 					</NavItem>
 					<NavItem>
-						<NavLink href="#">Home</NavLink>
+						<NavLink href="/">Home</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="#">Projets</NavLink>
+						<NavLink href="/Projects">Projets</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="#">Déposer un projet</NavLink>
+						<NavLink href="/Deposit">Déposer un projet</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="#">Se connecter</NavLink>
+						<NavLink href="/Connection">Se connecter</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="#">Admin</NavLink>
+						<NavLink href="/Admin">Admin</NavLink>
 					</NavItem>
 					<NavItem>
 						<NavLink href="#">Fr</NavLink>

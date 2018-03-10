@@ -13,7 +13,6 @@ class JumbotronPULV extends React.Component {
                     <hr className="my-2" />
                     <ContainerPULV />
                     <p className="lead">
-                    
                     </p>
                 </Jumbotron>
             </div>
