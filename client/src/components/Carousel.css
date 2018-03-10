@@ -16,7 +16,7 @@ img {
     text-align: center;
   }
   
-  .container:hover .middle {
+  .container:hover .description {
     opacity: 0;
   }
   

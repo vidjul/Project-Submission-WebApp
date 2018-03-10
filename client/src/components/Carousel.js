@@ -83,8 +83,8 @@ class Caroussel extends Component {
           <img src={item.src} alt={item.altText} />
          
           <div className="middle">
-          <CarouselCaption className="text" captionText={item.caption} captionHeader={item.captionHeader} />
-  </div>
+             <CarouselCaption className="text" captionText={item.caption} captionHeader={item.captionHeader} />
+         </div>
         </CarouselItem>
       );
     });

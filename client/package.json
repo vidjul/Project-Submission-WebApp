@@ -16,7 +16,9 @@
     "react-scripts": "1.1.0",
     "react-tag-input": "^4.7.2",
     "react-validation": "^3.0.7",
-    "reactstrap": "^5.0.0-beta.2"
+    "reactstrap": "^5.0.0-beta.2",
+    "redux": "^3.7.2",
+    "video-react": "^0.9.4"
   },
   "scripts": {
     "start": "react-scripts start",
