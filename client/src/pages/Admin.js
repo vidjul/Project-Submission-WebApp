@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navs from '../components/nav/Navs.js';
-import Card from '../components/Card';
+import Cards from '../components/Cards';
 import { Row, Col } from 'react-bootstrap';
 import {Route} from 'react-router';
 import {Redirect} from 'react-router';
@@ -43,7 +43,7 @@ class Admin extends Component {
                 <Navs />
                 <Row>
                     <Col xs={6} md={3}>
-                        <Card
+                        <Cards
                             titre = "Valider un projet"
                             image='./project_validation.png'
                             dimension='200x200'
@@ -54,7 +54,7 @@ class Admin extends Component {
                             />
                     </Col>
                     <Col xs={6} md={3}>
-                        <Card
+                        <Cards
                             titre = "Modifier la home page"
                             image='./Update_home.png'
                             dimension='200x200'
@@ -65,7 +65,7 @@ class Admin extends Component {
                             />
                     </Col>
                     <Col xs={6} md={3}>
-                        <Card
+                        <Cards
                             titre = "Exporter les projets"
                             image='./Project_exportation.png'
                             dimension='200x200'
