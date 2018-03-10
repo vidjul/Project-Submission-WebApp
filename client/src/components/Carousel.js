@@ -1,63 +1,108 @@
 import React, { Component } from 'react';
 import './Carousel.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselCaption
+} from 'reactstrap';
+
+const items = [
+  {
+    src: './pictures/project1.jpg' ,
+    altText: 'project1',
+    captionHeader: 'BermudZer : pricing d’options bermudéennes',
+    caption: 'Projet d’Innovation Industrielle de 5ème année, Majeure Ingénierie Financière 2014-2015'
+  },
+  {
+    src: './pictures/project2.jpg',
+    altText: 'project2',
+    captionHeader:'Application mobile temps réel pour améliorer la qualité de service de transports en commun',
+    caption: 'Projet d’Innovation Industrielle de 5ème année, Majeure Informatique, Big Data et Objets connectés 2014-2015'
+  },
+  {
+    src: './pictures/project3.jpg',
+    altText: 'Project3',
+    captionHeader:'ID-cam : accessibilité numérique pour les non-voyants et mal-voyants',
+    caption: 'Projet 2017-2018 de 5e année du cursus d’élève ingénieur de l’ESILV, promo 2018'
+  }
+];
 
 
 console.log("Passed");
-class Carousel extends Component {
+class Caroussel extends Component {
 
-	item = []
+  constructor(props) {
+    super(props);
+    this.state = { activeIndex: 0 };
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
+    this.goToIndex = this.goToIndex.bind(this);
+    this.onExiting = this.onExiting.bind(this);
+    this.onExited = this.onExited.bind(this);
+  }
 
-	render() {
-        return (
+  onExiting() {
+    this.animating = true;
+  }
 
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-  
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
+  onExited() {
+    this.animating = false;
+  }
 
-  
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src={require('../pictures/projet1.jpg')} alt="Projet 1"/>
-      <div class="carousel-caption">
-        <h3>CONCEPTION ET DIMENSIONNEMENT D’UN BERCEAU MOTEUR EN MATÉRIAUX COMPOSITES</h3>
-        <p>PROJET DE FIN D’ÉTUDES EN 5E ANNÉE, MAJEURE “MÉCANIQUE NUMÉRIQUE ET MODÉLISATION”, ANNÉE 2013-2014</p>
-      </div>
-    </div>
+  next() {
+    if (this.animating) return;
+    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+    this.setState({ activeIndex: nextIndex });
+  }
 
-    <div class="item">
-      <img src={require('../pictures/projet2.jpg')} alt="Projet 2"/>
-      <div class="carousel-caption">
-        <h3>OBJETS CONNECTÉS : SURVEILLANCE DES PERSONNES VULNÉRABLES</h3>
-        <p>PROJET D’INNOVATION INDUSTRIELLE DE 5ÈME ANNÉE, MAJEURE INFORMATIQUE, BIG DATA ET OBJETS CONNECTÉS 2014-2015</p>
-      </div>
-    </div>
+  previous() {
+    if (this.animating) return;
+    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+    this.setState({ activeIndex: nextIndex });
+  }
 
-    <div class="item">
-      <img src={require('../pictures/projet3.jpg')} alt="Projet 3"/>
-      <div class="carousel-caption">
-        <h3>ÉTUDES DE DONNÉES AMF</h3>
-        <p>PROJET 2015-2016 DE 5E ANNÉE DU CURSUS D’ÉLÈVE INGÉNIEUR DE L’ESILV, PROMO 2016, DANS LE CADRE D’UN PROJET DE PARTENARIAT</p>
-      </div>
-    </div>
+  goToIndex(newIndex) {
+    if (this.animating) return;
+    this.setState({ activeIndex: newIndex });
+  }
+
+  render() {
+    const { activeIndex } = this.state;
+
+    const slides = items.map((item) => {
+      return (
+        <CarouselItem className="container"
+          onExiting={this.onExiting}
+          onExited={this.onExited}
+          key={item.src}
+        >
+          <img src={item.src} alt={item.altText} />
+         
+          <div className="middle">
+          <CarouselCaption className="text" captionText={item.caption} captionHeader={item.captionHeader} />
   </div>
+        </CarouselItem>
+      );
+    });
 
-  
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
+    return (
+      <Carousel
+        activeIndex={activeIndex}
+        next={this.next}
+        previous={this.previous}
+      >
+        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+        {slides}
+        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
+        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+      </Carousel>
     );
-}
-}
-export default Carousel;
+    } 
+
+  }
+
+  export default Caroussel;
