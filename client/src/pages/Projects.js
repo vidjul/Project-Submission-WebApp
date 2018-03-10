@@ -8,7 +8,7 @@ import Carousel from '../components/Carousel.js'
 class Projects extends Component {
 
     render() {
-        if(sessionStorage.getItem("Connected") === null){
+        if(sessionStorage.getItem("Connected") != null){
             return(<Redirect to='/'/>); 
         } else {
             return (
