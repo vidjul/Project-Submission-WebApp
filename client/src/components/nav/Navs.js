@@ -6,7 +6,7 @@ console.log("Passed");
 class Navs extends React.Component {
 	render() {
 		return (
-				<Nav>
+				<Nav className="navbar-fixed-top">
 					<NavItem>
 						<img src="./logo_pulv.png" />
 					</NavItem>
