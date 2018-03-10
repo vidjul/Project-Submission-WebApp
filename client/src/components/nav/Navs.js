@@ -7,7 +7,7 @@ class Navs extends React.Component {
 	render() {
 		return (
 			<Navbar color = "light" fixed = "top">
-				 <NavbarBrand href="/"><img src="./logo_pulv.png" height="50" width="50" /></NavbarBrand>
+				<NavbarBrand href="/"><img src="./logo_pulv.png" height="50" width="50" /></NavbarBrand>
 				<Nav className="ml-auto">
 					<NavItem>
 						<NavLink href="/">Home</NavLink>

@@ -22,17 +22,14 @@ class Home extends Component {
   }
   
   render() {
-    if(sessionStorage.getItem("Connected") == null){
-      return (
-        <div>
-          <Navs />
-          <JumbotronPresentation />
-          <hr/>
-          <JumbotronPULV />
-          <Carousel />
-        </div>
-      );
-    } 
+    return (
+      <div>
+        <Navs /><hr/>
+        <JumbotronPresentation />
+        <JumbotronPULV />
+        <Carousel />
+      </div>
+    );  
   }
 }
 
