@@ -25,6 +25,8 @@ class Connection extends Component {
           <CardDeck>
               <Cards addKey={this.handleKeyChosen.bind(this)} value="Student" description="Connect to LeoID in order to look at projects." image="./student-with-graduation-cap.png"/> 
               <Cards addKey={this.handleKeyChosen.bind(this)} value="Partner" description="Give a project to our students." image="./partner.png"/>
+              <Cards />
+              <Cards />
           </CardDeck>
         </div>  
       );

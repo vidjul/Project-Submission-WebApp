@@ -7,8 +7,8 @@ class JumbotronPULV extends React.Component {
 	render() {
 		return (
             <div>
-                <Jumbotron>
-                    <h1 className="display-3 text-center">Bienvenue au Pôle Léonard de Vinci</h1>
+                <Jumbotron className="text-center">
+                    <h1 className="display-3">Bienvenue au Pôle Léonard de Vinci</h1><br/>
                     <p className="lead"></p>
                     <hr className="my-2" />
                     <ContainerPULV />
