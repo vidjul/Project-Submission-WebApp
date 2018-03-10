@@ -1,15 +1,14 @@
 import React from 'react';
-import {Nav, NavItem, NavLink} from 'reactstrap';
+import {Nav, NavItem, NavLink,Navbar,NavbarBrand,NavbarToggler} from 'reactstrap';
 
 
 console.log("Passed");
 class Navs extends React.Component {
 	render() {
 		return (
-				<Nav className="navbar-fixed-top">
-					<NavItem>
-						<img src="./logo_pulv.png" />
-					</NavItem>
+			<Navbar color = "light" fixed = "top">
+				 <NavbarBrand href="/"><img src="./logo_pulv.png" /></NavbarBrand>
+				<Nav className="ml-auto">
 					<NavItem>
 						<NavLink href="/">Home</NavLink>
 					</NavItem>
@@ -33,6 +32,7 @@ class Navs extends React.Component {
 					</NavItem>
 					<hr />
 				</Nav>
+				</Navbar>
 		);
 	}
 }
