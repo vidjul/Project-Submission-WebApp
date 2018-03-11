@@ -31,6 +31,8 @@ project_routes(app); //register the route
 var partner_routes = require('./api/routes/partnerRoutes');
 partner_routes(app);
 
+var major_routes = require('./api/routes/majorsRoutes');
+major_routes(app);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
