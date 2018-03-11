@@ -3,7 +3,8 @@ import {Redirect} from 'react-router';
 import './Index.css';
 import Navs from '../components/nav/Navs.js';
 import { Link } from 'react-router';
-import ProjectGrid from '../components/ProjectGrid';
+//import ProjectGrid from '../components/ProjectGrid';
+import ProjectsListCard from '../components/Projects/ProjectsListCard';
 import Carousel from '../components/Carousel.js'
 class Projects extends Component {
 
@@ -14,7 +15,7 @@ class Projects extends Component {
             return (
                 <div>
                     <Navs /><hr />
-                    <ProjectGrid />
+                    <ProjectsListCard />
                     <Carousel />
                 </div>
             );
