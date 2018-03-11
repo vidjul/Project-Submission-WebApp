@@ -83,4 +83,4 @@ var ReferenceMajorsSchema = new Schema({
 	study_year: {type: String, required: true}, 
 	major_name: {type: String, required: true}
 });
-module.exports = mongoose.model('ReferenceMajors', ReferenceMajorsSchema);
+module.exports = mongoose.model('ReferenceMajor', ReferenceMajorsSchema);
