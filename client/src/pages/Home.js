@@ -24,7 +24,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navs /><hr/>
+        <Navs />
         <JumbotronPresentation />
         <JumbotronPULV />
         <Carousel />
