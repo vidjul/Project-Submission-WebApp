@@ -25,6 +25,7 @@ exports.create_a_project = function (req, res) {
     if (err)
       res.send(err);
     res.json(project);
+    console.log("Project send to the BDD")
   });
 };
 
