@@ -119,6 +119,9 @@ class Deposit extends Component {
             'Content-Type': 'application/json',
           },
           body : JSON.stringify(form)})
+          .then((res)=> {
+            console.log("send to the bdd")
+          })
           }
           catch(error)
           {
