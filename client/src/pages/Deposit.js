@@ -166,7 +166,6 @@ class Deposit extends Component {
     return (
       <div>
         <Navs />
-        <div style={{ paddingTop: 70 + "px" }}>
           <Container fluid className="mt-3">
             <Form onSubmit = {this.handleSubmit}>
               <div id="form-title"><h1>Déposer un projet</h1> <hr /> </div>
@@ -244,7 +243,6 @@ class Deposit extends Component {
             </Form>
           </Container>
         </div>
-      </div>
     );
   }
 }

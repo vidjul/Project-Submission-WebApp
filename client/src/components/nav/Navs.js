@@ -6,6 +6,7 @@ console.log("Passed");
 class Navs extends React.Component {
 	render() {
 		return (
+			<div style= {{marginBottom : 100+'px'}}>
 			<Navbar color = "light" fixed = "top">
 				<NavbarBrand href="/"><img src="./logo_pulv.png" height="50" width="50" /></NavbarBrand>
 				<Nav className="ml-auto">
@@ -33,6 +34,7 @@ class Navs extends React.Component {
 					<hr />
 				</Nav>
 				</Navbar>
+				</div>
 		);
 	}
 }
