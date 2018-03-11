@@ -21,11 +21,10 @@ class Connection extends Component {
       return(
         <div>
           <Navs />
-          <hr/>
           <CardDeck>
               <Cards addKey={this.handleKeyChosen.bind(this)} value="Student" description="Connect to LeoID in order to look at projects." image="./student-with-graduation-cap.png"/> 
               <Cards addKey={this.handleKeyChosen.bind(this)} value="Partner" description="Give a project to our students." image="./partner.png"/>
-              <Cards />
+              <Cards addKey={this.handleKeyChosen.bind(this)} value="Staff" description="Manage the projects." image="./staff.png"/>
               <Cards />
           </CardDeck>
         </div>  
