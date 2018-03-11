@@ -71,9 +71,16 @@ module.exports = mongoose.model('Project', ProjectSchema);
 
 //Specialization Class
 var SpecializationSchema = new Schema({
-	//attribut id ajouté automatiquement
 	specialization_name: { type: String, required: true },
 	school_name: { type: String, required: true },
 	referent: String
 });
 module.exports = mongoose.model('Specialization', SpecializationSchema);
+
+//ReferenceMajors Class (Every majors in each school)
+var ReferenceMajorsSchema = new Schema({
+	school_name: {type: String, required: true},
+	study_year: {type: String, required: true}, 
+	major_name: {type: String, required: true}
+});
+module.exports = mongoose.model('ReferenceMajors', ReferenceMajorsSchema);
