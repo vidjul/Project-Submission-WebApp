@@ -20,10 +20,10 @@ class ProjectsListCard extends React.Component{
         return(
         <div>
             <Container>
-                <Card>
-                    <CardHeader>Liste des projets</CardHeader>
+                <Card className="lead">
+                    <CardHeader style={{fontSize:20}} >Liste des projets</CardHeader>
                     <CardBlock>
-                        <ProjectFilter /> 
+                        <ProjectFilter style={{fontSize:15}} /> 
                         {this.state.projects.map(project => <Container><ProjectCard key = {project.id} project = {project}/></Container>)}
                     </CardBlock>
                 </Card>    

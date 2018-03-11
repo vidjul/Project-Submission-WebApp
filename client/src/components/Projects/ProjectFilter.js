@@ -5,15 +5,17 @@ class ProjectFilter extends React.Component{
     render(){
         return(
             <div>
+                
+                <Container>
                 <i class="fa fa-filter"/>
                 Filtrer par:
-                <Container>
-                <Dropdown>
+                
+                <Dropdown size="lg">
                     <DropdownToggle>Year</DropdownToggle>
                     <DropdownItem>4A</DropdownItem>
                     <DropdownItem>5A</DropdownItem>
-                </Dropdown></Container> {' '}
-                <Dropdown>
+                </Dropdown>{' '}
+                <Dropdown size="lg">
                     <DropdownToggle>Major(s)</DropdownToggle>
                     <DropdownItem>IBO</DropdownItem>
                     <DropdownItem>IF</DropdownItem>
@@ -25,7 +27,7 @@ class ProjectFilter extends React.Component{
                     <InputGroupText>Mots Clés</InputGroupText>
                     </InputGroupAddon>
                     <Input />
-                </InputGroup>
+                </InputGroup></Container>
             </div>
         );
     }
