@@ -7,7 +7,6 @@ var app = express();
 
 mongoose = require('mongoose'),
 Task = require('./api/models/todoListModel'), //created model loading here
-Project = require('./api/models/projectModel'),
 Schema = require('./api/models/schemaModel'),
 
 mongoose.Promise = global.Promise;

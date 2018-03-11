@@ -2,7 +2,7 @@
 
 const generator = require('generate-password');
 var mongoose = require('mongoose');
-Project = mongoose.model('Project');
+const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
 
 exports.list_all_projects = function (req, res) {
