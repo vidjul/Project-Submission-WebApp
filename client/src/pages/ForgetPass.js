@@ -9,13 +9,15 @@ class ForgetPass extends Component {
         this.state = {
             email: ""
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const form = {
             email: this.state.email
-        }
+        };
 
         try {
             fetch('/api/retrieveEdit', {
@@ -53,7 +55,7 @@ class ForgetPass extends Component {
                     <Label for="Email"><h3>Votre email</h3></Label>
                     <Input
                         onChange={this.handleChange.bind(this)}
-                        type="email" name="email2"
+                        type="email" name="email"
                         placeholder="Votre email" />
                 </FormGroup>
                 <FormGroup>

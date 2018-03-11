@@ -35,8 +35,8 @@ exports.create_a_project = function (req, res) {
     }
     else {
       let new_partner = new Partner({
-        "first_name": "test",
-        "last_name": "test",
+        "first_name": req.body.first_name,
+        "last_name": req.body.last_name,
         "email": req.body.email,
         "company": req.body.company
       });
@@ -44,14 +44,13 @@ exports.create_a_project = function (req, res) {
         if (err) {
           res.send(err);
         }
-        json.partner = new_partner._id;
+        json.partner = new_partner;
         var new_project = new Project(json);
         new_project.save(function (err, project) {
           if (err)
             res.send(err);
           res.json(project);
         });
-        res.send(new_project);
       });
     }
   })
