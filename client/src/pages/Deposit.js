@@ -111,20 +111,20 @@ class Deposit extends Component {
         }
 
         console.log(form);
+        try{
+          fetch('/api/projects',{
+          method : 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body : JSON.stringify(form)})
+          }
+          catch(error)
+          {
+            console.error(error);
+          }
       })
-    /*try{
-    fetch('/api/projects',{
-    method : 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body : JSON.stringify(form)})
-    }
-    catch(error)
-    {
-      console.error(error);
-    }*/
 
   }
 
