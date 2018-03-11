@@ -26,6 +26,9 @@ class Navs extends React.Component {
 						<NavLink className="text-secondary h4" href="/Admin">Admin</NavLink>
 					</NavItem>
 					<NavItem>
+						<NavLink className="text-secondary h4" href="/forgot">lien projet perdu</NavLink>
+					</NavItem>
+					<NavItem>
 						<NavLink className="text-primary h4" href="#">Fr</NavLink>
 					</NavItem>
 					<NavItem>
