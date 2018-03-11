@@ -15,7 +15,7 @@ class JumbotronPresentation extends React.Component {
 	render() {
         return(
             <Jumbotron className="welcome">
-                <h1 className="description display-3 text-center">Bienvenue à la DeVinci Plateforme</h1>
+                <h1 className="description display-3 text-center">Bienvenue sur la DeVinci Plateforme</h1>
                  <video className="background-video" loop autoPlay>
                     <source src={this.state.videoURL} type="video/mp4" />
                     <source src={this.state.videoURL} type="video/ogg" />
