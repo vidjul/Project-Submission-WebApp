@@ -52,7 +52,7 @@ class ForgetPass extends Component {
                 <FormGroup>
                     <Label for="Email"><h3>Votre email</h3></Label>
                     <Input
-                        onChange={this.handleChange}
+                        onChange={this.handleChange.bind(this)}
                         type="email" name="email2"
                         placeholder="Votre email" />
                 </FormGroup>
