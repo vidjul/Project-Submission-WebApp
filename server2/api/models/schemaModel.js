@@ -62,7 +62,7 @@ var ProjectSchema = new Schema({
 	status: { type: String, required: true },
 	sub_date: { type: Date, default: Date.now }, 
 	edit_date: { type: Date, default: Date.now }, 
-	weblink: { type: String, required: true }, 
+	edit_key: { type: String, required: true }, 
 	likes: Array, //(StudentSchema)
 	comments: Array, //(CommentSchema)
 	partner: {type : PartnerSchema, required:true}
