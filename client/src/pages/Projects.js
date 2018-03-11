@@ -13,7 +13,7 @@ class Projects extends Component {
         } else {
             return (
                 <div>
-                    <Navs />
+                    <Navs /><hr />
                     <ProjectGrid />
                     <Carousel />
                 </div>

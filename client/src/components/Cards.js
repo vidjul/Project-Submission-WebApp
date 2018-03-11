@@ -18,10 +18,10 @@ class Cards extends React.Component{
             <Card className="text-center">
                 <CardImg top width="100%" src={this.props.image} alt="Card image cap" />
                 <CardBody>
-                <CardTitle>{this.props.value}</CardTitle>
-                <CardSubtitle>{this.props.titre}</CardSubtitle>
-                <CardText>{this.props.description}</CardText>
-                <Button>Button</Button>
+                <CardTitle className="h2">{this.props.value}</CardTitle>
+                <CardSubtitle className="h3">{this.props.titre}</CardSubtitle>
+                <CardText className="lead">{this.props.description}</CardText>
+                <Button size="lg">Button</Button>
                 </CardBody>
             </Card>
         );
