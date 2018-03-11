@@ -86,33 +86,6 @@ class Deposit extends Component {
     });
   }
 
-  handleSubmit2(event){
-    event.preventDefault();
-    const form = {
-      email : this.state.email2
-    }
-
-    try {
-      fetch('/api/retrieveEdit', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form)
-      })
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-    }
-    catch (error) {
-      console.error(error);
-    }
-  }
-
   handleKeyWords(key) {
 
     var keys = [];
@@ -274,18 +247,6 @@ class Deposit extends Component {
                 <Button>Envoyer le projet</Button>
               </FormGroup>
             </div>
-          </Form>
-          <Form onSubmit = {this.handleSubmit2.bind(this)}>
-          <FormGroup>
-                <Label for="Email"><h3>Votre email</h3></Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="email" name="email2"
-                  placeholder="Votre email" />
-              </FormGroup>
-              <FormGroup>
-                <Button>Envoyer le projet</Button>
-              </FormGroup>
           </Form>
         </Container>
       </div>

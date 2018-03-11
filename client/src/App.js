@@ -6,6 +6,7 @@ import Deposit from './pages/Deposit';
 import Connection from './pages/Connection';
 import Admin from './pages/Admin';
 import EditDeposit from './pages/EditDeposit';
+import ForgetPass from './pages/ForgetPass'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route exact path = "/Connection" component = {Connection}/>
         <Route exact path = "/Admin" component = {Admin}/>
         <Route exact path = "/Edit/:editKey" component = {EditDeposit}/>
+        <Route exact path = "/Forgot" component = {ForgetPass}/>
       </Switch>
     )
   }
