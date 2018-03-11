@@ -1,33 +1,32 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownItem } from 'reactstrap';
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownItem, Row, DropdownMenu } from 'reactstrap';
+import DropdownFilter from './DropdownFilter';
 
 class ProjectFilter extends React.Component{
     render(){
         return(
-            <div>
-                
-                <Container>
+            <div>{' '}
                 <i class="fa fa-filter"/>
-                Filtrer par:
-                
+                Filtrer par:{' '}
+                <DropdownFilter/>
+                <Container>
+                {' '}
                 <Dropdown size="lg">
-                    <DropdownToggle>Year</DropdownToggle>
-                    <DropdownItem>4A</DropdownItem>
-                    <DropdownItem>5A</DropdownItem>
-                </Dropdown>{' '}
-                <Dropdown size="lg">
-                    <DropdownToggle>Major(s)</DropdownToggle>
+                    <DropdownToggle caret>Major(s)</DropdownToggle>
+                    <DropdownMenu>
                     <DropdownItem>IBO</DropdownItem>
                     <DropdownItem>IF</DropdownItem>
                     <DropdownItem>MNM</DropdownItem>
                     <DropdownItem>NE</DropdownItem>
-                </Dropdown>
-                <InputGroup>
+                    </DropdownMenu>
+                </Dropdown></Container>
+            
+            <InputGroup>
                     <InputGroupAddon addonType="prepend">
                     <InputGroupText>Mots Clés</InputGroupText>
                     </InputGroupAddon>
                     <Input />
-                </InputGroup></Container>
+                </InputGroup>
             </div>
         );
     }

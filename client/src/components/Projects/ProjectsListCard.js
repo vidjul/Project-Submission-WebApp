@@ -23,7 +23,7 @@ class ProjectsListCard extends React.Component{
                 <Card className="lead">
                     <CardHeader style={{fontSize:20}} >Liste des projets</CardHeader>
                     <CardBlock>
-                        <ProjectFilter style={{fontSize:15}} /> 
+                        <Container><ProjectFilter style={{fontSize:15}} /></Container><hr/>
                         {this.state.projects.map(project => <Container><ProjectCard key = {project.id} project = {project}/></Container>)}
                     </CardBlock>
                 </Card>    

@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+require("./schemaModel");
 
 //Project Class
 var ProjectSchema = new Schema({
@@ -51,6 +52,11 @@ var ProjectSchema = new Schema({
     comments: {
         type: Array //(CommentSchema)
     }, 
+    partner: {
+        type : mongoose.Schema.Types.ObjectId, 
+        ref : "Partner",
+        required: 'Please enter all the information about partner'
+    }
 });
 
 module.exports = mongoose.model('Projects', ProjectSchema);
