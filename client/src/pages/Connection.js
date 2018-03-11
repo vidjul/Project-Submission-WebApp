@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navs from '../components/nav/Navs.js';
 import Cards from '../components/Cards';
-import {CardDeck} from 'reactstrap';
+import {CardDeck, Container} from 'reactstrap';
 
 class Connection extends Component {
   
@@ -21,12 +21,13 @@ class Connection extends Component {
       return(
         <div>
           <Navs />
-          <CardDeck>
-              <Cards addKey={this.handleKeyChosen.bind(this)} value="Student" description="Connect to LeoID in order to look at projects." image="./student-with-graduation-cap.png"/> 
-              <Cards addKey={this.handleKeyChosen.bind(this)} value="Partner" description="Give a project to our students." image="./partner.png"/>
-              <Cards addKey={this.handleKeyChosen.bind(this)} value="Staff" description="Manage the projects." image="./staff.png"/>
-              <Cards />
-          </CardDeck>
+          <Container>
+            <CardDeck>
+                <Cards addKey={this.handleKeyChosen.bind(this)} value="Student" description="Connect to LeoID in order to look at projects." image="./student-with-graduation-cap.png" dimension="200x200"/> 
+                <Cards addKey={this.handleKeyChosen.bind(this)} value="Partner" description="Give a project to our students." image="./partner.png" dimension="200x200"/>
+                <Cards addKey={this.handleKeyChosen.bind(this)} value="Staff" description="Manage the projects." image="./staff.png" dimension="200x200"/>
+            </CardDeck>
+          </Container>
         </div>  
       );
     } 

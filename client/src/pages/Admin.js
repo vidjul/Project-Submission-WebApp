@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import {Route} from 'react-router';
 import {Redirect} from 'react-router';
 import Home from './Home';
+import { CardDeck, Container } from 'reactstrap';
 class Admin extends Component {
 
     constructor(props){
@@ -41,8 +42,8 @@ class Admin extends Component {
         return (
             <div>
                 <Navs />
-                <Row>
-                    <Col xs={6} md={3}>
+                <Container>
+                    <CardDeck>
                         <Cards
                             titre = "Valider un projet"
                             image='./project_validation.png'
@@ -52,8 +53,6 @@ class Admin extends Component {
                             addKey = {this.handleRedirection}
                             link = {this.props.match.path + "/Validation"}
                             />
-                    </Col>
-                    <Col xs={6} md={3}>
                         <Cards
                             titre = "Modifier la home page"
                             image='./Update_home.png'
@@ -63,8 +62,6 @@ class Admin extends Component {
                             addKey = {this.handleRedirection}
                             link = {this.props.match.path + "/EditHome"}
                             />
-                    </Col>
-                    <Col xs={6} md={3}>
                         <Cards
                             titre = "Exporter les projets"
                             image='./Project_exportation.png'
@@ -74,8 +71,8 @@ class Admin extends Component {
                             addKey = {this.handleRedirection}
                             link = {this.props.match.path + "/Export"}
                             />
-                    </Col>
-                </Row>
+                    </CardDeck>
+                </Container>
                 <Route path = {this.props.match.path + "/test"} />
             </div>
         );
