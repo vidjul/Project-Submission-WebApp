@@ -6,7 +6,8 @@ import Deposit from './pages/Deposit';
 import Connection from './pages/Connection';
 import Admin from './pages/Admin';
 import EditDeposit from './pages/EditDeposit';
-import ForgetPass from './pages/ForgetPass'
+import ForgetPass from './pages/ForgetPass';
+import ProjectValidation from './pages/ProjectValidation';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
         <Route exact path = "/Admin" component = {Admin}/>
         <Route exact path = "/Edit/:editKey" component = {EditDeposit}/>
         <Route exact path = "/Forgot" component = {ForgetPass}/>
+        <Route exact path = "/Admin/ProjectValidation" component = {ProjectValidation}/>
       </Switch>
     )
   }

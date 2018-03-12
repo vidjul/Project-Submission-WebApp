@@ -4,6 +4,7 @@ import FilesInputs from '../components/Deposit/FormComponents/FilesInputs';
 import ReactDOM from 'react-dom';
 import { Button, Form, FormGroup, Label, Input, FormText, Container, Row, Col } from 'reactstrap';
 import KeyWords from '../components/Deposit/FormComponents/KeyWords';
+import '../styles/Deposit/style.css'
 class Deposit extends Component {
 
 
@@ -19,7 +20,7 @@ class Deposit extends Component {
       urls: [],
       email: "",
       company: "",
-      email2 : ""
+      email2: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -171,11 +172,13 @@ class Deposit extends Component {
 
   render() {
     return (
-      <div>
+      <div id = "deposit-body">
         <Navs />
         <Container fluid className="mt-3">
           <Form onSubmit={this.handleSubmit}>
-            <div id="form-title"><h1>Déposer un projet</h1> <hr /> </div>
+            <div id="form-title"><h1>Déposer un projet</h1>
+              <hr className = "hr-text" data-content = "Déposer un projet"/>
+            </div>
             <div id="form-body">
               <h2>Parlez nous de vous </h2>
               <hr />

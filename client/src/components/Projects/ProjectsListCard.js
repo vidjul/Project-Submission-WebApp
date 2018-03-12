@@ -12,7 +12,8 @@ class ProjectsListCard extends React.Component{
     componentDidMount() {
         fetch('/api/projects')
             .then(res => res.json())
-            .then(projects => this.setState({ projects }));
+            .then(projects => this.setState({ projects }))
+            .catch((err) =>{console.log(err);});
     }
 
     render(){
