@@ -21,7 +21,7 @@ class Cards extends React.Component{
                 <CardTitle className="h2">{this.props.value}</CardTitle>
                 <CardSubtitle className="h3">{this.props.titre}</CardSubtitle>
                 <CardText className="lead">{this.props.description}</CardText>
-                <Button size="lg">Button</Button>
+                <Button onClick = {this.props.onClick} size="lg">Button</Button>
                 </CardBody>
             </Card>
         );

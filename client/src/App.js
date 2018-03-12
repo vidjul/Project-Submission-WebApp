@@ -20,7 +20,7 @@ class App extends Component {
         <Route exact path = "/Admin" component = {Admin}/>
         <Route exact path = "/Edit/:editKey" component = {EditDeposit}/>
         <Route exact path = "/Forgot" component = {ForgetPass}/>
-        <Route exact path = "/Admin/ProjectValidation" component = {ProjectValidation}/>
+        <Route exact path = "/Admin/Validation" component = {ProjectValidation}/>
       </Switch>
     )
   }
