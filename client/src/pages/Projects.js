@@ -16,7 +16,6 @@ class Projects extends Component {
                 <div>
                     <Navs /><hr />
                     <ProjectsListCard />
-                    <Carousel />
                 </div>
             );
         }

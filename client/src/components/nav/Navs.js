@@ -29,10 +29,10 @@ class Navs extends React.Component {
 						<NavLink className="text-secondary h4" href="/forgot">lien projet perdu</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-primary h4" href="#">Fr</NavLink>
+						<NavLink className="text-primary h4" href="#">FR</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-primary h4" href="#">En</NavLink>
+						<NavLink className="text-primary h4" href="#">EN</NavLink>
 					</NavItem>
 					<hr />
 				</Nav>
