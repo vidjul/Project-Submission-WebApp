@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
+import { FormGroup, Label, Row, Col } from "reactstrap";
 class KeyWords extends Component {
 
     constructor(props) {
@@ -46,18 +47,16 @@ class KeyWords extends Component {
     render() {
         const { tags, suggestions } = this.state;
         return (
-            <div className="form-group">
-                <label className="col-md-3 control-label">KeyWords</label>
-                <div className="col-md-9">
-                    <ReactTags
-                        classNames={{ tagInputField: "form-control" }}
-                        tags={tags}
-                        suggestions={suggestions}
-                        handleDelete={this.handleDelete}
-                        handleAddition={this.handleAddition}
-                        handleDrag={this.handleDrag} />
-                </div>
-            </div>
+            <FormGroup>
+                <Label for="keyWords">Keywords</Label>
+                <ReactTags
+                    classNames={{ tagInputField: "form-control" }}
+                    tags={tags}
+                    suggestions={suggestions}
+                    handleDelete={this.handleDelete}
+                    handleAddition={this.handleAddition}
+                    handleDrag={this.handleDrag} />
+            </FormGroup>
         )
     };
 }

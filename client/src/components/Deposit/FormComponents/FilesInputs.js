@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Files from 'react-files';
 import ReactDOM from 'react-dom';
+import {FormGroup,Label} from "reactstrap";
 class FilesInputs extends Component {
 
     OnFilesError(error, file) {
@@ -9,8 +10,8 @@ class FilesInputs extends Component {
 
     render() {
         return (
-            <div className="form-group">
-                <label className="col-md-3 control-label">Others files</label>
+            <FormGroup>
+                <Label for = "files"> Others files</Label>
                 <div className="file col-md-5">
                     <Files
                         className='files-dropzone'
@@ -29,7 +30,7 @@ class FilesInputs extends Component {
                 </div>
                 <div id="addedFiles" className="col-md-4 list-group">
                 </div>
-            </div>);
+            </FormGroup>);
     }
 }
 

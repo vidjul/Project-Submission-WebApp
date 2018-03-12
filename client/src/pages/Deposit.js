@@ -176,10 +176,8 @@ class Deposit extends Component {
         <Navs />
         <Container fluid className="mt-3">
           <Form onSubmit={this.handleSubmit}>
-            <div id="form-title"><h1>Déposer un projet</h1>
+            <h1>Déposer un projet</h1>
               <hr className = "hr-text" data-content = "Déposer un projet"/>
-            </div>
-            <div id="form-body">
               <h2>Parlez nous de vous </h2>
               <hr />
               <FormGroup>
@@ -249,7 +247,6 @@ class Deposit extends Component {
               <FormGroup>
                 <Button>Envoyer le projet</Button>
               </FormGroup>
-            </div>
           </Form>
         </Container>
       </div>
