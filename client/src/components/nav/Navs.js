@@ -11,28 +11,28 @@ class Navs extends React.Component {
 				<NavbarBrand href="/"><img src="./logo_pulv.png" height="50" width="50" /></NavbarBrand>
 				<Nav className="ml-auto">
 					<NavItem>
-						<NavLink className="text-secondary h4" href="/">Home</NavLink>
+						<NavLink className="text-secondary" href="/">Home</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-secondary h4" href="/Projects">Projets</NavLink>
+						<NavLink className="text-secondary" href="/Projects">Projets</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-secondary h4" href="/Deposit">Déposer un projet</NavLink>
+						<NavLink className="text-secondary" href="/Deposit">Déposer un projet</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-secondary h4" href="/Connection">Se connecter</NavLink>
+						<NavLink className="text-secondary" href="/Connection">Se connecter</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-secondary h4" href="/Admin">Admin</NavLink>
+						<NavLink className="text-secondary" href="/Admin">Admin</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-secondary h4" href="/forgot">lien projet perdu</NavLink>
+						<NavLink className="text-secondary" href="/forgot">lien projet perdu</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-primary h4" href="#">FR</NavLink>
+						<NavLink className="text-primary" href="#">FR</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink className="text-primary h4" href="#">EN</NavLink>
+						<NavLink className="text-primary" href="#">EN</NavLink>
 					</NavItem>
 					<hr />
 				</Nav>
