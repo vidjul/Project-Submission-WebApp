@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router';
-import './Index.css';
 import Navs from '../components/nav/Navs.js';
 import { Link } from 'react-router';
 //import ProjectGrid from '../components/ProjectGrid';

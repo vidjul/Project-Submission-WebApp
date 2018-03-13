@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Navs from '../components/nav/Navs.js';
 import Cards from '../components/Cards';
-import { Row, Col } from 'react-bootstrap';
 import {Route} from 'react-router';
 import {Redirect} from 'react-router';
-import Home from './Home';
 import { CardDeck, Container } from 'reactstrap';
 class Admin extends Component {
 
@@ -21,9 +19,9 @@ class Admin extends Component {
     }
     
 
-    handleRedirection = (value) => {
-        console.log(value);
-        this.setState(this.state.myRedirects.set(value,true))
+    handleRedirection = (event) => {
+        console.log("etg :"+event.target.value);
+        this.setState(this.state.myRedirects.set(event.target.value,true))
     }
 
     render() {
@@ -34,7 +32,7 @@ class Admin extends Component {
             if(value){
                 return (
                     <div>    
-                    <Redirect to = {this.props.match.path + "/"+key}/>
+                    <Redirect to = {this.props.match.path +"/"+key}/>
                     </div>
                 )
             }
@@ -47,29 +45,20 @@ class Admin extends Component {
                         <Cards
                             titre = "Valider un projet"
                             image='./project_validation.png'
-                            dimension='200x200'
-                            value = 'Validation' 
+                            value = "Validation"
                             description = "Voir la liste des projets en attente de validation."
-                            addKey = {this.handleRedirection}
-                            link = {this.props.match.path + "/Validation"}
                             />
                         <Cards
                             titre = "Modifier la home page"
                             image='./Update_home.png'
-                            dimension='200x200'
                             value = 'EditHome' 
                             description = "Modifier la page d'accueil du site."
-                            addKey = {this.handleRedirection}
-                            link = {this.props.match.path + "/EditHome"}
                             />
                         <Cards
                             titre = "Exporter les projets"
                             image='./Project_exportation.png'
-                            dimension='200x200'
-                            value = 'Export' 
                             description = "Exportez tous les projets validé au format pdf."
-                            addKey = {this.handleRedirection}
-                            link = {this.props.match.path + "/Export"}
+                            value = "Export"
                             />
                     </CardDeck>
                 </Container>

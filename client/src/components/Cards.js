@@ -5,13 +5,8 @@ class Cards extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          choice: null
+          choice: null,
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    handleSubmit(event){
-        event.preventDefault();
-        this.props.addKey(this.props.value);
     }
     render(){
         return(
@@ -21,7 +16,7 @@ class Cards extends React.Component{
                 <CardTitle className="h2">{this.props.value}</CardTitle>
                 <CardSubtitle className="h3">{this.props.titre}</CardSubtitle>
                 <CardText className="lead">{this.props.description}</CardText>
-                <Button onClick = {this.props.onClick} size="lg">Button</Button>
+                <Button size="lg">Button</Button>
                 </CardBody>
             </Card>
         );
