@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, CardImg, CardTitle, CardText, CardSubtitle, CardBody } from 'reactstrap';
+import { Card, Button, CardImg, CardTitle, CardText, CardSubtitle, CardBody} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
 class Cards extends React.Component {
@@ -13,6 +13,10 @@ class Cards extends React.Component {
 
     onClick(event) {
         this.setState({ redirect: true });
+    }
+
+    toggle(){
+        this.setState({ collapse: !this.state.collapse });
     }
 
     renderRedirect() {

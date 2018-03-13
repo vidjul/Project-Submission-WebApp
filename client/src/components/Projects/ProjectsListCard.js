@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText, Container, CardBlock, Dropdown, DropdownToggle, DropdownItem } from 'reactstrap';
+import { Card, Button, ListGroup, CardHeader, CardFooter, CardBody, CardTitle, CardText, Container, CardBlock, Dropdown, DropdownToggle, DropdownItem, ListGroupItem } from 'reactstrap';
 import ProjectFilter from './ProjectFilter';
 import ProjectCard from './ProjectCard';
 
@@ -47,7 +47,9 @@ class ProjectsListCard extends React.Component {
                         <CardHeader style={{ fontSize: 20 }} >Liste des projets</CardHeader>
                         <CardBlock>
                             <Container><ProjectFilter style={{ fontSize: 15 }} /></Container><hr />
+                            <ListGroup>
                             {ProjectList}
+                            </ListGroup>
                             </CardBlock>
                     </Card>
                 </Container>
