@@ -18,3 +18,22 @@ exports.create_a_major = function(req,res) {
         res.json(major);
     });
 };
+
+exports.filter_by_major = function (req, res) {
+    ReferenceMajor.distinct("major_name", function (err, task) {
+        if (err)
+        res.send(err);
+        res.json(task);
+    });
+};
+
+exports.filter_by_year = function (req, res) {
+    ReferenceMajor.distinct("study_year", function (err, task) {
+        if (err)
+        res.send(err);
+        res.json(task);
+    });
+};
+
+
+
