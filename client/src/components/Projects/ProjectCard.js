@@ -27,7 +27,7 @@ class ProjectCard extends React.Component{
     render(){
         var project = this.props.project;
         let adminFooter = null;
-        if(this.props.admin){
+        if(this.props.admin){ //If admin display the admin menu
             adminFooter = <CardFooter className="text-muted">
             <CardLink href = "" onClick = {this.handleValidation.bind(this)}>Valider le projet</CardLink>
             </CardFooter>
