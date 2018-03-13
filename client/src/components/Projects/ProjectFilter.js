@@ -8,20 +8,12 @@ class ProjectFilter extends React.Component{
             <div>{' '}
                 <i class="fa fa-filter"/>
                 Filtrer par:{' '}
-                <DropdownFilter/>
                 <Container>
-                {' '}
-                <Dropdown size="lg">
-                    <DropdownToggle caret>Major(s)</DropdownToggle>
-                    <DropdownMenu>
-                    <DropdownItem>IBO</DropdownItem>
-                    <DropdownItem>IF</DropdownItem>
-                    <DropdownItem>MNM</DropdownItem>
-                    <DropdownItem>NE</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown></Container>
+                    <DropdownFilter filterName="Année"/>{' '}
+                    <DropdownFilter filterName="Majeure"/>
+                </Container>
             
-            <InputGroup>
+                <InputGroup>
                     <InputGroupAddon addonType="prepend">
                     <InputGroupText>Mots Clés</InputGroupText>
                     </InputGroupAddon>
