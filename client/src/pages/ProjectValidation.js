@@ -6,6 +6,7 @@ export default class ProjectValidation extends Component {
         return (
             <div>
                 <Navs/>
+                <ProjectsListCard admin/>
             </div>
         )
     }

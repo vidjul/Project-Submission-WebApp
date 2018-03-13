@@ -8,7 +8,7 @@ class Navs extends React.Component {
 		return (
 			<div style= {{marginBottom : 100+'px'}}>
 			<Navbar color = "light" fixed = "top">
-				<NavbarBrand href="/"><img src="./logo_pulv.png" height="50" width="50" /></NavbarBrand>
+				<NavbarBrand href="/"><img src="/logo_pulv.png" height="50" width="50" /></NavbarBrand>
 				<Nav className="ml-auto">
 					<NavItem>
 						<NavLink className="text-secondary" href="/">Home</NavLink>
