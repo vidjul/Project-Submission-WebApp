@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-
+/**
+ * Edit project page
+ */
 class Edit extends Component {
     constructor(props) {
         super(props);
@@ -18,6 +20,9 @@ class Edit extends Component {
             .catch((err) => this.setState({ invalid: true }));
     }
 
+    /**
+     * Put request to the server to update the component state
+     */
     handleSubmit() {
         console.log(`/api/projects/${this.state._id}`);
         console.log(JSON.stringify(this.state));

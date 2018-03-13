@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 import { Button, Form, FormGroup, Label, Input, FormText, Container, Row, Col } from 'reactstrap';
 import KeyWords from '../components/Deposit/FormComponents/KeyWords';
 import '../styles/Deposit/style.css'
+/**
+ * Deposit a project
+ */
 class Deposit extends Component {
 
 

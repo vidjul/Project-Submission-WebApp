@@ -26,20 +26,19 @@ class ProjectsListCard extends React.Component {
                 }
                 console.log(this.state.projectToDisplay)
             })
-            .catch((err) => { console.log("Error occured :"+err); });
+            .catch((err) => { console.log("Error occured :" + err); });
     }
-
-    com
 
     render() {
         console.log(this.state.projects);
         let ProjectList = null;
-        if(this.props.admin){ //if asked as admin render pending project
-            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} admin/></Container>)
+        if (this.props.admin) { //if asked as admin render pending project
+            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} admin /></Container>)
         }
         else { //render validate project
-            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project}/></Container>)
+            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} /></Container>)
         }
+
         return (
             <div>
                 <Container>
@@ -48,9 +47,9 @@ class ProjectsListCard extends React.Component {
                         <CardBlock>
                             <Container><ProjectFilter style={{ fontSize: 15 }} /></Container><hr />
                             <ListGroup>
-                            {ProjectList}
+                                {ProjectList}
                             </ListGroup>
-                            </CardBlock>
+                        </CardBlock>
                     </Card>
                 </Container>
             </div>);

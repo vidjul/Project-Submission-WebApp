@@ -11,14 +11,24 @@ class Cards extends React.Component {
         };
     }
 
+    /**
+     * Redirect when button  is clicked
+     * @param {*} event 
+     */
     onClick(event) {
         this.setState({ redirect: true });
     }
 
+    /**
+     * set the state for the collapse
+     */
     toggle(){
         this.setState({ collapse: !this.state.collapse });
     }
 
+    /**
+     * use path property to redirect
+     */
     renderRedirect() {
         if (this.state.redirect) {
             return <Redirect to={this.props.path} />
@@ -40,5 +50,4 @@ class Cards extends React.Component {
         );
     }
 }
-
 export default Cards;

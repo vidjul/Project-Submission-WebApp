@@ -2,6 +2,10 @@ import React from 'react';
 import { Card, Collapse, ListGroupItem, ListGroup, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText, Container, CardBlock, Dropdown, DropdownToggle, DropdownItem, CardLink } from 'reactstrap';
 import ProjectFilter from './ProjectFilter';
 
+/**
+ * Fast description of a project
+ * use project props to set the project to display
+ */
 class ProjectCard extends React.Component {
 
     constructor(props) {
@@ -12,6 +16,10 @@ class ProjectCard extends React.Component {
         }
     }
 
+    /**
+     * Update the project and set the status to "validate"
+     * @param {*} event 
+     */
     handleValidation(event) {
         var myInit = {
             method: 'PUT',

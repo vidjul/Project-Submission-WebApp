@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Navs from '../components/nav/Navs.js';
 import Cards from '../components/Cards';
 import {CardDeck, Container} from 'reactstrap';
-
+/**
+ * Connection page
+ */
 class Connection extends Component {
   
   handleKeyChosen(key){

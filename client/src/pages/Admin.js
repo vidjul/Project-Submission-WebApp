@@ -4,6 +4,9 @@ import Cards from '../components/Cards';
 import {Route} from 'react-router';
 import {Redirect} from 'react-router';
 import { CardDeck, Container } from 'reactstrap';
+/**
+ * Admin page
+ */
 class Admin extends Component {
 
     render() {
