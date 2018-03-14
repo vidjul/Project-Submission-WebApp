@@ -26,6 +26,7 @@ exports.create_a_project = function (req, res) {
     }
     if (partner != null) {
       json.partner = partner;
+      json.status = 'pending';
       var new_project = new Project(json);
       new_project.save(function (err, project) {
         if (err)
@@ -45,6 +46,7 @@ exports.create_a_project = function (req, res) {
           res.send(err);
         }
         json.partner = new_partner;
+        json.status = 'pending';
         var new_project = new Project(json);
         new_project.save(function (err, project) {
           if (err)
