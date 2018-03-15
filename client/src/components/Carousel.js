@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import './Carousel.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -33,7 +32,7 @@ const items = [
 
 
 console.log("Passed");
-class Caroussel extends Component {
+class Caroussel extends React.Component {
 
   constructor(props) {
     super(props);
@@ -94,6 +93,7 @@ class Caroussel extends Component {
         activeIndex={activeIndex}
         next={this.next}
         previous={this.previous}
+        className="text-center"
       >
         <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
         {slides}
