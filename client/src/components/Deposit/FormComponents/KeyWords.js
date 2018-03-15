@@ -55,7 +55,8 @@ class KeyWords extends Component {
                     suggestions={suggestions}
                     handleDelete={this.handleDelete}
                     handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag} />
+                    handleDrag={this.handleDrag}
+                    autofocus={false} />
             </FormGroup>
         )
     };
