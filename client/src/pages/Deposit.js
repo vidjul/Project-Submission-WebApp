@@ -25,10 +25,7 @@ class Deposit extends Component {
       company: "",
       email2: "",
       first_name: "",
-      last_name: "",
-      touched: {
-        email : false
-      }
+      last_name: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -38,18 +35,12 @@ class Deposit extends Component {
   }
 
   handleBlur(event) {
-    this.setState({
-      touched: { ...this.state.touched, [event.target.name]: true }
-    })
-    console.log("Selected")
-    if (this.state.touched.email) { //Prenom et nom rentré
       const encodedValue = encodeURIComponent(this.state.email);
       fetch("/api/partners/"+this.state.email)
       .then((res)=> res.json())
       .then((partner)=>{
         this.setState({first_name : partner.first_name, last_name : partner.last_name, company : partner.company})
       });
-    }
 
   }
 
