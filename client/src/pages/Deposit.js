@@ -24,14 +24,35 @@ class Deposit extends Component {
       email: "",
       company: "",
       email2: "",
-      first_name : "",
-      last_name : ""
+      first_name: "",
+      last_name: "",
+      touched: {
+        email : false
+      }
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyWords = this.handleKeyWords.bind(this);
     this.handleFiles = this.handleFiles.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
+
+  handleBlur(event) {
+    this.setState({
+      touched: { ...this.state.touched, [event.target.name]: true }
+    })
+    console.log("Selected")
+    if (this.state.touched.email) { //Prenom et nom rentré
+      const encodedValue = encodeURIComponent(this.state.email);
+      fetch("/api/partners/"+this.state.email)
+      .then((res)=> res.json())
+      .then((partner)=>{
+        this.setState({first_name : partner.first_name, last_name : partner.last_name, company : partner.company})
+      });
+    }
+
+  }
+
   FilesUpload() {
     return new Promise((resolve, reject) => {
       var formData = new FormData()
@@ -115,8 +136,8 @@ class Deposit extends Component {
           email: this.state.email,
           company: this.state.company,
           urls: this.state.urls,
-          first_name : this.state.first_name,
-          last_name : this.state.last_name
+          first_name: this.state.first_name,
+          last_name: this.state.last_name
         }
 
         console.log(form);
@@ -131,6 +152,7 @@ class Deposit extends Component {
           })
             .then((res) => {
               console.log(res)
+              window.location.reload();
             })
             .catch((error) => {
               console.log(error);
@@ -179,99 +201,103 @@ class Deposit extends Component {
 
   render() {
     return (
-      <div id = "deposit-body">
+      <div id="deposit-body">
         <Navs />
         <Container fluid className="mt-3">
           <Form onSubmit={this.handleSubmit}>
             <h1>Déposer un projet</h1>
-              <hr className = "hr-text" data-content = "Déposer un projet"/>
-              <h2>Parlez nous de vous </h2>
-              <hr />
-              <FormGroup>
-                <Label for="Company"><h3>Votre entreprise</h3></Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="text"
-                  name="company"
-                  id="company"
-                  placeholder="Votre entreprise" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="first_name"><h3>Votre Prénom</h3></Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="text"
-                  name="first_name"
-                  id="first_name"
-                  placeholder="Votre prénom" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="last_name"><h3>Votre Nom</h3></Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="text"
-                  name="last_name"
-                  id="last_name"
-                  placeholder="Votre Nom" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="Email"><h3>Votre email</h3></Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="email" name="email"
-                  placeholder="Votre email" />
-              </FormGroup>
-              <hr />
-              <h2>Présentez votre projet</h2>
-              <hr />
-              <FormGroup>
-                <Label for="title"><h3>Intitulé de votre projet</h3></Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="text"
-                  name="title"
-                  placeholder="Intituté du projet" />
-              </FormGroup>
-              <FormGroup row>
-                <Label for="year" check><h3>Année</h3></Label>
-                <Col sm={{ size: 10 }}>
-                  <FormGroup check inline>
-                    <Input
-                      onChange={this.handleChange}
-                      value="A4"
-                      type="checkbox"
-                      name="year" /> {' '}
-                    A4
+            <hr className="hr-text" data-content="Déposer un projet" />
+            <h2>Parlez nous de vous </h2>
+            <hr />
+            <FormGroup>
+              <Label for="Company"><h3>Votre entreprise</h3></Label>
+              <Input
+                onChange={this.handleChange}
+                type="text"
+                name="company"
+                id="company"
+                placeholder="Votre entreprise"
+                value = {this.state.company} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="first_name"><h3>Votre Prénom</h3></Label>
+              <Input
+                onChange={this.handleChange}
+                type="text"
+                name="first_name"
+                id="first_name"
+                placeholder="Votre prénom" 
+                value = {this.state.first_name}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="last_name"><h3>Votre Nom</h3></Label>
+              <Input
+                onChange={this.handleChange}
+                type="text"
+                name="last_name"
+                id="last_name"
+                placeholder="Votre Nom"
+                value = {this.state.last_name}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="Email"><h3>Votre email</h3></Label>
+              <Input
+                onChange={this.handleChange}
+                type="email" name="email" value = {this.state.email}
+                placeholder="Votre email"
+                onBlur = {this.handleBlur}/>
+            </FormGroup>
+            <hr />
+            <h2>Présentez votre projet</h2>
+            <hr />
+            <FormGroup>
+              <Label for="title"><h3>Intitulé de votre projet</h3></Label>
+              <Input
+                onChange={this.handleChange}
+                type="text"
+                name="title"
+                placeholder="Intituté du projet" />
+            </FormGroup>
+            <FormGroup row>
+              <Label for="year" check><h3>Année</h3></Label>
+              <Col sm={{ size: 10 }}>
+                <FormGroup check inline>
+                  <Input
+                    onChange={this.handleChange}
+                    value="A4"
+                    type="checkbox"
+                    name="year" /> {' '}
+                  A4
                     </FormGroup>
-                  <FormGroup check inline>
-                    <Input
-                      onChange={this.handleChange}
-                      value="A5"
-                      type="checkbox"
-                      name="year" /> {' '}
-                    A5
+                <FormGroup check inline>
+                  <Input
+                    onChange={this.handleChange}
+                    value="A5"
+                    type="checkbox"
+                    name="year" /> {' '}
+                  A5
                     </FormGroup>
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label for="specialization">Majeure(s) ciblée(s)</Label>
-                <Input onChange={this.handleChange} type="select" name="specialization" multiple>
-                  <option value="IBO">Informatique, BigData et objets connectes</option>
-                  <option value="NE">Nouvelle energie</option>
-                  <option value="IF">Ingenieurie financiaire</option>
-                  <option value="MCM">Mecanique</option>
-                </Input>
-              </FormGroup>
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Label for="specialization">Majeure(s) ciblée(s)</Label>
+              <Input onChange={this.handleChange} type="select" name="specialization" multiple>
+                <option value="IBO">Informatique, BigData et objets connectes</option>
+                <option value="NE">Nouvelle energie</option>
+                <option value="IF">Ingenieurie financiaire</option>
+                <option value="MCM">Mecanique</option>
+              </Input>
+            </FormGroup>
 
-              <FormGroup>
-                <Label for="description">Description de votre projet</Label>
-                <Input onChange={this.handleChange} type="textarea" name="description" />
-              </FormGroup>
-              <KeyWords change={this.handleKeyWords} />
-              <FilesInputs change={this.handleFiles} />
-              <FormGroup>
-                <Button>Envoyer le projet</Button>
-              </FormGroup>
+            <FormGroup>
+              <Label for="description">Description de votre projet</Label>
+              <Input onChange={this.handleChange} type="textarea" name="description" />
+            </FormGroup>
+            <KeyWords change={this.handleKeyWords} />
+            <FilesInputs change={this.handleFiles} />
+            <FormGroup>
+              <Button>Envoyer le projet</Button>
+            </FormGroup>
           </Form>
         </Container>
       </div>
