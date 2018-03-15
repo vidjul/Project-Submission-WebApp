@@ -39,7 +39,11 @@ class Deposit extends Component {
       fetch("/api/partners/"+this.state.email)
       .then((res)=> res.json())
       .then((partner)=>{
+        try{
         this.setState({first_name : partner.first_name, last_name : partner.last_name, company : partner.company})
+        }catch(e){
+          console.log("Email not found");
+        }
       });
 
   }
@@ -201,6 +205,14 @@ class Deposit extends Component {
             <h2>Parlez nous de vous </h2>
             <hr />
             <FormGroup>
+              <Label for="Email"><h3>Votre email</h3></Label>
+              <Input
+                onChange={this.handleChange}
+                type="email" name="email" value = {this.state.email}
+                placeholder="Votre email"
+                onBlur = {this.handleBlur}/>
+            </FormGroup>
+            <FormGroup>
               <Label for="Company"><h3>Votre entreprise</h3></Label>
               <Input
                 onChange={this.handleChange}
@@ -229,14 +241,6 @@ class Deposit extends Component {
                 id="last_name"
                 placeholder="Votre Nom"
                 value = {this.state.last_name}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="Email"><h3>Votre email</h3></Label>
-              <Input
-                onChange={this.handleChange}
-                type="email" name="email" value = {this.state.email}
-                placeholder="Votre email"
-                onBlur = {this.handleBlur}/>
             </FormGroup>
             <hr />
             <h2>Présentez votre projet</h2>
