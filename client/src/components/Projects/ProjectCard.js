@@ -55,7 +55,7 @@ class ProjectCard extends React.Component {
                                 <CardHeader onClick={this.toggle.bind(this)}> {project.specialization} - {project.title} :</CardHeader>
                             </ListGroupItem>
                         <Collapse isOpen={this.state.collapse}>
-                            <CardBlock>{project.description}}</CardBlock>
+                            <CardBlock>{project.description}</CardBlock>
                         </Collapse>
                         {adminFooter}
                     </Card>

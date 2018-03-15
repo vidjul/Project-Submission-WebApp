@@ -45,14 +45,16 @@ exports.create_a_project = function (req, res) {
         if (err) {
           res.send(err);
         }
-        json.partner = new_partner;
-        json.status = 'pending';
-        var new_project = new Project(json);
-        new_project.save(function (err, project) {
-          if (err)
-            res.send(err);
-          res.json(project);
-        });
+        else {
+          json.partner = new_partner;
+          json.status = 'pending';
+          var new_project = new Project(json);
+          new_project.save(function (err, project) {
+            if (err)
+              res.send(err);
+            res.json(project);
+          });
+        }
       });
     }
   })
