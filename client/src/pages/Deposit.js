@@ -23,7 +23,9 @@ class Deposit extends Component {
       urls: [],
       email: "",
       company: "",
-      email2: ""
+      email2: "",
+      first_name : "",
+      last_name : ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -112,7 +114,9 @@ class Deposit extends Component {
           keywords: this.state.keyWords,
           email: this.state.email,
           company: this.state.company,
-          urls: this.state.urls
+          urls: this.state.urls,
+          first_name : this.state.first_name,
+          last_name : this.state.last_name
         }
 
         console.log(form);
@@ -191,6 +195,24 @@ class Deposit extends Component {
                   name="company"
                   id="company"
                   placeholder="Votre entreprise" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="first_name"><h3>Votre Prénom</h3></Label>
+                <Input
+                  onChange={this.handleChange}
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  placeholder="Votre prénom" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="last_name"><h3>Votre Nom</h3></Label>
+                <Input
+                  onChange={this.handleChange}
+                  type="text"
+                  name="last_name"
+                  id="last_name"
+                  placeholder="Votre Nom" />
               </FormGroup>
               <FormGroup>
                 <Label for="Email"><h3>Votre email</h3></Label>
