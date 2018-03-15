@@ -7,6 +7,6 @@ module.exports = function (app) {
     .get(partner.list_all_partners)
     .post(partner.create_a_partner);
 
-  app.route('/api/partners/mail')
+  app.route('/api/partners/:email')
     .get(partner.find_by_mail);
 };

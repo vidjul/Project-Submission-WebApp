@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(app) {
+module.exports = function (app) {
   var major = require('../controllers/majorController');
 
   // todoList Routes
@@ -9,9 +9,9 @@ module.exports = function(app) {
 
   app.route('/api/majors/major/:major')
     .get(major.filter_by_major);
-  
-    app.route('/api/majors/:studyYear')
+
+  app.route('/api/majors/:studyYear')
     .get(major.filter_by_year);
-  
-  
+
+
 };
