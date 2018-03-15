@@ -22,3 +22,11 @@ exports.create_a_partner = function(req,res) {
   });
 };
 
+exports.find_by_mail = (req, res) => {
+  Project.findONe({ email: req.params.email}, (err, partner) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(partner);
+  })
+}

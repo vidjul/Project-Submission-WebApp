@@ -5,6 +5,16 @@ var mongoose = require('mongoose');
 const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
 
+const mailer = require('nodemailer');
+const smtpTransporter = mailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'no.reply.projets.pulv@gmail.com',
+    pass: 'vidududu'
+  }
+});
+
+
 exports.list_all_projects = function (req, res) {
   Project.find({}, function (err, task) {
     if (err)
@@ -14,11 +24,17 @@ exports.list_all_projects = function (req, res) {
 };
 
 exports.create_a_project = function (req, res) {
-  let json = req.body;
+  let name;
   let editKey = generator.generate({
     length: 15,
     numbers: true
   });
+  let mail = {
+    from: 'no.reply.projets.pulv@gmail.com',
+    subject: 'Soumission d\'un projet',
+    to: req.body.email
+  };
+  let json = req.body;
   json.edit_key = editKey;
   Partner.findOne({ email: req.body.email }, (err, partner) => {
     if (err) {
@@ -31,7 +47,23 @@ exports.create_a_project = function (req, res) {
       new_project.save(function (err, project) {
         if (err)
           res.send(err);
-        res.json(project);
+        else {
+          name = partner.first_name;
+          mail.text = `Bonjour ${name}, \n
+          Votre demande de soumission a bien été enregistrée. \n 
+          Voici votre lien pour l'éditer. \n
+          http://localhost:3000/Edit/${editKey}`
+          smtpTransporter.sendMail(mail, (err, result) => {
+            if (err) {
+              smtpTransporter.close();
+              console.log(err);
+              res.send(err);
+            } else {
+              res.send('Mail ok!');
+              smtpTransporter.close();
+            }
+          });
+        }
       });
     }
     else {
@@ -52,7 +84,24 @@ exports.create_a_project = function (req, res) {
           new_project.save(function (err, project) {
             if (err)
               res.send(err);
-            res.json(project);
+            else {
+              name = new_partner.first_name;
+              mail.text = `Bonjour ${name}, \n
+              Votre demande de soumission a bien été enregistrée. \n 
+              Voici votre lien pour l'éditer. \n
+              http://localhost:3000/Edit/${editKey}`
+              smtpTransporter.sendMail(mail, (err, result) => {
+                if (err) {
+                  smtpTransporter.close();
+                  console.log(err);
+                  res.send(err);
+                } else {
+                  smtpTransporter.close();
+                  res.send('Mail ok!');
+                }
+              });
+            }
+            //res.json(project);
           });
         }
       });
