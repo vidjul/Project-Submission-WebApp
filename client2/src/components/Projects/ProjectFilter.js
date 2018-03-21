@@ -36,11 +36,6 @@ class ProjectFilter extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/api/majors/:studyYear')
-            .then(res => res.json())
-            .then(years => this.setState({years}))
-            .catch((err) =>{console.log(err);});
-        
         fetch('/api/majors/major/:major')
             .then(res => res.json())
             .then(majors => this.setState({majors}))
@@ -68,7 +63,8 @@ class ProjectFilter extends React.Component {
                                         onChange={this.changeYearValue}
                                         value={this.state.yearValue}
                                     >
-                                    {this.state.years.map(year =><MenuItem value={year} primaryText={year} />)}
+                                    <MenuItem value="A4" primaryText="A4" />
+                                    <MenuItem value="A5" primaryText="A5" />
                                     </SelectField>
 
                                 </Col>
