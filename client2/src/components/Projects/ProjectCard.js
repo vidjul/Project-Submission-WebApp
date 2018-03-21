@@ -1,7 +1,10 @@
 import React from 'react';
-import { Card, Collapse, ListGroupItem, ListGroup, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText, Container, CardBlock, Dropdown, DropdownToggle, DropdownItem, CardLink } from 'reactstrap';
-import ProjectFilter from './ProjectFilter';
-
+import { Card, CardHeader, CardText, CardTitle, CardActions } from 'material-ui/Card';
+import { Container, Row, Col } from 'react-grid-system'
+import { ListItem } from 'material-ui/List';
+import FlatButton from 'material-ui/FlatButton'
+import Snackbar from 'material-ui/Snackbar';
+import Dialog from 'material-ui/Dialog';
 /**
  * Fast description of a project
  * use project props to set the project to display
@@ -12,8 +15,10 @@ class ProjectCard extends React.Component {
         super(props);
         this.state = {
             project: this.props.project,
-            collapse: false
+            modal_validation: false,
         }
+        this.handleValidation = this.handleValidation.bind(this)
+        this.handleRejection = this.handleRejection.bind(this)
     }
 
     /**
@@ -25,56 +30,92 @@ class ProjectCard extends React.Component {
             method: 'PUT',
             mode: 'cors',
             headers: new Headers({ 'content-type': 'application/json' }),
-            body: JSON.stringify({ "status": "validate" , "editKey": null})
+            body: JSON.stringify({ "status": "validate", "editKey": null })
         }
 
         fetch("/api/projects/" + this.state.project._id, myInit)
             .then((res) => {
-                window.location.reload();
+                window.location.reload()
             })
             .catch((err) => { console.log("Error occured : " + err) })
     }
-
+    /**
+         * Update the project and set the status to "refused"
+         * @param {*} event 
+         */
     handleRejection(event) {
         var myInit = {
-            method : 'PUT',
-            mode : 'cors',
-            headers : new Headers({'content-type':'application/json'}),
-            body : JSON.stringify({"status": "refused"})
+            method: 'PUT',
+            mode: 'cors',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify({ "status": "refused" })
         }
 
-        fetch("/api/projects"+this.state.project._id, myInit)
-        .then((res)=> {
-
-        })
+        fetch("/api/projects" + this.state.project._id, myInit)
+            .then((res) => {
+                window.location.reload()
+            })
     }
 
-    toggle() {
-        this.setState({ collapse: !this.state.collapse });
+    handleOpen = (e) => {
+        console.log(e.target)
+        this.setState({modal_validation: true});
     }
+
+    handleClose = () => {
+        this.setState({modal_validation: false});
+      };
 
     render() {
+        const actions = [
+            <FlatButton
+                label="Oui"
+                primary={true}
+                onClick={this.handleRejection}
+            />,
+            <FlatButton
+                label="Non"
+                secondary={true}
+                keyboardFocused={true}
+                onClick={this.handleClose}
+            />,
+        ];
         var project = this.props.project;
         let adminFooter = null;
         if (this.props.admin) { //If admin display the admin menu
-            adminFooter = <CardFooter className="text-muted">
-                <CardLink href="" onClick={this.handleValidation.bind(this)}>Valider le projet</CardLink>
-                <CardLink href="" onClick={this.handleRejection.bind(this)}>Refuser le projet</CardLink>
-            </CardFooter>
+            adminFooter = <CardActions>
+                <FlatButton  primary={true} onClick={this.handleValidation} label="Valider le projet" />
+                <FlatButton secondary={true} onClick={this.handleOpen} label="Refuser le projet" />
+                <Dialog
+                    title="Etes vous sur de vouloir refuser ce projet ?"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.modal_validation}
+                    onRequestClose={this.handleClose}
+                >
+                    The actions in this window were passed in as an array of React objects.
+        </Dialog>
+            </CardActions>
         }
         return (
             <div>
-                <Container>
-                    <Card>
-                            <ListGroupItem action tag = "a" href ="#" onClick = {(e)=>{e.preventDefault()}}>
-                                <CardHeader onClick={this.toggle.bind(this)}> {project.specialization} - {project.title} :</CardHeader>
-                            </ListGroupItem>
-                        <Collapse isOpen={this.state.collapse}>
-                            <CardBlock>{project.description}</CardBlock>
-                        </Collapse>
-                        {adminFooter}
-                    </Card>
-                </Container>
+                <Card style={{ borderBottom: 2, marginBottom: 8 }}>
+                    <CardHeader
+                        title={project.title}
+                        subtitle={<label>{project.specialization} - Le : {project.edit_date}</label>}
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                        style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
+                    >
+                        <label style={{ marginRight: 60 }}> Année : {project.study_year.map((year) => year + " ")} </label>
+                        {project.partner ? (<label> Proposé par : {project.partner.company} </label>) : ("Non spécifié")}
+                        <hr />
+                    </CardHeader>
+                    <CardText expandable={true} style={{ marginBottom: 8 }}>
+                        {project.description}
+                    </CardText>
+                    {adminFooter}
+                </Card>
             </div>);
     }
 }

@@ -5,14 +5,17 @@ import ProjectCard from './ProjectCard';
 import { Container, Row, Col } from 'react-grid-system'
 import Paper from 'material-ui/Paper'
 import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
+import CircularProgress from 'material-ui/CircularProgress';
 class ProjectsListCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            projects: [], 
+        this.state = {
+            projects: [],
             projectToDisplay: [],
-            annee_value:"",
-            majeur_value:""
+            annee_value: "",
+            majeur_value: "",
+            loaded : false    
         };
         this.styles = {
             header: {
@@ -36,19 +39,19 @@ class ProjectsListCard extends React.Component {
             .then(res => {
                 if (this.props.admin) {
                     var pendingProjects = this.state.projects.filter(project => { if (project.status == "pending") return true })
-                    this.setState({ projectToDisplay: pendingProjects })
+                    this.setState({ projectToDisplay: pendingProjects , loaded : true})
                 }
                 else {
                     var validateProjects = this.state.projects.filter(project => { if (project.status == "validate") return true })
-                    this.setState({ projectToDisplay: validateProjects })
+                    this.setState({ projectToDisplay: validateProjects , loaded : true })
                 }
                 console.log(this.state.projectToDisplay)
             })
             .catch((err) => { console.log("Error occured :" + err); });
     }
 
-    handledropDownValue(dropDownValue,filterName){ 
-        if(filterName == "Année" && dropDownValue != "Majeure"){
+    handledropDownValue(dropDownValue, filterName) {
+        if (filterName == "Année" && dropDownValue != "Majeure") {
             this.state.annee_value = dropDownValue != "Année" ? dropDownValue : "";
             console.log(this.state.annee_value);
         } if(filterName == "Majeure" && dropDownValue != "Année"){
@@ -61,12 +64,25 @@ class ProjectsListCard extends React.Component {
         console.log(this.state.annee_value);
         //console.log(this.state.projects);
         
-        let ProjectList = null;
+        var ProjectList = null;
         if (this.props.admin) { //if asked as admin render pending project
-            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} admin /></Container>)
+            ProjectList = this.state.projectToDisplay.map(project =>
+                    <Row debug>
+                        <Col>
+                            <ProjectCard key={project.id} project={project} admin />
+                        </Col>
+                    </Row>
+            )
         }
         else { //render validate project
-            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} /></Container>)
+            ProjectList = this.state.projectToDisplay.map(project => 
+                
+                    <Row>
+                        <Col>
+                            <ProjectCard key={project.id} project={project} />
+                        </Col>
+            </Row> 
+               )
         }
         console.log("***");
 
@@ -79,6 +95,7 @@ class ProjectsListCard extends React.Component {
             this.state.projectToDisplay = this.state.projectToDisplay.filter(project => { if (project.specialization == this.state.majeur_value) return true })
         }
 
+        const finished = this.state.loaded
         return (
         <div>
                 <Container fluid>
@@ -89,12 +106,12 @@ class ProjectsListCard extends React.Component {
                                 <hr />
                                 <CardText>
                                     <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} style={{ fontSize: 15 }} />
-                                    
-                                    <hr />
-                                    
-                                    <ListGroup>
-                                        {ProjectList}
-                                    </ListGroup>
+
+                                    <Container fluid>
+                                        <List>
+                                            {finished ? (ProjectList) : (<label style = {{margin : 'auto'}}><CircularProgress/></label>)}
+                                        </List>
+                                    </Container>
                                 </CardText>
                             </Card>
                         </Col>

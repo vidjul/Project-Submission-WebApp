@@ -52,7 +52,7 @@ class KeyWords extends Component {
                   onRequestDelete={(chip, index) => this.handleDelete(index)}
                   fullWidth
                   fullWidthInput
-                  floatingLabelText='Mots clés'
+                  floatingLabelText='Mots clés (appuyez sur entrer pour valider)'
                   dataSource = {this.state.suggestions}
                 />
         )
