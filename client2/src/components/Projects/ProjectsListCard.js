@@ -37,6 +37,14 @@ class ProjectsListCard extends React.Component {
                 this.setState({ projects })
             })
             .then(res => {
+                if (this.props.admin) {
+                    var pendingProjects = this.state.projects.filter(project => { if (project.status == "pending") return true })
+                    this.setState({ projectToDisplay: pendingProjects , loaded : true})
+                }
+                else {
+                    var validateProjects = this.state.projects.filter(project => { if (project.status == "validate") return true })
+                    this.setState({ projectToDisplay: validateProjects , loaded : true })
+                }
                 console.log(this.state.projectToDisplay)
             })
             .catch((err) => { console.log("Error occured :" + err); });
