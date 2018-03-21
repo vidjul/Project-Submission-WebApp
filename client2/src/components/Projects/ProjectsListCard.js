@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-grid-system'
 import Paper from 'material-ui/Paper'
 import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
-
+import CircularProgress from 'material-ui/CircularProgress';
 class ProjectsListCard extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +14,8 @@ class ProjectsListCard extends React.Component {
             projects: [],
             projectToDisplay: [],
             annee_value: "",
-            majeur_value: ""
+            majeur_value: "",
+            loaded : false    
         };
         this.styles = {
             header: {
@@ -38,11 +39,11 @@ class ProjectsListCard extends React.Component {
             .then(res => {
                 if (this.props.admin) {
                     var pendingProjects = this.state.projects.filter(project => { if (project.status == "pending") return true })
-                    this.setState({ projectToDisplay: pendingProjects })
+                    this.setState({ projectToDisplay: pendingProjects , loaded : true})
                 }
                 else {
                     var validateProjects = this.state.projects.filter(project => { if (project.status == "validate") return true })
-                    this.setState({ projectToDisplay: validateProjects })
+                    this.setState({ projectToDisplay: validateProjects , loaded : true })
                 }
                 console.log(this.state.projectToDisplay)
             })
@@ -61,29 +62,28 @@ class ProjectsListCard extends React.Component {
 
     render() {
         console.log(this.state.projects);
-        let ProjectList = null;
+        var ProjectList = null;
         if (this.props.admin) { //if asked as admin render pending project
             ProjectList = this.state.projectToDisplay.map(project =>
-                <ListItem>
                     <Row debug>
                         <Col>
                             <ProjectCard key={project.id} project={project} admin />
                         </Col>
                     </Row>
-                </ListItem >
             )
         }
         else { //render validate project
-            ProjectList = this.state.projectToDisplay.map(project =>
+            ProjectList = this.state.projectToDisplay.map(project => 
                 
                     <Row>
                         <Col>
                             <ProjectCard key={project.id} project={project} />
                         </Col>
-                    </Row>
+            </Row> 
                )
         }
 
+        const finished = this.state.loaded
         return (
             <div>
                 <Container fluid>
@@ -97,7 +97,7 @@ class ProjectsListCard extends React.Component {
 
                                     <Container fluid>
                                         <List>
-                                        {ProjectList}
+                                            {finished ? (ProjectList) : (<label style = {{margin : 'auto'}}><CircularProgress/></label>)}
                                         </List>
                                     </Container>
                                 </CardText>
