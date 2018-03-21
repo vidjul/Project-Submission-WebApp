@@ -1,15 +1,17 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownItem, Row, DropdownMenu } from 'reactstrap';
+import {Container, Dropdown, DropdownToggle, DropdownItem, Row, DropdownMenu } from 'reactstrap';
 
 class DropDownFilter extends React.Component{
     constructor(props) {
         super(props);
     
         this.toggle = this.toggle.bind(this);
+        this.changeValue = this.changeValue.bind(this);
         this.state = {
           dropdownOpen: false,
           years : [],
-          majors : []
+          majors : [],
+          dropDownValue:this.props.filterName
         };
       }
 
@@ -23,6 +25,11 @@ class DropDownFilter extends React.Component{
             .then(res => res.json())
             .then(majors => this.setState({majors}))
             .catch((err) =>{console.log(err);});
+        console.log(this.state.dropDownValue);
+      }
+
+      changeValue(e) {
+        this.setState({dropDownValue: e.currentTarget.textContent})
       }
     
       toggle() {
@@ -32,23 +39,23 @@ class DropDownFilter extends React.Component{
       }
 
       render(){
-        console.log(this.state.years);
-
         if(this.props.filterName === "Année"){
           return(
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret>{this.props.filterName}</DropdownToggle>
+              <DropdownToggle caret>{this.state.dropDownValue}</DropdownToggle>
               <DropdownMenu>
-              {this.state.years.map(year => <DropdownItem key={year}>{year}</DropdownItem>)}
+              <DropdownItem onClick={this.changeValue}>{this.props.filterName}</DropdownItem>
+              {this.state.years.map(year => <DropdownItem onClick={this.changeValue} key={year}>{year}</DropdownItem>)}
               </DropdownMenu>
             </Dropdown>
           );
         } else {
           return(
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret>{this.props.filterName}</DropdownToggle>
+              <DropdownToggle caret>{this.state.dropDownValue}</DropdownToggle>
               <DropdownMenu>
-              {this.state.majors.map(major => <DropdownItem key={major}>{major}</DropdownItem>)}
+              <DropdownItem onClick={this.changeValue}>{this.props.filterName}</DropdownItem>
+              {this.state.majors.map(major => <DropdownItem onClick={this.changeValue} key={major}>{major}</DropdownItem>)}
               </DropdownMenu>
             </Dropdown>
           );

@@ -1,16 +1,19 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownItem, Row, DropdownMenu } from 'reactstrap';
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownItem, Row, DropdownMenu, Col } from 'reactstrap';
 import DropdownFilter from './DropdownFilter';
 
 class ProjectFilter extends React.Component{
     render(){
         return(
             <div>{' '}
-                <i class="fa fa-filter"/>
-                Filtrer par:{' '}
                 <Container>
-                    <DropdownFilter filterName="Année"/>{' '}
-                    <DropdownFilter filterName="Majeure"/>
+                    
+                    <Row>
+                        <i className="fa fa-filter"/>
+                        <div>Filtrer par:</div> {' '}
+                        <DropdownFilter filterName="Année"/>{' '}
+                        <DropdownFilter filterName="Majeure"/>
+                    </Row>
                 </Container>
             
                 <InputGroup>
