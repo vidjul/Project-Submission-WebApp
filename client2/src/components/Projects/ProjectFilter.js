@@ -34,7 +34,7 @@ class ProjectFilter extends React.Component {
                                 </Col>
                                 <Col md={3}>
                                     <SelectField
-                                        floatingLabelText="Majeur"
+                                        floatingLabelText="Majeure"
                                     >
                                     </SelectField>
                                 </Col>
@@ -49,20 +49,6 @@ class ProjectFilter extends React.Component {
                         </CardText>
                     </Card>
                 </Container>
-
-                <i class="fa fa-filter" />
-                Filtrer par:{' '}
-                <Container>
-                    <DropdownFilter filterName="Année" getdropDownValue={this.handledropDownValue.bind(this)}/>{' '}
-                    <DropdownFilter filterName="Majeure" getdropDownValue={this.handledropDownValue.bind(this)}/>
-                </Container>
-
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                        <InputGroupText>Mots Clés</InputGroupText>
-                    </InputGroupAddon>
-                    <Input />
-                </InputGroup>
             </div>
         );
     }
