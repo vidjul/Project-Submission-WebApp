@@ -56,7 +56,7 @@ module.exports = mongoose.model('Comment', CommentSchema);
 var ProjectSchema = new Schema({
 	title: { type: String, required: true },
 	description: { type: String, required: true },
-	id_specialization: { type: Array, required: true }, //(Number)
+	id_specialization: { type: Array, required: true }, //(ObjectID)-> placer les ID des majeures
 	study_year: { type: Array, required: true }, //(Number)
 	keywords: { type: Array, required: true },  //(String)
 	media_files: Array, //(String)
@@ -72,16 +72,9 @@ module.exports = mongoose.model('Project', ProjectSchema);
 
 //Specialization Class
 var SpecializationSchema = new Schema({
-	specialization_name: { type: String, required: true },
-	school_name: { type: String, required: true },
-	referent: String
-});
-module.exports = mongoose.model('Specialization', SpecializationSchema);
-
-//ReferenceMajors Class (Every majors in each school)
-var ReferenceMajorsSchema = new Schema({
 	school_name: {type: String, required: true},
 	study_year: {type: String, required: true}, 
-	major_name: {type: String, required: true}
+	major_name: {type: String, required: true},
+	referent: {type: String, required: true}
 });
-module.exports = mongoose.model('ReferenceMajor', ReferenceMajorsSchema);
+module.exports = mongoose.model('Specialization', SpecializationSchema);
