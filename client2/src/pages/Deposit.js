@@ -3,9 +3,7 @@ import Navs from '../components/nav/Navs.js';
 import FilesInputs from '../components/Deposit/FormComponents/FilesInputs';
 import ReactDOM from 'react-dom';
 import { Container, Row, Col } from 'react-grid-system'
-import { Editor, EditorState, RichUtils } from 'draft-js';
 import KeyWords from '../components/Deposit/FormComponents/KeyWords';
-import TextEditor from '../components/Deposit/FormComponents/TextEditor';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -13,7 +11,6 @@ import TextField from 'material-ui/TextField'
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import ChipInput from 'material-ui-chip-input';
 import CircularProgress from 'material-ui/CircularProgress';
 import {
   Step,
@@ -125,7 +122,7 @@ class Deposit extends Component {
 
     var Delete = (e) => {
       const fileIdToRemove = e.target.getAttribute('data-key')
-      var newState = this.state.files.splice(this.state.files.findIndex((file) => {
+      this.state.files.splice(this.state.files.findIndex((file) => {
         return file.id == fileIdToRemove;
       }), 1);
       this.addViewFile();
