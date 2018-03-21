@@ -236,7 +236,7 @@ class Deposit extends Component {
       //Informations about the partner
       case 0:
         return <div>
-          <h2 style={{ textAlign: 'center' }}>Parlez-nous de vous </h2>
+          <h2 style={{ textAlign: 'center' }}>Tell us about yourself </h2>
           <Container>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
