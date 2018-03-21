@@ -34,11 +34,11 @@ class Navs extends React.Component {
 
 		var configItem = [
 			{ label: "Home", href: "/" },
-			{ label: "Projets", href: "/Projects" },
-			{ label: "Déposer un projet", href: "/Deposit" },
-			{ label: "Se connecter", href: "/Connection" },
+			{ label: "Projects", href: "/Projects" },
+			{ label: "Submit a project", href: "/Deposit" },
+			{ label: "Log in", href: "/Connection" },
 			{ label: "Admin", href: "/Admin" },
-			{ label: "Lien projet perdu", href: "/forgot" },
+			{ label: "Project link lost", href: "/forgot" },
 			{ label: "FR", href: "#", icon: true },
 			{ label: "EN", href: "#", icon: true }
 		]
