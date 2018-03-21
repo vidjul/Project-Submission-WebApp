@@ -236,12 +236,12 @@ class Deposit extends Component {
       //Informations about the partner
       case 0:
         return <div>
-          <h2 style={{ textAlign: 'center' }}>Parlez nous de vous </h2>
+          <h2 style={{ textAlign: 'center' }}>Parlez-nous de vous </h2>
           <Container>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Votre email"
+                  floatingLabelText="Your email address"
                   onChange={this.handleChange}
                   onBlur={this.handleBlur}
                   name="email"
@@ -253,7 +253,7 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Votre entreprise"
+                  floatingLabelText="Your company"
                   onChange={this.handleChange}
                   name="company" value={this.state.company}
                   fullWidth={true} />
@@ -263,7 +263,7 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Votre prénom"
+                  floatingLabelText="Your first name"
                   onChange={this.handleChange} fullWidth={true}
                   name="first_name" value={this.state.first_name} />
               </Col>
@@ -271,7 +271,7 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Votre nom"
+                  floatingLabelText="Your last name"
                   onChange={this.handleChange} fullWidth={true}
                   name="last_name" value={this.state.last_name} />
               </Col>
