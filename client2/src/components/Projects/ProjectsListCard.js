@@ -6,7 +6,12 @@ import ProjectCard from './ProjectCard';
 class ProjectsListCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { projects: [], projectToDisplay: [] };
+        this.state = { 
+            projects: [], 
+            projectToDisplay: [],
+            annee_value:"",
+            majeur_value:""
+        };
     }
 
     componentDidMount() {
@@ -29,6 +34,16 @@ class ProjectsListCard extends React.Component {
             .catch((err) => { console.log("Error occured :" + err); });
     }
 
+    handledropDownValue(dropDownValue,filterName){ 
+        if(filterName == "Année" && dropDownValue != "Majeure"){
+            this.state.annee_value = dropDownValue != "Année" ? dropDownValue : "";
+        } if(filterName == "Majeure" && dropDownValue != "Année"){
+            this.state.majeur_value = dropDownValue != "Majeure" ? dropDownValue : "";
+        }
+        console.log(this.state.annee_value);
+            
+    }
+
     render() {
         console.log(this.state.projects);
         let ProjectList = null;
@@ -45,7 +60,7 @@ class ProjectsListCard extends React.Component {
                     <Card className="lead">
                         <CardHeader style={{ fontSize: 20 }} >Liste des projets</CardHeader>
                         <CardBlock>
-                            <Container><ProjectFilter style={{ fontSize: 15 }} /></Container><hr />
+                            <Container><ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} style={{ fontSize: 15 }} /></Container><hr />
                             <ListGroup>
                                 {ProjectList}
                             </ListGroup>

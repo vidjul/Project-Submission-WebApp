@@ -29,7 +29,9 @@ class DropDownFilter extends React.Component{
       }
 
       changeValue(e) {
-        this.setState({dropDownValue: e.currentTarget.textContent})
+        this.setState({dropDownValue: e.currentTarget.textContent}, function(){
+          this.props.getdropDownValue(this.state.dropDownValue,this.props.filterName);
+        });
       }
     
       toggle() {

@@ -3,14 +3,20 @@ import { InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown
 import DropdownFilter from './DropdownFilter';
 
 class ProjectFilter extends React.Component{
+    handledropDownValue(dropDownValue,filterName){
+        console.log(dropDownValue);
+        console.log(filterName);
+        this.props.getdropDownValue(dropDownValue,filterName);
+    }
+    
     render(){
         return(
             <div>{' '}
                 <i class="fa fa-filter"/>
                 Filtrer par:{' '}
                 <Container>
-                    <DropdownFilter filterName="Année"/>{' '}
-                    <DropdownFilter filterName="Majeure"/>
+                    <DropdownFilter filterName="Année" getdropDownValue={this.handledropDownValue.bind(this)}/>{' '}
+                    <DropdownFilter filterName="Majeure" getdropDownValue={this.handledropDownValue.bind(this)}/>
                 </Container>
             
                 <InputGroup>
