@@ -137,3 +137,31 @@ exports.update_a_project = (req, res) => {
 
 }
 
+exports.delete_a_project = (req, res) => {
+  Project.findByIdAndRemove(req.params.projectId, function (err, note) {
+    if (err) {
+      console.log(err);
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({ message: "Project not found with id " + req.params.noteId });
+      }
+      return res.status(500).send({ message: "Could not delete project with id " + req.params.noteId });
+    }
+
+    if (!note) {
+      return res.status(404).send({ message: "Project not found with id " + req.params.noteId });
+    }
+
+    res.send({ message: "Project deleted successfully!" })
+  });
+}
+
+exports.destroy = (req,res) => {
+  Project.remove({}, function(err) {
+    if (err) {
+      res.send(err);
+    }
+    else {
+      res.send('ok!');
+    }
+  })
+}

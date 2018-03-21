@@ -40,7 +40,8 @@ module.exports = mongoose.model('Partner', PartnerSchema);
 
 //Administration Class
 var AdministrationSchema = PersonSchema.extend({
-	id_specialization: { type: Number, required: true }
+	id_specialization: { type: Number, required: true },
+	password: {type: String, required: true}
 });
 module.exports = mongoose.model('Administration', AdministrationSchema);
 
