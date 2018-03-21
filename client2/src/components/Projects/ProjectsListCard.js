@@ -13,6 +13,7 @@ class ProjectsListCard extends React.Component {
         this.state = {
             projects: [],
             projectToDisplay: [],
+            projectSeen: [],
             annee_value: "",
             majeur_value: "",
             loaded : false    
@@ -39,11 +40,13 @@ class ProjectsListCard extends React.Component {
             .then(res => {
                 if (this.props.admin) {
                     var pendingProjects = this.state.projects.filter(project => { if (project.status == "pending") return true })
-                    this.setState({ projectToDisplay: pendingProjects , loaded : true})
+                    this.setState({ projectToDisplay: pendingProjects, loaded:true})
+                    this.setState({ projectSeen: pendingProjects, loaded:true})
                 }
                 else {
                     var validateProjects = this.state.projects.filter(project => { if (project.status == "validate") return true })
-                    this.setState({ projectToDisplay: validateProjects , loaded : true })
+                    this.setState({ projectToDisplay: validateProjects, loaded:true})
+                    this.setState({ projectSeen: validateProjects, loaded:true})
                 }
                 console.log(this.state.projectToDisplay)
             })
@@ -58,21 +61,14 @@ class ProjectsListCard extends React.Component {
             this.state.majeur_value = dropDownValue != "Majeure" ? dropDownValue : "";
             console.log(this.state.majeur_value);
         } 
-        if (this.props.admin) {
-            var pendingProjects = this.state.projects.filter(project => { if (project.status == "pending") return true })
-            this.setState({ projectToDisplay: pendingProjects , loaded : true})
-        }
-        else {
-            var validateProjects = this.state.projects.filter(project => { if (project.status == "validate") return true })
-            this.setState({ projectToDisplay: validateProjects , loaded : true })
-        }
+        
         if(this.state.annee_value !== "" && this.state.annee_value !== null){
-            var tmp = this.state.projects.filter(project => { if (project.study_year.includes(this.state.annee_value)) return true })
-            this.setState({ projectToDisplay: tmp , loaded : true})
+            var tmp = this.state.projectToDisplay.filter(project => { if (project.study_year.includes(this.state.annee_value)) return true })
+            this.setState({ projectSeen: tmp , loaded : true})
         }
         if(this.state.majeur_value !== "" && this.state.majeur_value !== null){
-            tmp = this.state.projects.filter(project => { if (project.specialization == this.state.majeur_value) return true })
-            this.setState({ projectToDisplay: tmp , loaded : true})
+            tmp = this.state.projectToDisplay.filter(project => { if (project.specialization == this.state.majeur_value) return true })
+            this.setState({ projectSeen: tmp , loaded : true})
         }
 }
 
@@ -83,7 +79,7 @@ class ProjectsListCard extends React.Component {
 
         var ProjectList = null;
         if (this.props.admin) { //if asked as admin render pending project
-            ProjectList = this.state.projectToDisplay.map(project =>
+            ProjectList = this.state.projectSeen.map(project =>
                     <Row debug>
                         <Col>
                             <ProjectCard key={project.id} project={project} admin />
@@ -92,7 +88,7 @@ class ProjectsListCard extends React.Component {
             )
         }
         else { //render validate project
-            ProjectList = this.state.projectToDisplay.map(project => 
+            ProjectList = this.state.projectSeen.map(project => 
                 
                     <Row>
                         <Col>
