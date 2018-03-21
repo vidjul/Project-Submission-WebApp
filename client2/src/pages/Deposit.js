@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import Navs from '../components/nav/Navs.js';
 import FilesInputs from '../components/Deposit/FormComponents/FilesInputs';
 import ReactDOM from 'react-dom';
-import { Button, Form, FormGroup, Label, Input, FormText, Container, Row, Col } from 'reactstrap';
-import { Editor, EditorState,RichUtils } from 'draft-js';
+import { Container, Row, Col } from 'react-grid-system'
+import { Editor, EditorState, RichUtils } from 'draft-js';
 import KeyWords from '../components/Deposit/FormComponents/KeyWords';
 import TextEditor from '../components/Deposit/FormComponents/TextEditor';
-import '../styles/Deposit/style.css'
+import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import Checkbox from 'material-ui/Checkbox';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import ChipInput from 'material-ui-chip-input';
+import CircularProgress from 'material-ui/CircularProgress';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+} from 'material-ui/Stepper';
 /**
  * Deposit a project
  */
@@ -16,37 +29,67 @@ class Deposit extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      finished: false,
+      stepIndex: 0,
       title: "",
       study_year: [],
       specialization: [],
-      editorState: EditorState.createEmpty(),
+      description: "",
       keyWords: [],
       files: [],
       urls: [],
       email: "",
       company: "",
-      email2: "",
       first_name: "",
-      last_name: ""
+      last_name: "",
+      submited: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyWords = this.handleKeyWords.bind(this);
     this.handleFiles = this.handleFiles.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+
+    this.majors = [{ name: "Informatique, BigData et objets connectes", key: "IBO" },
+    { name: "Nouvelle energie", key: "NE" },
+    { name: "Ingenieurie financiaire", key: "IF" },
+    { name: "Mecanique", key: "MNM" }]
+  }
+  //STEP
+  handleNext = () => {
+    const { stepIndex } = this.state;
+    console.log(this.state.title)
+    this.setState({
+      stepIndex: stepIndex + 1,
+      finished: stepIndex >= 1
+    });
+  };
+
+  handlePrev = () => {
+    const { stepIndex } = this.state;
+    if (stepIndex > 0) {
+      this.setState({ stepIndex: stepIndex - 1 });
+    }
+  };
+
+  handleSpe(e, index, values) {
+    console.log(values)
+    this.setState({ specialization: values })
   }
 
   handleBlur(event) {
-      const encodedValue = encodeURIComponent(this.state.email);
-      fetch("/api/partners/"+this.state.email)
-      .then((res)=> res.json())
-      .then((partner)=>{
-        try{
-        this.setState({first_name : partner.first_name, last_name : partner.last_name, company : partner.company})
-        }catch(e){
+    console.log(this.state)
+    fetch("/api/partners/" + this.state.email)
+      .then((res) => res.json())
+      .then((partner) => {
+        try {
+          this.setState({ first_name: partner.first_name, last_name: partner.last_name, company: partner.company })
+        } catch (e) {
           console.log("Email not found");
         }
-      });
+      })
+      .catch((err)=>{console.log("Email not found")})
+    console.log("passed")
 
   }
 
@@ -114,21 +157,23 @@ class Deposit extends Component {
 
     var keys = [];
     key.forEach(element => {
-      keys.push(element.text)
+      keys.push(element)
     });
     console.log(keys)
     this.setState({ keyWords: keys });
+    console.log(this.state.keyWords)
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault()
+    console.log("Passed")
     this.FilesUpload()
       .then(() => {
         const form = {
           title: this.state.title,
           study_year: this.state.study_year,
           specialization: this.state.specialization,
-          description: this.state.editorState,
+          description: this.state.description,
           keywords: this.state.keyWords,
           email: this.state.email,
           company: this.state.company,
@@ -148,25 +193,22 @@ class Deposit extends Component {
             body: JSON.stringify(form)
           })
             .then((res) => {
+              this.setState({ submited: true })
               console.log(res)
-              window.location.reload();
             })
             .catch((error) => {
-              console.log(error);
+              console.log(error)
             })
         }
         catch (error) {
-          console.error(error);
+          return console.log(error);
         }
       })
-
+      .catch((err) => { console.log("ERROR UPLOAD FILE") })
+    this.handleNext();
   }
 
-  handleTextEdit(editorState){
-    this.setState({ editorState })
-  }
-
-  handleChange(e) {
+  handleChange(e, index, values) {
     switch (e.target.name) {
       case "year":
         var temp = this.state.study_year;
@@ -179,128 +221,223 @@ class Deposit extends Component {
             temp.splice(index, 1);
           }
         }
+        console.log(this.state.study_year)
         this.state.study_year = temp;
-        break;
-
-      case "specialization":
-        var values = []
-        for (var i = 0; i < e.target.options.length; i++) {
-          if (e.target.options[i].selected) {
-            values.push(e.target.options[i].value);
-          }
-        }
-        this.setState({ specialization: values })
         break;
 
       default:
         this.setState({
           [e.target.name]: e.target.value
         })
+        console.log(this.state.email)
+        console.log(this.state.title)
+    }
+  }
+
+  getStepContent(stepIndex) {
+    switch (stepIndex) {
+      //Informations about the partner
+      case 0:
+        return <div>
+          <h2 style={{ textAlign: 'center' }}>Parlez nous de vous </h2>
+          <Container>
+            <Row>
+              <Col md={6} offset={{ md: 3 }}>
+                <TextField
+                  floatingLabelText="Votre email"
+                  onChange={this.handleChange}
+                  onBlur={this.handleBlur}
+                  name="email"
+                  value = {this.state.email}
+                  fullWidth={true} />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={6} offset={{ md: 3 }}>
+                <TextField
+                  floatingLabelText="Votre entreprise"
+                  onChange={this.handleChange}
+                  name="company" value={this.state.company}
+                  fullWidth={true} />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={6} offset={{ md: 3 }}>
+                <TextField
+                  floatingLabelText="Votre prénom"
+                  onChange={this.handleChange} fullWidth={true}
+                  name="first_name" value={this.state.first_name} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6} offset={{ md: 3 }}>
+                <TextField
+                  floatingLabelText="Votre nom"
+                  onChange={this.handleChange} fullWidth={true}
+                  name="last_name" value={this.state.last_name} />
+              </Col>
+            </Row>
+
+          </Container>
+        </div>
+
+      /**
+       * Information about the project
+       */
+      case 1:
+        return <div>
+          <h2 style={{ textAlign: 'center' }}>Présentez votre projet</h2>
+          <Container>
+            <Row>
+              <Col md={6} offset={{ md: 3 }}>
+                <TextField
+                  floatingLabelText="Intitulé de votre projet"
+                  onChange={this.handleChange} fullWidth={true}
+                  name="title" value ={this.state.title}/>
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col md={3} offset={{ md: 3 }}>
+                <Checkbox
+                  label="A4"
+                  name="year"
+                  value="A4"
+                  onCheck={this.handleChange} />
+              </Col>
+              <Col md={3}>
+                <Checkbox
+                  label="A5"
+                  name="year"
+                  value="A5"
+                  onCheck={this.handleChange} />
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col md={6} offset={{ md: 3 }}>
+                <SelectField
+                  multiple={true} hintText="Majeur(s) ciblée(s)"
+                  value={this.state.specialization}
+                  onChange={this.handleSpe.bind(this)} fullWidth={true}
+                  name="specialization"
+                  floatingLabelText="Majeur(s)">
+                  {this.majors.map((major) => <MenuItem
+                    key={major.key}
+                    insetChildren={true}
+                    checked={this.state.specialization.indexOf(major.key) > -1}
+                    value={major.key}
+                    primaryText={major.name}
+                  />)}
+                </SelectField>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8} offset={{ md: 2 }}>
+                <TextField
+                  hintText="Description complete de votre projet"
+                  floatingLabelText="Description"
+                  multiLine={true}
+                  rows={10}
+                  name="description"
+                  onChange={this.handleChange}
+                  fullWidth={true} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8} offset={{ md: 2 }}>
+                <KeyWords change={this.handleKeyWords} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={8} offset={{ md: 2 }}>
+                <FilesInputs change={this.handleFiles} />
+              </Col>
+            </Row>
+          </Container>
+        </div>;
+      case 2:
+        if (!this.state.submited) {
+          return <CircularProgress />
+        }
+        else {
+          <Container>
+            <Row>
+              <Col md={8} offset={{ md: 2 }}>
+                <div>  Merci, votre projet est maintenant en attente de validation par l'administration de l'école concerné. Un email vous a été envoyé avec un lien pour modifier votre projet. </div>
+              </Col>
+            </Row>
+          </Container>
+        }
+      default:
+        return 'You\'re a long way from home sonny jim!';
     }
   }
 
   render() {
+    const { finished, stepIndex } = this.state;
     return (
       <div id="deposit-body">
         <Navs />
-        <Container fluid className="mt-3">
-          <Form onSubmit={this.handleSubmit}>
-            <h1>Déposer un projet</h1>
-            <hr className="hr-text" data-content="Déposer un projet" />
-            <h2>Parlez nous de vous </h2>
-            <hr />
-            <FormGroup>
-              <Label for="Email"><h3>Votre email</h3></Label>
-              <Input
-                onChange={this.handleChange}
-                type="email" name="email" value = {this.state.email}
-                placeholder="Votre email"
-                onBlur = {this.handleBlur}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="Company"><h3>Votre entreprise</h3></Label>
-              <Input
-                onChange={this.handleChange}
-                type="text"
-                name="company"
-                id="company"
-                placeholder="Votre entreprise"
-                value = {this.state.company} />
-            </FormGroup>
-            <FormGroup>
-              <Label for="first_name"><h3>Votre Prénom</h3></Label>
-              <Input
-                onChange={this.handleChange}
-                type="text"
-                name="first_name"
-                id="first_name"
-                placeholder="Votre prénom" 
-                value = {this.state.first_name}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="last_name"><h3>Votre Nom</h3></Label>
-              <Input
-                onChange={this.handleChange}
-                type="text"
-                name="last_name"
-                id="last_name"
-                placeholder="Votre Nom"
-                value = {this.state.last_name}/>
-            </FormGroup>
-            <hr />
-            <h2>Présentez votre projet</h2>
-            <hr />
-            <FormGroup>
-              <Label for="title"><h3>Intitulé de votre projet</h3></Label>
-              <Input
-                onChange={this.handleChange}
-                type="text"
-                name="title"
-                placeholder="Intituté du projet" />
-            </FormGroup>
-            <FormGroup row>
-              <Label for="year" check><h3>Année</h3></Label>
-              <Col sm={{ size: 10 }}>
-                <FormGroup check inline>
-                  <Input
-                    onChange={this.handleChange}
-                    value="A4"
-                    type="checkbox"
-                    name="year" /> {' '}
-                  A4
-                    </FormGroup>
-                <FormGroup check inline>
-                  <Input
-                    onChange={this.handleChange}
-                    value="A5"
-                    type="checkbox"
-                    name="year" /> {' '}
-                  A5
-                    </FormGroup>
-              </Col>
-            </FormGroup>
-            <FormGroup>
-              <Label for="specialization">Majeure(s) ciblée(s)</Label>
-              <Input onChange={this.handleChange} type="select" name="specialization" multiple>
-                <option value="IBO">Informatique, BigData et objets connectes</option>
-                <option value="NE">Nouvelle energie</option>
-                <option value="IF">Ingenieurie financiaire</option>
-                <option value="MCM">Mecanique</option>
-              </Input>
-            </FormGroup>
+        <form onSubmit={this.handleSubmit}>
+          <Paper zDepth={1} style={{ width: '100%', maxWidth: 1000, margin: 'auto', marginTop: 10 }}>
+            <Stepper activeStep={stepIndex}>
+              <Step>
+                <StepLabel>Partner information</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Project Information</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Submit your project</StepLabel>
+              </Step>
+            </Stepper>
 
-            <FormGroup>
-              <Label for="description">Description de votre projet</Label>
-              <TextEditor onChange = {this.handleTextEdit.bind(this)} editorState = {this.state.editorState}/>
-              <Input onChange={this.handleChange} type="textarea" name="description" />
-            </FormGroup>
-            <KeyWords change={this.handleKeyWords} />
-            <FilesInputs change={this.handleFiles} />
-            <FormGroup>
-              <Button>Envoyer le projet</Button>
-            </FormGroup>
-          </Form>
-        </Container>
+            <div>
+              {finished ? (
+
+                <Container>
+                  <Row>
+                    <Col md={8} offset={{ md: 2 }}>
+                      {this.state.submited ? (<div><div>  Merci, votre projet est maintenant en attente de validation par l'administration de l'école concerné. Un email vous a été envoyé avec un lien pour modifier votre projet. </div>
+                        <br/>
+                          <a
+                            href="#"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              this.setState({ stepIndex: 0, finished: false });
+                            }}
+                          >
+                            Click here
+                    </a> to reset the example.
+                  </div>) : (
+                      <div style = {{textAlign : 'center'}}><CircularProgress /></div>)}
+                    </Col>
+                  </Row>
+                </Container>
+              ) : (
+                  <div>
+                    {this.getStepContent(stepIndex)}
+                    <div style={{ marginTop: 12, paddingBottom: 30, textAlign: 'center' }}>
+                      <FlatButton
+                        label="Back"
+                        disabled={stepIndex === 0}
+                        onClick={this.handlePrev}
+                        style={{ marginRight: 12 }}
+                      />
+                      <RaisedButton
+                        label={stepIndex === 2 ? 'Finish' : 'Next'}
+                        primary={true}
+                        onClick={stepIndex === 1 ? this.handleSubmit : this.handleNext}
+                      />
+                    </div>
+                  </div>
+                )}
+            </div>
+          </Paper>
+        </form>
       </div>
     );
   }

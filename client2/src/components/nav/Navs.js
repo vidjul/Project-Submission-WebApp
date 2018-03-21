@@ -39,7 +39,7 @@ class Navs extends React.Component {
 			{label : "EN" , href : "#"}
 		]
 		var menu = <div> {configItem.map( (item) =>
-<Link to = {item.href}>
+	<Link key = {item.label} to = {item.href}>
 		<FlatButton label = {item.label} style = {this.styles.menuItem} />
 		</Link>
 		)}

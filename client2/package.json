@@ -8,6 +8,7 @@
     "history": "^4.7.2",
     "material-auto-rotating-carousel": "^1.7.0",
     "material-ui": "^0.20.0",
+    "material-ui-chip-input": "^0.18.7",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-checkbox-group": "^3.3.4",

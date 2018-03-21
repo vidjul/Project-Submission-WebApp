@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
 import { FormGroup, Label, Row, Col } from "reactstrap";
+import ChipInput from 'material-ui-chip-input';
 class KeyWords extends Component {
 
     constructor(props) {
@@ -23,11 +24,9 @@ class KeyWords extends Component {
     }
 
     handleAddition(tag) {
+        console.log("Add")
         let tags = this.state.tags;
-        tags.push({
-            id: tags.length + 1,
-            text: tag
-        });
+        tags.push(tag)
         this.setState({ tags: tags });
         this.props.change(this.state.tags);
     }
@@ -47,17 +46,15 @@ class KeyWords extends Component {
     render() {
         const { tags, suggestions } = this.state;
         return (
-            <FormGroup>
-                <Label for="keyWords">Keywords</Label>
-                <ReactTags
-                    classNames={{ tagInputField: "form-control" }}
-                    tags={tags}
-                    suggestions={suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
-                    autofocus={false} />
-            </FormGroup>
+            <ChipInput
+                  value={this.state.tags}
+                  onRequestAdd={(chip) => this.handleAddition(chip)}
+                  onRequestDelete={(chip, index) => this.handleDelete(index)}
+                  fullWidth
+                  fullWidthInput
+                  floatingLabelText='Mots clés'
+                  dataSource = {this.state.suggestions}
+                />
         )
     };
 }

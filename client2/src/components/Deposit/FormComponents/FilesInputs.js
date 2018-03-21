@@ -12,7 +12,7 @@ class FilesInputs extends Component {
         return (
             <FormGroup>
                 <Label for = "files"> Others files</Label>
-                <div className="file col-md-5">
+                <div className="file">
                     <Files
                         className='files-dropzone'
                         onChange={this.props.change}
