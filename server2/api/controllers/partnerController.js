@@ -30,3 +30,21 @@ exports.find_by_mail = (req, res) => {
     res.json(partner);
   })
 }
+
+exports.delete_a_partner = (req, res) => {
+  Partner.findByIdAndRemove(req.params.partnerId, function(err, note) {
+    if(err) {
+        console.log(err);
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({message: "Partner not found with id " + req.params.partnerId});                
+        }
+        return res.status(500).send({message: "Could not delete Partner with id " + req.params.partnerId});
+    }
+
+    if(!note) {
+        return res.status(404).send({message: "Partner not found with id " + req.params.partnerId});
+    }
+
+    res.send({message: "Partner deleted successfully!"})
+});
+}

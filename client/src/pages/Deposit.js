@@ -215,7 +215,7 @@ class Deposit extends Component {
                 onChange={this.handleChange}
                 type="email" name="email" value = {this.state.email}
                 placeholder="Votre email"
-                onBlur = {this.handleBlur}/>
+                onKeyUp = {this.handleBlur}/>
             </FormGroup>
             <FormGroup>
               <Label for="Company"><h3>Votre entreprise</h3></Label>
