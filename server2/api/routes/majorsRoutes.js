@@ -10,8 +10,8 @@ module.exports = function (app) {
   app.route('/api/majors/major/:major')
     .get(major.filter_by_major);
 
-  app.route('/api/majors/:studyYear')
-    .get(major.filter_by_year);
+  /*app.route('/api/majors/:studyYear')
+    .get(major.filter_by_year);*/
 
 
 };
