@@ -50,15 +50,17 @@ class ProjectsListCard extends React.Component {
     handledropDownValue(dropDownValue,filterName){ 
         if(filterName == "Année" && dropDownValue != "Majeure"){
             this.state.annee_value = dropDownValue != "Année" ? dropDownValue : "";
+            console.log(this.state.annee_value);
         } if(filterName == "Majeure" && dropDownValue != "Année"){
             this.state.majeur_value = dropDownValue != "Majeure" ? dropDownValue : "";
-        }
-        console.log(this.state.annee_value);
-            
+            console.log(this.state.majeur_value);
+        } 
     }
 
     render() {
-        console.log(this.state.projects);
+        console.log(this.state.annee_value);
+        //console.log(this.state.projects);
+        
         let ProjectList = null;
         if (this.props.admin) { //if asked as admin render pending project
             ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} admin /></Container>)
@@ -66,9 +68,19 @@ class ProjectsListCard extends React.Component {
         else { //render validate project
             ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} /></Container>)
         }
+        console.log("***");
+
+        if(this.state.annee_value !== "" && this.state.annee_value !== null){
+
+            console.log("***");
+            this.state.projectToDisplay = this.state.projectToDisplay.filter(project => { if (project.study_year.includes(this.state.annee_value)) return true })
+        }
+        if(this.state.majeur_value !== "" && this.state.majeur_value !== null){
+            this.state.projectToDisplay = this.state.projectToDisplay.filter(project => { if (project.specialization == this.state.majeur_value) return true })
+        }
 
         return (
-            <div>
+        <div>
                 <Container fluid>
                     <Row>
                         <Col>
