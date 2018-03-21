@@ -299,14 +299,14 @@ class Deposit extends Component {
             <Row>
               <Col md={3} offset={{ md: 3 }}>
                 <Checkbox
-                  label="A4"
+                  label="Année 4"
                   name="year"
                   value="A4"
                   onCheck={this.handleChange} />
               </Col>
               <Col md={3}>
                 <Checkbox
-                  label="A5"
+                  label="Année 5"
                   name="year"
                   value="A5"
                   onCheck={this.handleChange} />
