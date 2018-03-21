@@ -37,14 +37,6 @@ class ProjectsListCard extends React.Component {
                 this.setState({ projects })
             })
             .then(res => {
-                if (this.props.admin) {
-                    var pendingProjects = this.state.projects.filter(project => { if (project.status == "pending") return true })
-                    this.setState({ projectToDisplay: pendingProjects , loaded : true})
-                }
-                else {
-                    var validateProjects = this.state.projects.filter(project => { if (project.status == "validate") return true })
-                    this.setState({ projectToDisplay: validateProjects , loaded : true })
-                }
                 console.log(this.state.projectToDisplay)
             })
             .catch((err) => { console.log("Error occured :" + err); });
@@ -58,12 +50,29 @@ class ProjectsListCard extends React.Component {
             this.state.majeur_value = dropDownValue != "Majeure" ? dropDownValue : "";
             console.log(this.state.majeur_value);
         } 
-    }
+        if (this.props.admin) {
+            var pendingProjects = this.state.projects.filter(project => { if (project.status == "pending") return true })
+            this.setState({ projectToDisplay: pendingProjects , loaded : true})
+        }
+        else {
+            var validateProjects = this.state.projects.filter(project => { if (project.status == "validate") return true })
+            this.setState({ projectToDisplay: validateProjects , loaded : true })
+        }
+        if(this.state.annee_value !== "" && this.state.annee_value !== null){
+            var tmp = this.state.projects.filter(project => { if (project.study_year.includes(this.state.annee_value)) return true })
+            this.setState({ projectToDisplay: tmp , loaded : true})
+        }
+        if(this.state.majeur_value !== "" && this.state.majeur_value !== null){
+            tmp = this.state.projects.filter(project => { if (project.specialization == this.state.majeur_value) return true })
+            this.setState({ projectToDisplay: tmp , loaded : true})
+        }
+}
 
     render() {
         console.log(this.state.annee_value);
         //console.log(this.state.projects);
-        
+        console.log("***");
+
         var ProjectList = null;
         if (this.props.admin) { //if asked as admin render pending project
             ProjectList = this.state.projectToDisplay.map(project =>
@@ -83,16 +92,6 @@ class ProjectsListCard extends React.Component {
                         </Col>
             </Row> 
                )
-        }
-        console.log("***");
-
-        if(this.state.annee_value !== "" && this.state.annee_value !== null){
-
-            console.log("***");
-            this.state.projectToDisplay = this.state.projectToDisplay.filter(project => { if (project.study_year.includes(this.state.annee_value)) return true })
-        }
-        if(this.state.majeur_value !== "" && this.state.majeur_value !== null){
-            this.state.projectToDisplay = this.state.projectToDisplay.filter(project => { if (project.specialization == this.state.majeur_value) return true })
         }
 
         const finished = this.state.loaded
