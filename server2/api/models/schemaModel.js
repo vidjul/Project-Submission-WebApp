@@ -48,7 +48,8 @@ module.exports = mongoose.model('Administration', AdministrationSchema);
 //Comment Class
 var CommentSchema = new Schema({
 	author: { type: PersonSchema, required: true },
-	content: { type: String, required: true }
+	content: { type: String, required: true },
+	idMainComment: { type: String }
 });
 module.exports = mongoose.model('Comment', CommentSchema);
 
