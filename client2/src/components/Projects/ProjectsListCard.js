@@ -5,14 +5,16 @@ import ProjectCard from './ProjectCard';
 import { Container, Row, Col } from 'react-grid-system'
 import Paper from 'material-ui/Paper'
 import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
+
 class ProjectsListCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            projects: [], 
+        this.state = {
+            projects: [],
             projectToDisplay: [],
-            annee_value:"",
-            majeur_value:""
+            annee_value: "",
+            majeur_value: ""
         };
         this.styles = {
             header: {
@@ -47,24 +49,39 @@ class ProjectsListCard extends React.Component {
             .catch((err) => { console.log("Error occured :" + err); });
     }
 
-    handledropDownValue(dropDownValue,filterName){ 
-        if(filterName == "Année" && dropDownValue != "Majeure"){
+    handledropDownValue(dropDownValue, filterName) {
+        if (filterName == "Année" && dropDownValue != "Majeure") {
             this.state.annee_value = dropDownValue != "Année" ? dropDownValue : "";
-        } if(filterName == "Majeure" && dropDownValue != "Année"){
+        } if (filterName == "Majeure" && dropDownValue != "Année") {
             this.state.majeur_value = dropDownValue != "Majeure" ? dropDownValue : "";
         }
         console.log(this.state.annee_value);
-            
+
     }
 
     render() {
         console.log(this.state.projects);
         let ProjectList = null;
         if (this.props.admin) { //if asked as admin render pending project
-            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} admin /></Container>)
+            ProjectList = this.state.projectToDisplay.map(project =>
+                <ListItem>
+                    <Row debug>
+                        <Col>
+                            <ProjectCard key={project.id} project={project} admin />
+                        </Col>
+                    </Row>
+                </ListItem >
+            )
         }
         else { //render validate project
-            ProjectList = this.state.projectToDisplay.map(project => <Container><ProjectCard key={project.id} project={project} /></Container>)
+            ProjectList = this.state.projectToDisplay.map(project =>
+                
+                    <Row>
+                        <Col>
+                            <ProjectCard key={project.id} project={project} />
+                        </Col>
+                    </Row>
+               )
         }
 
         return (
@@ -77,12 +94,12 @@ class ProjectsListCard extends React.Component {
                                 <hr />
                                 <CardText>
                                     <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} style={{ fontSize: 15 }} />
-                                    
-                                    <hr />
-                                    
-                                    <ListGroup>
+
+                                    <Container fluid>
+                                        <List>
                                         {ProjectList}
-                                    </ListGroup>
+                                        </List>
+                                    </Container>
                                 </CardText>
                             </Card>
                         </Col>

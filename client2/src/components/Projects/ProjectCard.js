@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Collapse, ListGroupItem, ListGroup, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText, Container, CardBlock, Dropdown, DropdownToggle, DropdownItem, CardLink } from 'reactstrap';
-import ProjectFilter from './ProjectFilter';
-
+import { CardFooter,  CardLink } from 'reactstrap';
+import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { Container, Row, Col } from 'react-grid-system'
+import { ListItem } from 'material-ui/List';
 /**
  * Fast description of a project
  * use project props to set the project to display
@@ -12,7 +13,6 @@ class ProjectCard extends React.Component {
         super(props);
         this.state = {
             project: this.props.project,
-            collapse: false
         }
     }
 
@@ -25,7 +25,7 @@ class ProjectCard extends React.Component {
             method: 'PUT',
             mode: 'cors',
             headers: new Headers({ 'content-type': 'application/json' }),
-            body: JSON.stringify({ "status": "validate" , "editKey": null})
+            body: JSON.stringify({ "status": "validate", "editKey": null })
         }
 
         fetch("/api/projects/" + this.state.project._id, myInit)
@@ -37,16 +37,16 @@ class ProjectCard extends React.Component {
 
     handleRejection(event) {
         var myInit = {
-            method : 'PUT',
-            mode : 'cors',
-            headers : new Headers({'content-type':'application/json'}),
-            body : JSON.stringify({"status": "refused"})
+            method: 'PUT',
+            mode: 'cors',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify({ "status": "refused" })
         }
 
-        fetch("/api/projects"+this.state.project._id, myInit)
-        .then((res)=> {
+        fetch("/api/projects" + this.state.project._id, myInit)
+            .then((res) => {
 
-        })
+            })
     }
 
     toggle() {
@@ -64,17 +64,23 @@ class ProjectCard extends React.Component {
         }
         return (
             <div>
-                <Container>
-                    <Card>
-                            <ListGroupItem action tag = "a" href ="#" onClick = {(e)=>{e.preventDefault()}}>
-                                <CardHeader onClick={this.toggle.bind(this)}> {project.specialization} - {project.title} :</CardHeader>
-                            </ListGroupItem>
-                        <Collapse isOpen={this.state.collapse}>
-                            <CardBlock>{project.description}</CardBlock>
-                        </Collapse>
-                        {adminFooter}
-                    </Card>
-                </Container>
+                <Card style={{ borderBottom: 2 , marginBottom : 8}}>
+                    <CardHeader
+                        title={project.title}
+                        subtitle={project.specialization}
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                        style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
+                    >
+                           <label style = {{marginRight : 60}}> Année : {project.study_year.map((year)=> year + " ")} </label>
+                           {project.partner ? (<label> Proposé par : {project.partner.company} </label>): ( "Non spécifié" )}
+                        <hr />
+                    </CardHeader>
+                    <CardText expandable={true} style={{ marginBottom: 8 }}>
+                        {project.description}
+                    </CardText>
+                    {adminFooter}
+                </Card>
             </div>);
     }
 }
