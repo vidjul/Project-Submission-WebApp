@@ -1,14 +1,27 @@
 import React from 'react';
-import { Card, Button, ListGroup, CardHeader, CardFooter, CardBody, CardTitle, CardText, Container, CardBlock, Dropdown, DropdownToggle, DropdownItem, ListGroupItem } from 'reactstrap';
+import { Button, ListGroup, CardFooter, CardBody, CardBlock, Dropdown, DropdownToggle, DropdownItem, ListGroupItem } from 'reactstrap';
 import ProjectFilter from './ProjectFilter';
 import ProjectCard from './ProjectCard';
-
+import { Container, Row, Col } from 'react-grid-system'
+import Paper from 'material-ui/Paper'
+import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 class ProjectsListCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = { projects: [], projectToDisplay: [] };
+        this.styles = {
+            header: {
+
+            },
+            title: {
+                fontSize: 30 + 'px',
+            }
+        }
     }
 
+    /**
+     * A MODIFIE, FAIRE LE FILTRE VIA l'API
+     */
     componentDidMount() {
         fetch('/api/projects')
             .then(res => res.json())
@@ -41,16 +54,24 @@ class ProjectsListCard extends React.Component {
 
         return (
             <div>
-                <Container>
-                    <Card className="lead">
-                        <CardHeader style={{ fontSize: 20 }} >Liste des projets</CardHeader>
-                        <CardBlock>
-                            <Container><ProjectFilter style={{ fontSize: 15 }} /></Container><hr />
-                            <ListGroup>
-                                {ProjectList}
-                            </ListGroup>
-                        </CardBlock>
-                    </Card>
+                <Container fluid>
+                    <Row>
+                        <Col>
+                            <Card>
+                                <CardTitle style={{ textAlign: 'center' }} title="Liste des projets"></CardTitle>
+                                <hr />
+                                <CardText>
+                                        <ProjectFilter style={{ fontSize: 15 }} />
+                                    
+                                    <hr />
+                                    
+                                    <ListGroup>
+                                        {ProjectList}
+                                    </ListGroup>
+                                </CardText>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>);
     }
