@@ -5,6 +5,7 @@ import ProjectCard from './ProjectCard';
 import { Container, Row, Col } from 'react-grid-system';
 import { List, ListItem } from 'material-ui/List';
 import CommunicationComment from 'material-ui/svg-icons/communication/comment';
+import TextField from 'material-ui/TextField';
 export default class ProjectComment extends React.Component {
     state = {
         open: false,
@@ -21,7 +22,7 @@ export default class ProjectComment extends React.Component {
     };
     render() {
         let comment;
-        let response = [<ListItem key={1} primaryText="Via le site web" />,<ListItem key={2} primaryText="Merci !" />]
+        let response = [<ListItem key={1} primaryText="Via le site web" />, <ListItem key={2} primaryText="Merci !" />]
 
         if (this.state.full) {
             comment = <Container fluid>
@@ -29,9 +30,14 @@ export default class ProjectComment extends React.Component {
                     <Col>
                         <List>
                             <ListItem primaryText="Comment candidater a votre projet ?"
-                            nestedItems = {response}
-                            leftIcon={<CommunicationComment/>}/>
+                                nestedItems={response}
+                                leftIcon={<CommunicationComment />} />
                         </List>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label style = {{marginRight : 50}}>Posez votre question : </label><TextField floatingLabelText="Posez une question !" fullwidth = {true}/>
                     </Col>
                 </Row>
             </Container>
