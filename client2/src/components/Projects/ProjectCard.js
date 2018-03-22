@@ -102,7 +102,7 @@ class ProjectCard extends React.Component {
         else
         {
             var userAction = {notfull :<ProjectComment project = {this.state.project}/> ,
-            full : <ProjectComment project = {this.state.project} full/> }
+            full : <div><p>Questions :</p><ProjectComment project = {this.state.project} full/> </div>}
             var userFooter =  this.state.full ? <CardActions> {userAction.full}</CardActions> : <CardActions> {userAction.notfull}</CardActions>
         }
         return (
