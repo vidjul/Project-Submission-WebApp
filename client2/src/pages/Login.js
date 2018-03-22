@@ -11,9 +11,9 @@ class Login extends Component {
     }
 
     componentWillMount() {
-        if (this.Auth.loggedIn())
-            this.props.history.replace('/');
-        console.log('nope');
+        if (this.Auth.loggedIn()) {
+            this.props.history.replace('/Admin/');
+        }
     }
 
     render() {
@@ -24,8 +24,8 @@ class Login extends Component {
                     <form>
                         <input
                             className="form-item"
-                            placeholder="Username goes here..."
-                            name="username"
+                            placeholder="Email goes here..."
+                            name="email"
                             type="text"
                             onChange={this.handleChange}
                         />
@@ -39,7 +39,7 @@ class Login extends Component {
                         <input
                             className="form-submit"
                             value="SUBMIT"
-                            type="submit"
+                            onClick={this.handleFormSubmit}
                         />
                     </form>
                 </div>
@@ -57,10 +57,9 @@ class Login extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-
-        this.Auth.login(this.state.username, this.state.password)
+        this.Auth.login(this.state.email, this.state.password)
             .then(res => {
-                this.props.history.replace('/');
+                this.props.history.replace('/Admin/Validation');
             })
             .catch(err => {
                 alert(err);

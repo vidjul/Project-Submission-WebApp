@@ -6,6 +6,7 @@ import Deposit from './pages/Deposit';
 import Connection from './pages/Connection';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import Protected from './pages/Protected';
 import EditDeposit from './pages/EditDeposit';
 import ForgetPass from './pages/ForgetPass';
 import ProjectValidation from './pages/ProjectValidation';
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/Forgot" component={ForgetPass} />
           <Route exact path="/Admin/Validation" component={ProjectValidation} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/protected" component={Protected} />
         </Switch>
       </BrowserRouter>
     )

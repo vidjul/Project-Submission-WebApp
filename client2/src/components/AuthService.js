@@ -9,8 +9,6 @@ export default class AuthService {
 
     login(email, password) {
         // Get a token from api server using the fetch api
-        console.log(email);
-        console.log(password);
         return this.fetch(`/api/login`, {
             method: 'POST',
             body: JSON.stringify({
@@ -19,9 +17,13 @@ export default class AuthService {
             })
         }).then(res => {
             console.log(res);
+            console.log('ok');
             this.setToken(res.token) // Setting the token in localStorage
             return Promise.resolve(res);
-        }).catch(err => console.log(err));
+        }).catch(err => { 
+            console.log(err)
+            return Promise.reject(err);
+        });
     }
 
     loggedIn() {

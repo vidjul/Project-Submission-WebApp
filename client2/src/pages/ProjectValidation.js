@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Navs from '../components/nav/Navs.js';
 import ProjectsListCard from '../components/Projects/ProjectsListCard';
-export default class ProjectValidation extends Component {
+import withAuth from '../components/withAuth';
+
+
+class ProjectValidation extends Component {
     render() {
         return (
             <div>
@@ -11,3 +14,5 @@ export default class ProjectValidation extends Component {
         )
     }
 }
+
+export default withAuth(ProjectValidation);
