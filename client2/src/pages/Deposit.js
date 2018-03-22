@@ -30,7 +30,7 @@ class Deposit extends Component {
       stepIndex: 0,
       title: "",
       study_year: [],
-      specialization: [],
+      majors_concerned: [],
       description: "",
       keyWords: [],
       files: [],
@@ -71,7 +71,7 @@ class Deposit extends Component {
 
   handleSpe(e, index, values) {
     console.log(values)
-    this.setState({ specialization: values })
+    this.setState({ majors_concerned: values })
   }
 
   handleBlur(event) {
@@ -169,7 +169,7 @@ class Deposit extends Component {
         const form = {
           title: this.state.title,
           study_year: this.state.study_year,
-          specialization: this.state.specialization,
+          majors_concerned: this.state.majors_concerned,
           description: this.state.description,
           keywords: this.state.keyWords,
           email: this.state.email,
@@ -317,14 +317,14 @@ class Deposit extends Component {
               <Col md={6} offset={{ md: 3 }}>
                 <SelectField
                   multiple={true} hintText="Majeur(s) ciblée(s)"
-                  value={this.state.specialization}
+                  value={this.state.majors_concerned}
                   onChange={this.handleSpe.bind(this)} fullWidth={true}
-                  name="specialization"
+                  name="majors_concerned"
                   floatingLabelText="Majeur(s)">
                   {this.majors.map((major) => <MenuItem
                     key={major.key}
                     insetChildren={true}
-                    checked={this.state.specialization.indexOf(major.key) > -1}
+                    checked={this.state.majors_concerned.indexOf(major.key) > -1}
                     value={major.key}
                     primaryText={major.name}
                   />)}
