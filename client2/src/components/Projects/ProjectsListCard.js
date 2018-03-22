@@ -119,7 +119,7 @@ class ProjectsListCard extends React.Component {
                             <Card>
                                 <CardTitle style={{ textAlign: 'center' }} title="Liste des projets"></CardTitle>
                                 <hr />
-                                <CardText>
+                                <CardText style = {{backgroundColor : "#f7f4f4"}}>
                                     <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} style={{ fontSize: 15 }} />
 
                                     <Container fluid>

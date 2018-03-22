@@ -70,12 +70,7 @@ class Deposit extends Component {
   };
 
   handleSpe(e, index, values) {
-<<<<<<< HEAD
-    console.log(values)
-    this.setState({ majors_concerned: values })
-=======
     this.setState({ specialization: values }, () => {console.log(this.state.specialization)})
->>>>>>> f77fca3b1bb572cbd66142159de8ff19ab869213
   }
 
   handleBlur(event) {
