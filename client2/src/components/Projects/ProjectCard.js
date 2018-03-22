@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-grid-system'
 import { ListItem } from 'material-ui/List';
 import FlatButton from 'material-ui/FlatButton'
 import Snackbar from 'material-ui/Snackbar';
+import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
 import ProjectComment from './ProjectComment'
 /**
@@ -17,7 +18,7 @@ class ProjectCard extends React.Component {
         this.state = {
             project: this.props.project,
             modal_validation: false,
-            full : this.props.full
+            full: this.props.full
         }
         this.handleValidation = this.handleValidation.bind(this)
         this.handleRejection = this.handleRejection.bind(this)
@@ -84,6 +85,9 @@ class ProjectCard extends React.Component {
         ];
         var project = this.props.project;
         let adminFooter = null;
+        /**
+         * ADMIN FOOTER ---------------------
+         */
         if (this.props.admin) { //If admin display the admin menu
             adminFooter = <CardActions>
                 <FlatButton primary={true} onClick={this.handleValidation} label="Valider le projet" />
@@ -98,12 +102,17 @@ class ProjectCard extends React.Component {
                     The actions in this window were passed in as an array of React objects.
         </Dialog>
             </CardActions>
+            /**
+             * -----------------------------
+             * USER FOOTER
+             */
         }
-        else
-        {
-            var userAction = {notfull :<ProjectComment project = {this.state.project}/> ,
-            full : <div><p>Questions :</p><ProjectComment project = {this.state.project} full/> </div>}
-            var userFooter =  this.state.full ? <CardActions> {userAction.full}</CardActions> : <CardActions> {userAction.notfull}</CardActions>
+        else {
+            var userAction = {
+                notfull: <ProjectComment project={this.state.project} />,
+                full: <div><p>Questions :</p><ProjectComment project={this.state.project} full /> </div>
+            }
+            var userFooter = this.state.full ? <CardActions> {userAction.full}</CardActions> : <CardActions> {userAction.notfull}</CardActions>
         }
         return (
             <div>
@@ -126,13 +135,16 @@ class ProjectCard extends React.Component {
                             <Row>
                                 <Col>
                                     <label> Mots-clés : </label>
-                                    {project.keywords ? (project.keywords.map(keyword => keyword + " ")) : ("Non spécifié")}
+                                    {project.keywords ? (<Row>   {project.keywords.map(keyword =>
+                                        <Chip style={{margin : 4}} >
+                                            {keyword}
+                                         </Chip>)}</Row>) : ("Non spécifié")}
                                 </Col>
                             </Row>
                         </Container>
                     </CardText>
                     {this.props.admin ? (adminFooter) : (userFooter)}
-                    
+
                 </Card>
             </div>);
     }
