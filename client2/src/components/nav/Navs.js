@@ -24,7 +24,7 @@ class Navs extends React.Component {
 	}
 
 	handleclick(event) {
-		this.props.history.push("/")
+		window.location.replace("/");
 	}
 
 	handleButtonClick(event) {
