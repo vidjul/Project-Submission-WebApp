@@ -63,11 +63,23 @@ class ProjectsListCard extends React.Component {
         } 
         
         if(this.state.annee_value !== "" && this.state.annee_value !== null){
-            var tmp = this.state.projectToDisplay.filter(project => { if (project.study_year == this.state.annee_value || project.study_year.includes(this.state.annee_value)) return true })
+            var tmp = this.state.projectToDisplay.filter(project => { 
+                if(project.study_year.length === 1 && project.study_year == this.state.annee_value){
+                    return true;
+                } if(project.study_year.length > 1 && project.study_year.includes(this.state.annee_value)){
+                    return true; 
+                }
+            })
             this.setState({ projectSeen: tmp , loaded : true})
         }
         if(this.state.majeur_value !== "" && this.state.majeur_value !== null){
-            tmp = this.state.projectToDisplay.filter(project => { if (project.specialization == this.state.majeur_value || project.specialization.includes(this.state.majeur_value)) return true })
+            var tmp = this.state.projectToDisplay.filter(project => { 
+                if(project.majors_concerned.length === 1 && project.majors_concerned == this.state.majeur_value){
+                    return true;
+                } if(project.majors_concerned.length > 1 && project.majors_concerned.includes(this.state.majeur_value)){
+                    return true;
+                } 
+            })
             this.setState({ projectSeen: tmp , loaded : true})
         }
 }

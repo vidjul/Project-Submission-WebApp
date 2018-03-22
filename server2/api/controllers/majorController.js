@@ -27,13 +27,13 @@ exports.filter_by_major = function (req, res) {
     });
 };
 
-exports.filter_by_year = function (req, res) {
+/*exports.filter_by_year = function (req, res) {
     Specialization.distinct("study_year", function (err, task) {
         if (err)
         res.send(err);
         res.json(task);
     });
-};
+};*/
 
 
 

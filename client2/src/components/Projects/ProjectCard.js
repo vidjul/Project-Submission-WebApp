@@ -110,7 +110,7 @@ class ProjectCard extends React.Component {
                 <Card style={{ borderBottom: 2, marginBottom: 8 }}>
                     <CardHeader
                         title={project.title}
-                        subtitle={<label>{project.specialization} - Le : {project.edit_date}</label>}
+                        subtitle={<label>{project.majors_concerned} - Le : {project.edit_date}</label>}
                         actAsExpander={true}
                         showExpandableButton={true}
                         style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
