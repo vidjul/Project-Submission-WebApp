@@ -119,7 +119,7 @@ class ProjectCard extends React.Component {
                         {project.partner ? (<label> Proposé par : {project.partner.company} </label>) : ("Non spécifié")}
                         <hr />
                     </CardHeader>
-                    <CardText expandable={true} style={{ marginBottom: 8 }}>
+                    <CardText expandable={this.props.full ? false : true} style={{ marginBottom: 8 }}>
                         {project.description}
                         <hr />
                         <Container fluid>
