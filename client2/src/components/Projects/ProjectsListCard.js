@@ -16,6 +16,7 @@ class ProjectsListCard extends React.Component {
             projectSeen: [],
             annee_value: "",
             majeur_value: "",
+            mots_cles_value: "",
             loaded : false    
         };
         this.styles = {
@@ -87,7 +88,6 @@ class ProjectsListCard extends React.Component {
     render() {
         console.log(this.state.annee_value);
         //console.log(this.state.projects);
-        console.log("***");
 
         var ProjectList = null;
         if (this.props.admin) { //if asked as admin render pending project

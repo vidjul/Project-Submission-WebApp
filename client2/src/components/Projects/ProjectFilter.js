@@ -1,6 +1,4 @@
 import React from 'react';
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
-import DropdownFilter from './DropdownFilter';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import { Container, Row, Col } from 'react-grid-system';
 import SelectField from 'material-ui/SelectField';
