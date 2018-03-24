@@ -11,10 +11,12 @@ class ProjectFilter extends React.Component {
 
         this.changeYearValue = this.changeYearValue.bind(this);
         this.changeMajorValue = this.changeMajorValue.bind(this);
+        this.changeMotsClesValue = this.changeMotsClesValue.bind(this);
 
         this.state = {
           years : [],
           majors : [],
+          mots_cles_value : "",
           yearValue:this.props.filterName,
           majorValue:this.props.filterName
 
@@ -30,6 +32,14 @@ class ProjectFilter extends React.Component {
     changeMajorValue(e,index,value) {
         this.setState({majorValue: value}, function(){
           this.props.getdropDownValue(this.state.majorValue,"Majeure");
+        });
+    }
+
+    changeMotsClesValue(e,value){
+        
+        this.setState({mots_cles_value:value}, function(){
+            console.log(this.state.mots_cles_value);
+            this.props.getMotsClesValue(this.state.mots_cles_value);
         });
     }
 
@@ -79,6 +89,7 @@ class ProjectFilter extends React.Component {
                                 <Col md={6}>
                                     <TextField
                                         floatingLabelText="Mots clés"
+                                        onChange={this.changeMotsClesValue}
                                         fullwidth
                                     />
                                 </Col>

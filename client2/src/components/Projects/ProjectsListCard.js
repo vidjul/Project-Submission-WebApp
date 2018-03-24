@@ -16,7 +16,6 @@ class ProjectsListCard extends React.Component {
             projectSeen: [],
             annee_value: "",
             majeur_value: "",
-            mots_cles_value: "",
             loaded : false    
         };
         this.styles = {
@@ -83,7 +82,26 @@ class ProjectsListCard extends React.Component {
             })
             this.setState({ projectSeen: tmp , loaded : true})
         }
-}
+    }
+
+    handleMotsClesValue(mots_cles_value){
+        if(mots_cles_value != ""){
+            var tmp = this.state.projectToDisplay.filter(project => { 
+                console.log(mots_cles_value);
+                console.log(project.keywords);
+            
+                for(var element of project.keywords){
+                    if(element.includes(mots_cles_value.toLowerCase())){
+                        return true; 
+                        console.log("***");
+                    }
+                }
+            })
+            this.setState({ projectSeen: tmp , loaded : true})
+        } else{
+            this.setState({ projectSeen: this.state.projectToDisplay , loaded : true})
+        }
+    }
 
     render() {
         console.log(this.state.annee_value);
@@ -120,7 +138,7 @@ class ProjectsListCard extends React.Component {
                                 <CardTitle style={{ textAlign: 'center' }} title="Liste des projets"></CardTitle>
                                 <hr />
                                 <CardText style = {{backgroundColor : "#f7f4f4"}}>
-                                    <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} style={{ fontSize: 15 }} />
+                                    <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} getMotsClesValue={this.handleMotsClesValue.bind(this)} style={{ fontSize: 15 }} />
 
                                     <Container fluid>
                                         <List>
