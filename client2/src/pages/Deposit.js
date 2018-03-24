@@ -70,7 +70,7 @@ class Deposit extends Component {
   };
 
   handleSpe(e, index, values) {
-    this.setState({ specialization: values }, () => {console.log(this.state.specialization)})
+    this.setState({ majors_concerned: values }, () => {console.log(this.state.majors_concerned)})
   }
 
   handleBlur(event) {
@@ -240,7 +240,7 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Your email address"
+                  floatingLabelText="Your email address*"
                   onChange={this.handleChange}
                   onBlur={this.handleBlur}
                   name="email"
@@ -252,7 +252,7 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Your company"
+                  floatingLabelText="Your company*"
                   onChange={this.handleChange}
                   name="company" value={this.state.company}
                   fullWidth={true} />
@@ -262,7 +262,7 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Your first name"
+                  floatingLabelText="Your first name*"
                   onChange={this.handleChange} fullWidth={true}
                   name="first_name" value={this.state.first_name} />
               </Col>
@@ -270,7 +270,7 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextField
-                  floatingLabelText="Your last name"
+                  floatingLabelText="Your last name*"
                   onChange={this.handleChange} fullWidth={true}
                   name="last_name" value={this.state.last_name} />
               </Col>
