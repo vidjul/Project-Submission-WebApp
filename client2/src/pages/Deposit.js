@@ -12,6 +12,7 @@ import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import CircularProgress from 'material-ui/CircularProgress';
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import {
   Step,
   Stepper,
@@ -70,7 +71,7 @@ class Deposit extends Component {
   };
 
   handleSpe(e, index, values) {
-    this.setState({ majors_concerned: values }, () => {console.log(this.state.majors_concerned)})
+    this.setState({ majors_concerned: values }, () => { console.log(this.state.majors_concerned) })
   }
 
   handleBlur(event) {
@@ -84,7 +85,7 @@ class Deposit extends Component {
           console.log("Email not found");
         }
       })
-      .catch((err)=>{console.log("Email not found")})
+      .catch((err) => { console.log("Email not found") })
     console.log("passed")
 
   }
@@ -239,19 +240,23 @@ class Deposit extends Component {
           <Container>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextField
+                <TextValidator
                   floatingLabelText="Your email address*"
+                  validators={['required', 'isEmail']}
+                  errorMessages={['this field is required', 'email is not valid']}
                   onChange={this.handleChange}
                   onBlur={this.handleBlur}
                   name="email"
-                  value = {this.state.email}
+                  value={this.state.email}
                   fullWidth={true} />
               </Col>
             </Row>
 
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextField
+                <TextValidator
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   floatingLabelText="Your company*"
                   onChange={this.handleChange}
                   name="company" value={this.state.company}
@@ -261,7 +266,9 @@ class Deposit extends Component {
 
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextField
+                <TextValidator
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   floatingLabelText="Your first name*"
                   onChange={this.handleChange} fullWidth={true}
                   name="first_name" value={this.state.first_name} />
@@ -269,7 +276,9 @@ class Deposit extends Component {
             </Row>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextField
+                <TextValidator
+                 validators={['required']}
+                 errorMessages={['this field is required']}
                   floatingLabelText="Your last name*"
                   onChange={this.handleChange} fullWidth={true}
                   name="last_name" value={this.state.last_name} />
@@ -291,7 +300,7 @@ class Deposit extends Component {
                 <TextField
                   floatingLabelText="Intitulé de votre projet"
                   onChange={this.handleChange} fullWidth={true}
-                  name="title" value ={this.state.title}/>
+                  name="title" value={this.state.title} />
               </Col>
             </Row>
             <br />
@@ -377,44 +386,44 @@ class Deposit extends Component {
     return (
       <div id="deposit-body">
         <Navs />
-        <form onSubmit={this.handleSubmit}>
-          <Paper zDepth={1} style={{ width: '100%', maxWidth: 1000, margin: 'auto', marginTop: 10 }}>
-            <Stepper activeStep={stepIndex}>
-              <Step>
-                <StepLabel>Partner information</StepLabel>
-              </Step>
-              <Step>
-                <StepLabel>Project Information</StepLabel>
-              </Step>
-              <Step>
-                <StepLabel>Submit your project</StepLabel>
-              </Step>
-            </Stepper>
+        <Paper zDepth={1} style={{ width: '100%', maxWidth: 1000, margin: 'auto', marginTop: 10 }}>
+          <Stepper activeStep={stepIndex}>
+            <Step>
+              <StepLabel>Partner information</StepLabel>
+            </Step>
+            <Step>
+              <StepLabel>Project Information</StepLabel>
+            </Step>
+            <Step>
+              <StepLabel>Submit your project</StepLabel>
+            </Step>
+          </Stepper>
 
-            <div>
-              {finished ? (
+          <div>
+            {finished ? (
 
-                <Container>
-                  <Row>
-                    <Col md={8} offset={{ md: 2 }}>
-                      {this.state.submited ? (<div><div>  Merci, votre projet est maintenant en attente de validation par l'administration de l'école concerné. Un email vous a été envoyé avec un lien pour modifier votre projet. </div>
-                        <br/>
-                          <a
-                            href="#"
-                            onClick={(event) => {
-                              event.preventDefault();
-                              this.setState({ stepIndex: 0, finished: false });
-                            }}
-                          >
-                            Click here
+              <Container>
+                <Row>
+                  <Col md={8} offset={{ md: 2 }}>
+                    {this.state.submited ? (<div><div>  Merci, votre projet est maintenant en attente de validation par l'administration de l'école concerné. Un email vous a été envoyé avec un lien pour modifier votre projet. </div>
+                      <br />
+                      <a
+                        href="#"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          this.setState({ stepIndex: 0, finished: false });
+                        }}
+                      >
+                        Click here
                     </a> to reset the example.
                   </div>) : (
-                      <div style = {{textAlign : 'center'}}><CircularProgress /></div>)}
-                    </Col>
-                  </Row>
-                </Container>
-              ) : (
-                  <div>
+                        <div style={{ textAlign: 'center' }}><CircularProgress /></div>)}
+                  </Col>
+                </Row>
+              </Container>
+            ) : (
+                <div>
+                  <ValidatorForm ref="form" onSubmit={this.handleNext}>
                     {this.getStepContent(stepIndex)}
                     <div style={{ marginTop: 12, paddingBottom: 30, textAlign: 'center' }}>
                       <FlatButton
@@ -425,15 +434,16 @@ class Deposit extends Component {
                       />
                       <RaisedButton
                         label={stepIndex === 2 ? 'Finish' : 'Next'}
+                        type={stepIndex === 2 ? 'submit' : ''}
                         primary={true}
-                        onClick={stepIndex === 1 ? this.handleSubmit : this.handleNext}
+                        onClick={stepIndex === 1 ? this.handleSubmit : ''}
                       />
                     </div>
-                  </div>
-                )}
-            </div>
-          </Paper>
-        </form>
+                  </ValidatorForm>
+                </div>
+              )}
+          </div>
+        </Paper>
       </div>
     );
   }

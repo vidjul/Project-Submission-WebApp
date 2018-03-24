@@ -19,6 +19,7 @@
     "react-dropzone-component": "^3.1.2",
     "react-files": "^2.4.3",
     "react-grid-system": "^3.1.2",
+    "react-material-ui-form-validator": "^1.1.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
