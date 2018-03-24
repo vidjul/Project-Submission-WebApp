@@ -56,11 +56,12 @@ class ProjectsListCard extends React.Component {
     handledropDownValue(dropDownValue, filterName) {
         if (filterName == "Année" && dropDownValue != "Majeure") {
             this.state.annee_value = dropDownValue != "Année" ? dropDownValue : "";
-            console.log(this.state.annee_value);
         } if(filterName == "Majeure" && dropDownValue != "Année"){
             this.state.majeur_value = dropDownValue != "Majeure" ? dropDownValue : "";
-            console.log(this.state.majeur_value);
         } 
+        if(dropDownValue == ""){
+            this.setState({ projectSeen: this.state.projectToDisplay , loaded : true});
+        }
         
         if(this.state.annee_value !== "" && this.state.annee_value !== null){
             var tmp = this.state.projectToDisplay.filter(project => { 
@@ -80,26 +81,22 @@ class ProjectsListCard extends React.Component {
                     return true;
                 } 
             })
-            this.setState({ projectSeen: tmp , loaded : true})
+            this.setState({ projectSeen: tmp , loaded : true});
         }
     }
 
     handleMotsClesValue(mots_cles_value){
         if(mots_cles_value != ""){
             var tmp = this.state.projectToDisplay.filter(project => { 
-                console.log(mots_cles_value);
-                console.log(project.keywords);
-            
                 for(var element of project.keywords){
                     if(element.includes(mots_cles_value.toLowerCase())){
                         return true; 
-                        console.log("***");
                     }
                 }
             })
-            this.setState({ projectSeen: tmp , loaded : true})
+            this.setState({ projectSeen: tmp , loaded : true});
         } else{
-            this.setState({ projectSeen: this.state.projectToDisplay , loaded : true})
+            this.setState({ projectSeen: this.state.projectToDisplay , loaded : true});
         }
     }
 

@@ -71,6 +71,7 @@ class ProjectFilter extends React.Component {
                                         onChange={this.changeYearValue}
                                         value={this.state.yearValue}
                                     >
+                                    <MenuItem value="" primaryText="" />
                                     <MenuItem value="A4" primaryText="A4" />
                                     <MenuItem value="A5" primaryText="A5" />
                                     </SelectField>
@@ -82,6 +83,7 @@ class ProjectFilter extends React.Component {
                                         onChange={this.changeMajorValue}
                                         value={this.state.majorValue}
                                     >
+                                    <MenuItem value="" primaryText="" />
                                     {this.state.majors.map(major => <MenuItem value={major} primaryText={major}/>)}
                                     </SelectField>
 
