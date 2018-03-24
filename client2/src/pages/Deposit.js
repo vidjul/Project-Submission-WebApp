@@ -12,7 +12,7 @@ import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import CircularProgress from 'material-ui/CircularProgress';
-import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { TextValidator, ValidatorForm, SelectValidator } from 'react-material-ui-form-validator';
 import {
   Step,
   Stepper,
@@ -55,12 +55,24 @@ class Deposit extends Component {
   }
   //STEP
   handleNext = () => {
+    console.log("Finished :"+this.state.finished)
     const { stepIndex } = this.state;
-    console.log(this.state.title)
-    this.setState({
-      stepIndex: stepIndex + 1,
-      finished: stepIndex >= 1
-    });
+    if(!this.state.finished){
+      this.setState({
+        stepIndex: stepIndex + 1,
+        finished: stepIndex >= 1
+      },()=>{
+        this.handleSubmit();
+      })
+    }
+    else {
+      this.setState({
+        stepIndex: stepIndex + 1,
+        finished: stepIndex >= 1
+      });
+    }
+
+
   };
 
   handlePrev = () => {
@@ -161,8 +173,9 @@ class Deposit extends Component {
     console.log(this.state.keyWords)
   }
 
-  handleSubmit(e) {
-    e.preventDefault()
+  handleSubmit() {
+    console.log("finished : "+this.state.finished)
+    if(this.state.finished){
     console.log("Passed")
     this.FilesUpload()
       .then(() => {
@@ -203,6 +216,7 @@ class Deposit extends Component {
       })
       .catch((err) => { console.log("ERROR UPLOAD FILE") })
     this.handleNext();
+    }
   }
 
   handleChange(e, index, values) {
@@ -277,8 +291,8 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextValidator
-                 validators={['required']}
-                 errorMessages={['this field is required']}
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   floatingLabelText="Your last name*"
                   onChange={this.handleChange} fullWidth={true}
                   name="last_name" value={this.state.last_name} />
@@ -297,10 +311,12 @@ class Deposit extends Component {
           <Container>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextField
-                  floatingLabelText="Intitulé de votre projet"
+                <TextValidator
+                  floatingLabelText="Intitulé de votre projet*"
                   onChange={this.handleChange} fullWidth={true}
-                  name="title" value={this.state.title} />
+                  name="title" value={this.state.title}
+                  validators={['required']}
+                  errorMessages={['this field is required']} />
               </Col>
             </Row>
             <br />
@@ -323,12 +339,14 @@ class Deposit extends Component {
             <br />
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <SelectField
-                  multiple={true} hintText="Majeur(s) ciblée(s)"
+                <SelectValidator
+                  multiple={true} hintText="Majeur(s) ciblée(s)*"
                   value={this.state.majors_concerned}
                   onChange={this.handleSpe.bind(this)} fullWidth={true}
                   name="majors_concerned"
-                  floatingLabelText="Majeur(s)">
+                  floatingLabelText="Majeur(s)*"
+                  validators = {["required"]}
+                  errorMessages = {["this field is required"]}>
                   {this.majors.map((major) => <MenuItem
                     key={major.key}
                     insetChildren={true}
@@ -336,15 +354,18 @@ class Deposit extends Component {
                     value={major.key}
                     primaryText={major.name}
                   />)}
-                </SelectField>
+                </SelectValidator>
               </Col>
             </Row>
             <Row>
               <Col md={8} offset={{ md: 2 }}>
-                <TextField
-                  hintText="Description complete de votre projet"
-                  floatingLabelText="Description"
+                <TextValidator
+                  hintText="Description complete de votre projet*"
+                  floatingLabelText="Description*"
                   multiLine={true}
+                  value = {this.state.description}
+                  validators = {["required"]}
+                  errorMessages = {["this field is required"]}
                   rows={10}
                   name="description"
                   onChange={this.handleChange}
@@ -434,9 +455,8 @@ class Deposit extends Component {
                       />
                       <RaisedButton
                         label={stepIndex === 2 ? 'Finish' : 'Next'}
-                        type={stepIndex === 2 ? 'submit' : ''}
+                        type="submit"
                         primary={true}
-                        onClick={stepIndex === 1 ? this.handleSubmit : ''}
                       />
                     </div>
                   </ValidatorForm>
