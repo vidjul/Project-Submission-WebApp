@@ -136,7 +136,7 @@ class Deposit extends Component {
     var Delete = (e) => {
       const fileIdToRemove = e.target.getAttribute('data-key')
       this.state.files.splice(this.state.files.findIndex((file) => {
-        return file.id == fileIdToRemove;
+        return file.id === fileIdToRemove;
       }), 1);
       this.addViewFile();
     }
@@ -234,7 +234,7 @@ class Deposit extends Component {
           }
         }
         console.log(this.state.study_year)
-        this.state.study_year = temp;
+        this.setState({study_year:temp});
         break;
 
       default:

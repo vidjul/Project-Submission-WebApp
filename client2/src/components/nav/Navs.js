@@ -1,5 +1,4 @@
 import React from 'react';
-import { Nav, NavItem, NavLink, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import { Container, Row, Col } from 'react-grid-system'
