@@ -31,6 +31,16 @@ exports.find_by_mail = (req, res) => {
   })
 }
 
+exports.update_a_partner = (req, res) => {
+  Partner.findOneAndUpdate({ _id: req.params.partnerId }, req.body, { new: true }, (err, partner) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(partner);
+  })
+
+}
+
 exports.delete_a_partner = (req, res) => {
   Partner.findByIdAndRemove(req.params.partnerId, function(err, note) {
     if(err) {

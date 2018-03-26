@@ -6,6 +6,8 @@ const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
 const Comment = mongoose.model('Comment');
 const Person = mongoose.model('Person');
+const Admin = mongoose.model('Admin');
+
 const mailer = require('nodemailer');
 const smtpTransporter = mailer.createTransport({
   service: 'Gmail',
@@ -102,7 +104,6 @@ exports.create_a_project = function (req, res) {
                 }
               });
             }
-            //res.json(project);
           });
         }
       });

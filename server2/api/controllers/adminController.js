@@ -22,6 +22,16 @@ exports.create_an_admin = function (req, res) {
     });
 };
 
+exports.update_an_admin = (req, res) => {
+    Admin.findOneAndUpdate({ _id: req.params.adminId }, req.body, { new: true }, (err, admin) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(admin);
+    })
+  
+  }
+
 function generateToken(user) {
     //1. Dont use password and other sensitive fields
     //2. Use fields that are useful in other parts of the     
