@@ -3,6 +3,7 @@ import { Nav, NavItem, NavLink, Navbar, NavbarBrand, NavbarToggler } from 'react
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import { Container, Row, Col } from 'react-grid-system'
+import FlagIcon from 'react-flag-kit/lib/FlagIcon';
 import IconButton from 'material-ui/IconButton';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup'
 import { Link } from 'react-router-dom';
@@ -36,6 +37,7 @@ class Navs extends React.Component {
 	}
 
 	handleLngChange(event) {
+		console.log(event.target.className)
 		this.setState({lng: event.target.className.toLowerCase()});
 	}
 
@@ -57,14 +59,14 @@ class Navs extends React.Component {
 			if (item.icon) {
 				switch (item.label) {
 					case "FR":
-						return (<IconButton onClick={this.handleLngChange} className={item.label}>
-							<Icon_Flag_FR />
+						return (<IconButton onClick={this.handleLngChange} className = "FR">
+							<FlagIcon code = "FR"/>
 						</IconButton>)
 						break;
 					case "EN":
 						return (
-							<IconButton onClick={this.handleLngChange} className={item.label}>
-								<Icon_Flag_US />
+							<IconButton onClick={this.handleLngChange} className="EN">
+								<FlagIcon code = "GB"/>
 							</IconButton>)
 						break;
 				}

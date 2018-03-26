@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button, ListGroup, CardFooter, CardBody, CardBlock, Dropdown, DropdownToggle, DropdownItem, ListGroupItem } from 'reactstrap';
 import ProjectFilter from './ProjectFilter';
 import ProjectCard from './ProjectCard';
 import { Container, Row, Col } from 'react-grid-system'
-import Paper from 'material-ui/Paper'
 import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import CircularProgress from 'material-ui/CircularProgress';
