@@ -4,7 +4,8 @@ const generator = require('generate-password');
 var mongoose = require('mongoose');
 const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
-
+const Comment = mongoose.model('Comment');
+const Person = mongoose.model('Person');
 const mailer = require('nodemailer');
 const smtpTransporter = mailer.createTransport({
   service: 'Gmail',
@@ -155,8 +156,8 @@ exports.delete_a_project = (req, res) => {
   });
 }
 
-exports.destroy = (req,res) => {
-  Project.remove({}, function(err) {
+exports.destroy = (req, res) => {
+  Project.remove({}, function (err) {
     if (err) {
       res.send(err);
     }
