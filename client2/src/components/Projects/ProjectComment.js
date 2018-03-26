@@ -55,6 +55,7 @@ export default class ProjectComment extends React.Component {
         let response = [<ListItem key={1} primaryText="Via le site web" />, <ListItem key={2} primaryText="Merci !" />]
 
         const lng = this.props.lng
+        console.log('--- COMMENT -- :' + lng);
 
         if (this.state.projectCardOpen) {
             comment = <Container fluid>
@@ -90,7 +91,7 @@ export default class ProjectComment extends React.Component {
                     onRequestClose={this.handleClose}
                     autoScrollBodyContent={true}
                     contentStyle={{ width: '90%', maxWidth: 'none' }}>
-                    <ProjectCard project={this.state.project} projectCardOpen />
+                    <ProjectCard project={this.state.project} lng={lng} projectCardOpen />
                 </Dialog>
             </div>
         }

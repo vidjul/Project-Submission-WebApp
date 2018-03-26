@@ -30,20 +30,16 @@ class App extends Component {
         <div>
           <Nav lng={lng} handleLngChange={this.handleLngChange} />
           <Switch>
-            <Route exact path="/" render={() => (
-              <Home lng={lng} />
-              )} />
-            <Route exact path="/Projects" render={() => (
-              <Projects lng={lng} />
-              )} />
-            <Route exact path="/Deposit" component={Deposit} />
-            <Route exact path="/Connection" component={Connection} />
-            <Route exact path="/Admin" component={Admin} />
-            <Route exact path="/Edit/:editKey" component={EditDeposit} />
-            <Route exact path="/Forgot" component={ForgetPass} />
-            <Route exact path="/Admin/Validation" component={ProjectValidation} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/protected" component={Protected} />
+            <Route exact path="/" render={() => (<Home lng={lng} />)} />
+            <Route exact path="/Projects" render={() => (<Projects lng={lng} />)} />
+            <Route exact path="/Deposit" render={() => (<Deposit lng={lng} />)} />
+            <Route exact path="/Connection" render={() => (<Connection lng={lng} />)} />
+            <Route exact path="/Admin" render={() => (<Admin lng={lng} />)} />
+            <Route exact path="/Edit/:editKey" render={() => (<EditDeposit lng={lng} />)}/>
+            <Route exact path="/Forgot" render={() => (<ForgetPass lng={lng} />)}/>
+            <Route exact path="/Admin/Validation" render={() => (<ProjectValidation lng={lng} />)}/>
+            <Route exact path="/login" render={() => (<Login lng={lng} />)}/>
+            <Route exact path="/protected" render={() => (<Protected lng={lng} />)}/>
           </Switch>
         </div>
       </BrowserRouter>

@@ -116,8 +116,8 @@ class ProjectCard extends React.Component {
         }
         else {
             var userAction = {
-                notprojectCardOpen: <ProjectComment project={this.state.project} />,
-                projectCardOpen: <div><p>Questions :</p><ProjectComment project={this.state.project} projectCardOpen /> </div>
+                notprojectCardOpen: <ProjectComment project={this.state.project} lng={lng} />,
+                projectCardOpen: <div><p>Questions :</p><ProjectComment project={this.state.project} lng={lng} projectCardOpen /> </div>
             }
             var userFooter = this.state.projectCardOpen ? <CardActions> {userAction.projectCardOpen}</CardActions> : <CardActions> {userAction.notprojectCardOpen}</CardActions>
         }

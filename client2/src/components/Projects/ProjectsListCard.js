@@ -101,6 +101,7 @@ class ProjectsListCard extends React.Component {
     }
 
     render() {
+        const lng = this.props.lng;
         //let lng = this.state.lng;
         console.log(this.state.annee_value);
         //console.log(this.state.projects);
@@ -110,7 +111,7 @@ class ProjectsListCard extends React.Component {
             ProjectList = this.state.projectSeen.map(project =>
                     <Row debug>
                         <Col>
-                            <ProjectCard key={project.id} project={project} admin />
+                            <ProjectCard key={project.id} project={project} lng={lng} admin />
                         </Col>
                     </Row>
             )
@@ -120,14 +121,13 @@ class ProjectsListCard extends React.Component {
                 
                     <Row>
                         <Col>
-                            <ProjectCard key={project.id} project={project} />
+                            <ProjectCard key={project.id} project={project} lng={lng} />
                         </Col>
             </Row> 
                )
         }
 
         const finished = this.state.loaded
-        const lng = this.props.lng;
         return (
         <div>
                 <Container fluid>
