@@ -10,6 +10,8 @@ import {
 	Icon_Flag_US,
 	Icon_Flag_FR
 } from 'material-ui-country-flags';
+import i18n from '../i18n';
+
 class Navs extends React.Component {
 	constructor(props) {
 		super(props)
@@ -21,6 +23,8 @@ class Navs extends React.Component {
 				color: 'white',
 			},
 		};
+		this.state = {lng: 'en'}
+		this.handleLngChange = this.handleLngChange.bind(this);
 	}
 
 	handleclick(event) {
@@ -31,33 +35,38 @@ class Navs extends React.Component {
 
 	}
 
+	handleLngChange(event) {
+		this.setState({lng: event.target.className.toLowerCase()});
+	}
+
 	render() {
 
+		let lng = this.state.lng;
+
 		var configItem = [
-			{ label: "Home", href: "/" },
-			{ label: "Projects", href: "/Projects" },
-			{ label: "Submit a project", href: "/Deposit" },
-			{ label: "Log in", href: "/Connection" },
-			{ label: "Admin", href: "/Admin" },
-			{ label: "Project link lost", href: "/forgot" },
+			{ label: i18n.t('home.label', {lng} ), href: "/" },
+			{ label: i18n.t('projects.label', {lng}), href: "/Projects" },
+			{ label: i18n.t('submit.label', {lng}), href: "/Deposit" },
+			{ label: i18n.t('login.label', {lng}), href: "/Connection" },
+			{ label: i18n.t('admin.label', {lng}), href: "/Admin" },
+			{ label: i18n.t('linkLost.label', {lng}), href: "/forgot" },
 			{ label: "FR", href: "#", icon: true },
 			{ label: "EN", href: "#", icon: true }
 		]
-		var menu = <Container><Row align = 'center'> {configItem.map((item) => {
+		var menu = <Container><Row align='center'> {configItem.map((item) => {
 			if (item.icon) {
 				switch (item.label) {
 					case "FR":
-						return <Link key={item.label} to={item.href}>
-							<IconButton>
-								<Icon_Flag_FR />
-							</IconButton>
-						</Link>
+						return (<IconButton onClick={this.handleLngChange} className={item.label}>
+							<Icon_Flag_FR />
+						</IconButton>)
+						break;
 					case "EN":
-						return <Link key={item.label} to={item.href}>
-							<IconButton>
+						return (
+							<IconButton onClick={this.handleLngChange} className={item.label}>
 								<Icon_Flag_US />
-							</IconButton>
-						</Link>
+							</IconButton>)
+						break;
 				}
 
 			} else {
