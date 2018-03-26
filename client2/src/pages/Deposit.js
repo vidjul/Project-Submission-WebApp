@@ -347,6 +347,7 @@ class Deposit extends Component {
                   floatingLabelText="Majeur(s)*"
                   validators = {["required"]}
                   errorMessages = {["this field is required"]}>
+                  
                   {this.majors.map((major) => <MenuItem
                     key={major.key}
                     insetChildren={true}
