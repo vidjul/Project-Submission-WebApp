@@ -6,7 +6,7 @@ const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
 const Comment = mongoose.model('Comment');
 const Person = mongoose.model('Person');
-const Admin = mongoose.model('Admin');
+const Admin = mongoose.model('Administration');
 
 const mailer = require('nodemailer');
 const smtpTransporter = mailer.createTransport({
