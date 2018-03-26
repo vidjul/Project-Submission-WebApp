@@ -4,8 +4,6 @@ const generator = require('generate-password');
 var mongoose = require('mongoose');
 const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
-const Comment = mongoose.model('Comment');
-const Person = mongoose.model('Person');
 const Admin = mongoose.model('Administration');
 
 const mailer = require('nodemailer');
