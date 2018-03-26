@@ -88,6 +88,9 @@ class ProjectCard extends React.Component {
         ];
         var project = this.props.project;
         let adminFooter = null;
+
+        const lng = this.props.lng;
+
         /**
          * ADMIN FOOTER ---------------------
          */
@@ -129,8 +132,8 @@ class ProjectCard extends React.Component {
                         showExpandableButton={true}
                         style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
                     >
-                        <label style={{ marginRight: 60 }}> {i18n.t('year.label')}: {project.study_year.map((year) => year + " ")} </label>
-                        {project.partner ? (<label> {i18n.t('partner.label')} : {project.partner.company} </label>) : ("Non spécifié")}
+                        <label style={{ marginRight: 60 }}> {i18n.t('year.label', {lng})}: {project.study_year.map((year) => year + " ")} </label>
+                        {project.partner ? (<label> {i18n.t('partner.label', {lng})} : {project.partner.company} </label>) : ("Non spécifié")}
                         <hr />
                     </CardHeader>
                     <CardText expandable={this.props.projectCardOpen ? false : true} style={{ marginBottom: 8 }}>
@@ -139,7 +142,7 @@ class ProjectCard extends React.Component {
                         <Container fluid>
                             <Row>
                                 <Col>
-                                    <label> {i18n.t('keywords.label')} : </label>
+                                    <label> {i18n.t('keywords.label', {lng})} : </label>
                                     {project.keywords ? (<Row>   {project.keywords.map(keyword =>
                                         <Chip style={{margin : 4}} >
                                             {keyword}

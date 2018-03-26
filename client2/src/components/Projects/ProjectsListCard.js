@@ -127,16 +127,17 @@ class ProjectsListCard extends React.Component {
         }
 
         const finished = this.state.loaded
+        const lng = this.props.lng;
         return (
         <div>
                 <Container fluid>
                     <Row>
                         <Col>
                             <Card>
-                                <CardTitle style={{ textAlign: 'center' }} title={i18n.t('project.title')}></CardTitle>
+                                <CardTitle style={{ textAlign: 'center' }} title={i18n.t('project.title', {lng})}></CardTitle>
                                 <hr />
                                 <CardText style = {{backgroundColor : "#f7f4f4"}}>
-                                    <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} getMotsClesValue={this.handleMotsClesValue.bind(this)} style={{ fontSize: 15 }} />
+                                    <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} getMotsClesValue={this.handleMotsClesValue.bind(this)} style={{ fontSize: 15 }} lng={this.props.lng} />
 
                                     <Container fluid>
                                         <List>

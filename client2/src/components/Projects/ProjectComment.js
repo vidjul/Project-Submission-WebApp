@@ -54,6 +54,8 @@ export default class ProjectComment extends React.Component {
         let comment;
         let response = [<ListItem key={1} primaryText="Via le site web" />, <ListItem key={2} primaryText="Merci !" />]
 
+        const lng = this.props.lng
+
         if (this.state.projectCardOpen) {
             comment = <Container fluid>
                 <Row>
@@ -70,8 +72,8 @@ export default class ProjectComment extends React.Component {
                 <Row>
                     <Col>
                         <form onSubmit={this.handleSendQuestion.bind(this)}>
-                            <label style={{ marginRight: 50 }}> {i18n.t('question.label')}: </label><TextField floatingLabelText= {i18n.t('questionH.label')} name="question" onChange={this.handleChange.bind(this)} />
-                            <RaisedButton type='submit' secondary={true} label={i18n.t('button.label')} style={{ width: 75, height: 25, marginLeft: 25 }} />
+                            <label style={{ marginRight: 50 }}> {i18n.t('question.label', {lng})}: </label><TextField floatingLabelText= {i18n.t('questionH.label', {lng})} name="question" onChange={this.handleChange.bind(this)} />
+                            <RaisedButton type='submit' secondary={true} label={i18n.t('button.label', {lng})} style={{ width: 75, height: 25, marginLeft: 25 }} />
                         </form>
                     </Col>
                 </Row>
@@ -80,7 +82,7 @@ export default class ProjectComment extends React.Component {
         }
         else {
             comment = <div>
-                <FlatButton label={this.state.comments.length + ' '+  i18n.t('comment.label')} onClick={this.handleOpen} />
+                <FlatButton label={this.state.comments.length + ' '+  i18n.t('comment.label', {lng})} onClick={this.handleOpen} />
                 <Dialog
                     title={this.state.project.title}
                     modal={false}

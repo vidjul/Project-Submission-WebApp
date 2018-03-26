@@ -55,12 +55,13 @@ class ProjectFilter extends React.Component {
 
 
     render() {
+        const lng = this.props.lng
         return (
             <div>{' '}
                 <Container fluid>
                     <Card>
                         <CardHeader
-                            title={i18n.t('filter.label')}
+                            title={i18n.t('filter.label', {lng})}
                             showExpandableButton={true}
                             closeIcon={<FilterIcone />}
                             openIcon={<FilterIcone />}
@@ -69,7 +70,7 @@ class ProjectFilter extends React.Component {
                             <Row>
                                 <Col md={3}>
                                     <SelectField
-                                        floatingLabelText={i18n.t('year.label')}
+                                        floatingLabelText={i18n.t('year.label', {lng})}
                                         onChange={this.changeYearValue}
                                         value={this.state.yearValue}
                                     >
@@ -81,7 +82,7 @@ class ProjectFilter extends React.Component {
                                 </Col>
                                 <Col md={3}>
                                     <SelectField
-                                        floatingLabelText={i18n.t('major.label')}
+                                        floatingLabelText={i18n.t('major.label', {lng})}
                                         onChange={this.changeMajorValue}
                                         value={this.state.majorValue}
                                     >
@@ -92,7 +93,7 @@ class ProjectFilter extends React.Component {
                                 </Col>
                                 <Col md={6}>
                                     <TextField
-                                        floatingLabelText={i18n.t('keywords.label')}
+                                        floatingLabelText={i18n.t('keywords.label', {lng})}
                                         onChange={this.changeMotsClesValue}
                                         fullwidth
                                     />
