@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'react-grid-system';
 import { List, ListItem } from 'material-ui/List';
 import CommunicationComment from 'material-ui/svg-icons/communication/comment';
 import TextField from 'material-ui/TextField';
+import i18n from '../i18n';
 export default class ProjectComment extends React.Component {
     state = {
         open: false,
@@ -69,8 +70,8 @@ export default class ProjectComment extends React.Component {
                 <Row>
                     <Col>
                         <form onSubmit={this.handleSendQuestion.bind(this)}>
-                            <label style={{ marginRight: 50 }}>Posez votre question : </label><TextField floatingLabelText="Posez une question !" name="question" onChange={this.handleChange.bind(this)} />
-                            <RaisedButton type='submit' secondary={true} label="envoyer" style={{ width: 75, height: 25, marginLeft: 25 }} />
+                            <label style={{ marginRight: 50 }}> {i18n.t('question.label')}: </label><TextField floatingLabelText= {i18n.t('questionH.label')} name="question" onChange={this.handleChange.bind(this)} />
+                            <RaisedButton type='submit' secondary={true} label={i18n.t('button.label')} style={{ width: 75, height: 25, marginLeft: 25 }} />
                         </form>
                     </Col>
                 </Row>
@@ -79,7 +80,7 @@ export default class ProjectComment extends React.Component {
         }
         else {
             comment = <div>
-                <FlatButton label={this.state.comments.length + " commentaires"} onClick={this.handleOpen} />
+                <FlatButton label={this.state.comments.length + ' '+  i18n.t('comment.label')} onClick={this.handleOpen} />
                 <Dialog
                     title={this.state.project.title}
                     modal={false}
