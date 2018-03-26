@@ -18,7 +18,7 @@ class ProjectCard extends React.Component {
         this.state = {
             project: this.props.project,
             modal_validation: false,
-            full: this.props.full
+            projectCardOpen: this.props.projectCardOpen
         }
         this.handleValidation = this.handleValidation.bind(this)
         this.handleRejection = this.handleRejection.bind(this)
@@ -109,10 +109,10 @@ class ProjectCard extends React.Component {
         }
         else {
             var userAction = {
-                notfull: <ProjectComment project={this.state.project} />,
-                full: <div><p>Questions :</p><ProjectComment project={this.state.project} full /> </div>
+                notprojectCardOpen: <ProjectComment project={this.state.project} />,
+                projectCardOpen: <div><p>Questions :</p><ProjectComment project={this.state.project} projectCardOpen /> </div>
             }
-            var userFooter = this.state.full ? <CardActions> {userAction.full}</CardActions> : <CardActions> {userAction.notfull}</CardActions>
+            var userFooter = this.state.projectCardOpen ? <CardActions> {userAction.projectCardOpen}</CardActions> : <CardActions> {userAction.notprojectCardOpen}</CardActions>
         }
         return (
             <div>
@@ -128,7 +128,7 @@ class ProjectCard extends React.Component {
                         {project.partner ? (<label> Proposé par : {project.partner.company} </label>) : ("Non spécifié")}
                         <hr />
                     </CardHeader>
-                    <CardText expandable={this.props.full ? false : true} style={{ marginBottom: 8 }}>
+                    <CardText expandable={this.props.projectCardOpen ? false : true} style={{ marginBottom: 8 }}>
                         {project.description}
                         <hr />
                         <Container fluid>

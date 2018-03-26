@@ -155,8 +155,8 @@ exports.delete_a_project = (req, res) => {
   });
 }
 
-exports.destroy = (req,res) => {
-  Project.remove({}, function(err) {
+exports.destroy = (req, res) => {
+  Project.remove({}, function (err) {
     if (err) {
       res.send(err);
     }
