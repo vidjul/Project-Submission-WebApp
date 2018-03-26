@@ -25,7 +25,6 @@ class Navs extends React.Component {
 			},
 		};
 		this.state = {lng: 'en'}
-		this.handleLngChange = this.handleLngChange.bind(this);
 	}
 
 	handleclick(event) {
@@ -36,14 +35,8 @@ class Navs extends React.Component {
 
 	}
 
-	handleLngChange(event) {
-		console.log(event.target.className)
-		this.setState({lng: event.target.className.toLowerCase()});
-	}
-
 	render() {
-
-		let lng = this.state.lng;
+		let lng = this.props.lng;
 
 		var configItem = [
 			{ label: i18n.t('home.label', {lng} ), href: "/" },
@@ -59,13 +52,13 @@ class Navs extends React.Component {
 			if (item.icon) {
 				switch (item.label) {
 					case "FR":
-						return (<IconButton onClick={this.handleLngChange} className = "FR">
+						return (<IconButton onClick={this.props.handleLngChange} className = "FR">
 							<FlagIcon code = "FR"/>
 						</IconButton>)
 						break;
 					case "EN":
 						return (
-							<IconButton onClick={this.handleLngChange} className="EN">
+							<IconButton onClick={this.props.handleLngChange} className="EN">
 								<FlagIcon code = "GB"/>
 							</IconButton>)
 						break;
