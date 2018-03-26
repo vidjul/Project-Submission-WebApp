@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-grid-system'
 import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import CircularProgress from 'material-ui/CircularProgress';
+import i18n from '../i18n';
 class ProjectsListCard extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +15,8 @@ class ProjectsListCard extends React.Component {
             projectSeen: [],
             annee_value: "",
             majeur_value: "",
-            loaded : false    
+            loaded : false  ,
+           // lng: 'en'  
         };
         this.styles = {
             header: {
@@ -99,6 +101,7 @@ class ProjectsListCard extends React.Component {
     }
 
     render() {
+        //let lng = this.state.lng;
         console.log(this.state.annee_value);
         //console.log(this.state.projects);
 
@@ -130,7 +133,7 @@ class ProjectsListCard extends React.Component {
                     <Row>
                         <Col>
                             <Card>
-                                <CardTitle style={{ textAlign: 'center' }} title="Liste des projets"></CardTitle>
+                                <CardTitle style={{ textAlign: 'center' }} title={i18n.t('project.title')}></CardTitle>
                                 <hr />
                                 <CardText style = {{backgroundColor : "#f7f4f4"}}>
                                     <ProjectFilter getdropDownValue={this.handledropDownValue.bind(this)} getMotsClesValue={this.handleMotsClesValue.bind(this)} style={{ fontSize: 15 }} />

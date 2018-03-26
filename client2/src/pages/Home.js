@@ -24,7 +24,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navs />
+        <Navs lng={this.props.lng} handleLngChange={this.props.handleLngChange} />
         <JumbotronPresentation />
         <JumbotronPULV />
         <Container>

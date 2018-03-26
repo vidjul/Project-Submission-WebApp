@@ -4,7 +4,8 @@ import { Container, Row, Col } from 'react-grid-system';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import FilterIcone from 'material-ui/svg-icons/content/filter-list'
-import TextField from 'material-ui/TextField'
+import TextField from 'material-ui/TextField';
+import i18n from '../i18n';
 class ProjectFilter extends React.Component {
     constructor(props) {
         super(props);
@@ -18,14 +19,15 @@ class ProjectFilter extends React.Component {
           majors : [],
           mots_cles_value : "",
           yearValue:this.props.filterName,
-          majorValue:this.props.filterName
+          majorValue:this.props.filterName,
+          
 
         };
       }
 
     changeYearValue(e,index,value) {
         this.setState({yearValue: value}, function(){
-          this.props.getdropDownValue(this.state.yearValue,"Année");
+          this.props.getdropDownValue(this.state.yearValue, "Année");
         });
     }
 
@@ -58,7 +60,7 @@ class ProjectFilter extends React.Component {
                 <Container fluid>
                     <Card>
                         <CardHeader
-                            title="Filtres"
+                            title={i18n.t('filter.label')}
                             showExpandableButton={true}
                             closeIcon={<FilterIcone />}
                             openIcon={<FilterIcone />}
@@ -67,7 +69,7 @@ class ProjectFilter extends React.Component {
                             <Row>
                                 <Col md={3}>
                                     <SelectField
-                                        floatingLabelText="Année"
+                                        floatingLabelText={i18n.t('year.label')}
                                         onChange={this.changeYearValue}
                                         value={this.state.yearValue}
                                     >
@@ -79,7 +81,7 @@ class ProjectFilter extends React.Component {
                                 </Col>
                                 <Col md={3}>
                                     <SelectField
-                                        floatingLabelText="Majeure"
+                                        floatingLabelText={i18n.t('major.label')}
                                         onChange={this.changeMajorValue}
                                         value={this.state.majorValue}
                                     >
@@ -90,7 +92,7 @@ class ProjectFilter extends React.Component {
                                 </Col>
                                 <Col md={6}>
                                     <TextField
-                                        floatingLabelText="Mots clés"
+                                        floatingLabelText={i18n.t('keywords.label')}
                                         onChange={this.changeMotsClesValue}
                                         fullwidth
                                     />

@@ -18,6 +18,7 @@ import {
   Stepper,
   StepLabel,
 } from 'material-ui/Stepper';
+import i18n from '../components/i18n';
 /**
  * Deposit a project
  */
@@ -48,7 +49,7 @@ class Deposit extends Component {
     this.handleFiles = this.handleFiles.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
 
-    this.majors = [{ name: "Informatique, BigData et objets connectes", key: "IBO" },
+    this.majors = [{ name: i18n.t('ibo.label'), key: "IBO" },
     { name: "Nouvelle energie", key: "NE" },
     { name: "Ingenieurie financiaire", key: "IF" },
     { name: "Mecanique", key: "MNM" }]

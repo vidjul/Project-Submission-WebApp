@@ -12,11 +12,24 @@ import ForgetPass from './pages/ForgetPass';
 import ProjectValidation from './pages/ProjectValidation';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {lng: 'en'}
+    this.handleLngChange = this.handleLngChange.bind(this);
+  }
+
+	handleLngChange(event) {
+    this.setState({lng: event.target.className.toLowerCase()});
+	}
+
   render() {
+    const lng = this.state.lng
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={() => (
+            <Home lng={lng} handleLngChange={this.handleLngChange} />
+          )} />
           <Route exact path="/Projects" component={Projects} />
           <Route exact path="/Deposit" component={Deposit} />
           <Route exact path="/Connection" component={Connection} />

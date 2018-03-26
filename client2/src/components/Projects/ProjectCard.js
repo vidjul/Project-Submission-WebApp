@@ -6,7 +6,8 @@ import FlatButton from 'material-ui/FlatButton'
 import Snackbar from 'material-ui/Snackbar';
 import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
-import ProjectComment from './ProjectComment'
+import ProjectComment from './ProjectComment';
+import i18n from '../i18n';
 /**
  * Fast description of a project
  * use project props to set the project to display
@@ -18,7 +19,8 @@ class ProjectCard extends React.Component {
         this.state = {
             project: this.props.project,
             modal_validation: false,
-            projectCardOpen: this.props.projectCardOpen
+            projectCardOpen: this.props.projectCardOpen,
+            //lng: 'en'
         }
         this.handleValidation = this.handleValidation.bind(this)
         this.handleRejection = this.handleRejection.bind(this)
@@ -70,6 +72,7 @@ class ProjectCard extends React.Component {
     };
 
     render() {
+    //  let lng = this.state.lng;
         const actions = [
             <FlatButton
                 label="Oui"
@@ -106,6 +109,7 @@ class ProjectCard extends React.Component {
              * -----------------------------
              * USER FOOTER
              */
+            
         }
         else {
             var userAction = {
@@ -114,6 +118,7 @@ class ProjectCard extends React.Component {
             }
             var userFooter = this.state.projectCardOpen ? <CardActions> {userAction.projectCardOpen}</CardActions> : <CardActions> {userAction.notprojectCardOpen}</CardActions>
         }
+       
         return (
             <div>
                 <Card style={{ borderBottom: 2, marginBottom: 8 }}>
@@ -124,8 +129,8 @@ class ProjectCard extends React.Component {
                         showExpandableButton={true}
                         style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
                     >
-                        <label style={{ marginRight: 60 }}> Année : {project.study_year.map((year) => year + " ")} </label>
-                        {project.partner ? (<label> Proposé par : {project.partner.company} </label>) : ("Non spécifié")}
+                        <label style={{ marginRight: 60 }}> {i18n.t('year.label')}: {project.study_year.map((year) => year + " ")} </label>
+                        {project.partner ? (<label> {i18n.t('partner.label')} : {project.partner.company} </label>) : ("Non spécifié")}
                         <hr />
                     </CardHeader>
                     <CardText expandable={this.props.projectCardOpen ? false : true} style={{ marginBottom: 8 }}>
@@ -134,7 +139,7 @@ class ProjectCard extends React.Component {
                         <Container fluid>
                             <Row>
                                 <Col>
-                                    <label> Mots-clés : </label>
+                                    <label> {i18n.t('keywords.label')} : </label>
                                     {project.keywords ? (<Row>   {project.keywords.map(keyword =>
                                         <Chip style={{margin : 4}} >
                                             {keyword}
