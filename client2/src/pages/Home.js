@@ -24,7 +24,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navs />
         <JumbotronPresentation />
         <JumbotronPULV />
         <Container>

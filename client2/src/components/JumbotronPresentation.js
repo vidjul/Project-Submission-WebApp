@@ -17,9 +17,13 @@ class JumbotronPresentation extends React.Component {
                 height : 600+'px',
             },
         }
+        
     }
 
+  
+
 	render() {
+
         return(
             <Paper className="welcome"
             rounded = {true}>

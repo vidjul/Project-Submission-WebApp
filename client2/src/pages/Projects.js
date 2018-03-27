@@ -13,8 +13,7 @@ class Projects extends Component {
         } else {
             return (
                 <div>
-                    <Navs /><hr />
-                    <ProjectsListCard />
+                    <ProjectsListCard lng={this.props.lng} />
                 </div>
             );
         }

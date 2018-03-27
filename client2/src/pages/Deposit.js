@@ -18,6 +18,7 @@ import {
   Stepper,
   StepLabel,
 } from 'material-ui/Stepper';
+import i18n from '../components/i18n';
 /**
  * Deposit a project
  */
@@ -48,7 +49,7 @@ class Deposit extends Component {
     this.handleFiles = this.handleFiles.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
 
-    this.majors = [{ name: "Informatique, BigData et objets connectes", key: "IBO" },
+    this.majors = [{ name: i18n.t('ibo.label'), key: "IBO" },
     { name: "Nouvelle energie", key: "NE" },
     { name: "Ingenieurie financiaire", key: "IF" },
     { name: "Mecanique", key: "MNM" }]
@@ -135,7 +136,7 @@ class Deposit extends Component {
     var Delete = (e) => {
       const fileIdToRemove = e.target.getAttribute('data-key')
       this.state.files.splice(this.state.files.findIndex((file) => {
-        return file.id == fileIdToRemove;
+        return file.id === fileIdToRemove;
       }), 1);
       this.addViewFile();
     }
@@ -233,7 +234,7 @@ class Deposit extends Component {
           }
         }
         console.log(this.state.study_year)
-        this.state.study_year = temp;
+        this.setState({study_year:temp});
         break;
 
       default:
