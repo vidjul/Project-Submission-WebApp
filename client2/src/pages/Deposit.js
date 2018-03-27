@@ -146,7 +146,7 @@ class Deposit extends Component {
 
   addViewFile() {
 
-    let lng = { lng };
+    const lng = this.props.lng;
     var Delete = (e) => {
       const fileIdToRemove = e.target.getAttribute('data-key')
       this.state.files.splice(this.state.files.findIndex((file) => {
