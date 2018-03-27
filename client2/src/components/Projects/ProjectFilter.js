@@ -75,8 +75,8 @@ class ProjectFilter extends React.Component {
                                         value={this.state.yearValue}
                                     >
                                     <MenuItem value="" primaryText="" />
-                                    <MenuItem value="A4" primaryText="A4" />
-                                    <MenuItem value="A5" primaryText="A5" />
+                                    <MenuItem value="A4" primaryText={i18n.t('year4.label', {lng})}/>
+                                    <MenuItem value="A5" primaryText={i18n.t('year5.label', {lng})} />
                                     </SelectField>
 
                                 </Col>

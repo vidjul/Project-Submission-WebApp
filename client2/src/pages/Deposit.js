@@ -442,8 +442,8 @@ class Deposit extends Component {
                           this.setState({ stepIndex: 0, finished: false });
                         }}
                       >
-                        Click here
-                    </a> to reset the example.
+                        {i18n.t('click.label', {lng})}
+                    </a> {i18n.t('example.label', {lng})}
                   </div>) : (
                         <div style={{ textAlign: 'center' }}><CircularProgress /></div>)}
                   </Col>

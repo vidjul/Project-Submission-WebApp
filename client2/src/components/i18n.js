@@ -53,7 +53,9 @@ i18next
           keyword:{label:'Keywords (Press Enter on your keyboard to validate !)',},
           files:{label:'Others Files',},
           dropfiles:{label:'Drop files here or click to upload',},
-          acceptedfiles:{label:'Accepted files : png , pdf , csv ...',}
+          acceptedfiles:{label:'Accepted files : png , pdf , csv ...',},
+          click:{label:' Click here',},
+          example:{label:'to reset the example.',}
         },
       },
       fr: {
@@ -102,7 +104,9 @@ i18next
             keyword:{label:'Mots clés (appuyez sur Entrée sur votre clavier pour valider ! )',},
             files:{label:'Autres Fichiers ',},
             dropfiles:{label:'Déposez les fichiers ici ou cliquez pour télécharger',},
-            acceptedfiles:{label:'Types de fichiers acceptés : png , pdf , csv ...',}
+            acceptedfiles:{label:'Types de fichiers acceptés : png , pdf , csv ...',},
+            click:{label:' Cliquez ici',},
+            example:{label:'pour réinitialiser l\'exemple.',}
            
         },
       },
