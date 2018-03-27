@@ -88,6 +88,7 @@ class ProjectCard extends React.Component {
         ];
         var project = this.props.project;
         let adminFooter = null;
+        var majors = project.majors_concerned.map((major => major + " "))
 
         const lng = this.props.lng;
 
@@ -126,7 +127,7 @@ class ProjectCard extends React.Component {
                 <Card style={{ borderBottom: 2, marginBottom: 8 }}>
                     <CardHeader
                         title={project.title}
-                        subtitle={<label>{project.majors_concerned} - Le : {project.edit_date}</label>}
+                        subtitle={<label>{majors} - Le : {project.edit_date}</label>}
                         actAsExpander={true}
                         showExpandableButton={true}
                         style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
