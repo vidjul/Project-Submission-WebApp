@@ -76,10 +76,12 @@ export default class ProjectComment extends React.Component {
             var tab = []
             tab = this.state.project.comments.map(comment => {
                 var nesteds = [];
+                if(comment.responses != []){
                     comment.responses.forEach(answer => {
                         console.log(answer)
                         nesteds.push(<ListItem key={answer._id} primaryText={answer.content} />)
                     });
+                }
                 
                 nesteds.push(
                     <ListItem>
