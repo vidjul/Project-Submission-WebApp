@@ -120,7 +120,17 @@ class ProjectCard extends React.Component {
             }
             var userFooter = this.state.projectCardOpen ? <CardActions> {userAction.projectCardOpen}</CardActions> : <CardActions> {userAction.notprojectCardOpen}</CardActions>
         }
-       
+
+        var files = null;
+        if(this.state.project.media_files[0] !== undefined && this.state.project.media_files[0].filename !== undefined){
+            files = <Row>
+            <Col>
+                <label> Files : </label>
+                {project.media_files.map(file => <img src={file.destination + file.filename+".PNG"} />)}
+            </Col>
+        </Row>
+        }
+        
         return (
             <div>
                 <Card style={{ borderBottom: 2, marginBottom: 8 }}>
@@ -148,6 +158,7 @@ class ProjectCard extends React.Component {
                                          </Chip>)}</Row>) : ("Non spécifié")}
                                 </Col>
                             </Row>
+                            {files}
                         </Container>
                     </CardText>
                     {this.props.admin ? (adminFooter) : (userFooter)}
