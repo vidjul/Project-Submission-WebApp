@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navs from '../components/nav/Navs.js';
 import Cards from '../components/Cards';
 import {CardDeck, Container} from 'reactstrap';
 /**
@@ -22,7 +21,6 @@ class Connection extends Component {
     if(sessionStorage.getItem("Connected") == null){       
       return(
         <div>
-          <Navs />
           <Container>
             <CardDeck>
                 <Cards addKey={this.handleKeyChosen.bind(this)} value="Student" description="Connect to LeoID in order to look at projects." image="./student-with-graduation-cap.png" dimension="200x200"/> 
@@ -36,7 +34,6 @@ class Connection extends Component {
     else{
       return(
         <div>
-          <Navs />
           Connecté
         </div>
       );

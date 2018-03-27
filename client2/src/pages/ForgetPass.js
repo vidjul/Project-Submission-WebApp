@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navs from '../components/nav/Navs.js';
 import { Form, FormGroup, Button, Input, Label } from 'reactstrap';
 
 class ForgetPass extends Component {
@@ -49,7 +48,6 @@ class ForgetPass extends Component {
     render() {
         return (
             <div>
-            <Navs/>
             <Form onSubmit={this.handleSubmit.bind(this)}>
                 <FormGroup>
                     <Label for="Email"><h3>Votre email</h3></Label>

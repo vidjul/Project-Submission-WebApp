@@ -72,7 +72,7 @@ class ProjectCard extends React.Component {
     };
 
     render() {
-    //  let lng = this.state.lng;
+   
         const actions = [
             <FlatButton
                 label="Oui"

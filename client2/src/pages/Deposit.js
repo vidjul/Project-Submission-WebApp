@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navs from '../components/nav/Navs.js';
+//import Navs from '../components/nav/Navs.js';
 import FilesInputs from '../components/Deposit/FormComponents/FilesInputs';
 import ReactDOM from 'react-dom';
 import { Container, Row, Col } from 'react-grid-system'
@@ -27,6 +27,7 @@ class Deposit extends Component {
 
   constructor(props) {
     super(props);
+    const lng = this.props.lng;
     this.state = {
       finished: false,
       stepIndex: 0,
@@ -48,11 +49,12 @@ class Deposit extends Component {
     this.handleKeyWords = this.handleKeyWords.bind(this);
     this.handleFiles = this.handleFiles.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+   
 
-    this.majors = [{ name: i18n.t('ibo.label'), key: "IBO" },
-    { name: "Nouvelle energie", key: "NE" },
-    { name: "Ingenieurie financiaire", key: "IF" },
-    { name: "Mecanique", key: "MNM" }]
+    this.majors = [{ name: i18n.t('ibo.label', {lng}), key: "IBO" },
+    { name: i18n.t('ne.label',{lng}), key: "NE" },
+    { name: i18n.t('if.label',{lng}), key: "IF" },
+    { name: i18n.t('mnm.label',{lng}), key: "MNM" }]
   }
   //STEP
   handleNext = () => {
@@ -133,6 +135,7 @@ class Deposit extends Component {
 
   addViewFile() {
 
+  let lng={lng} ;
     var Delete = (e) => {
       const fileIdToRemove = e.target.getAttribute('data-key')
       this.state.files.splice(this.state.files.findIndex((file) => {
@@ -147,7 +150,7 @@ class Deposit extends Component {
           <a key={index} class="justify-content-between file-add list-group-item list-group-item-action">
             <div>
               <p>{file.name}</p>
-              <p data-key={file.id} className="text-right" onClick={Delete}> Delete</p>
+              <p data-key={file.id} className="text-right" onClick={Delete}>{ i18n.t('delete.label',{lng})} </p>
             </div>
           </a>)
       })
@@ -247,18 +250,19 @@ class Deposit extends Component {
   }
 
   getStepContent(stepIndex) {
+    const lng = this.props.lng;
     switch (stepIndex) {
-      //Informations about the partner
+      //Information about the partner
       case 0:
         return <div>
-          <h2 style={{ textAlign: 'center' }}>Tell us about yourself </h2>
-          <Container>
+          <h2 lng={lng}  style={{ textAlign: 'center' }}>{i18n.t('tellus.label',{lng}) }</h2>
+          <Container >
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator
-                  floatingLabelText="Your email address*"
+                <TextValidator  lng={lng} 
+                  floatingLabelText={i18n.t('email.label',{lng}) }
                   validators={['required', 'isEmail']}
-                  errorMessages={['this field is required', 'email is not valid']}
+                  errorMessages={[i18n.t('field.label',{lng}) , i18n.t('notvalid.label',{lng}) ]}
                   onChange={this.handleChange}
                   onBlur={this.handleBlur}
                   name="email"
@@ -269,10 +273,10 @@ class Deposit extends Component {
 
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator
+                <TextValidator lng={lng} 
                   validators={['required']}
-                  errorMessages={['this field is required']}
-                  floatingLabelText="Your company*"
+                  errorMessages={i18n.t('field.label',{lng}) }
+                  floatingLabelText={i18n.t('company.label',{lng})}
                   onChange={this.handleChange}
                   name="company" value={this.state.company}
                   fullWidth={true} />
@@ -281,20 +285,20 @@ class Deposit extends Component {
 
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator
+                <TextValidator lng={lng} 
                   validators={['required']}
-                  errorMessages={['this field is required']}
-                  floatingLabelText="Your first name*"
+                  errorMessages={i18n.t('field.label',{lng}) }
+                  floatingLabelText={i18n.t('firstname.label',{lng}) }
                   onChange={this.handleChange} fullWidth={true}
                   name="first_name" value={this.state.first_name} />
               </Col>
             </Row>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator
+                <TextValidator lng={lng} 
                   validators={['required']}
-                  errorMessages={['this field is required']}
-                  floatingLabelText="Your last name*"
+                  errorMessages={i18n.t('field.label',{lng}) }
+                  floatingLabelText={i18n.t('lastname.label',{lng}) }
                   onChange={this.handleChange} fullWidth={true}
                   name="last_name" value={this.state.last_name} />
               </Col>
@@ -307,31 +311,31 @@ class Deposit extends Component {
        * Information about the project
        */
       case 1:
-        return <div>
-          <h2 style={{ textAlign: 'center' }}>Présentez votre projet</h2>
+        return <div lng={lng} >
+          <h2 style={{ textAlign: 'center' }}>{i18n.t('projectPres.h2',{lng}) }</h2>
           <Container>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextValidator
-                  floatingLabelText="Intitulé de votre projet*"
+                  floatingLabelText={i18n.t('titleproj.label',{lng}) }
                   onChange={this.handleChange} fullWidth={true}
                   name="title" value={this.state.title}
                   validators={['required']}
-                  errorMessages={['this field is required']} />
+                  errorMessages={i18n.t('field.label',{lng}) } />
               </Col>
             </Row>
             <br />
             <Row>
               <Col md={3} offset={{ md: 3 }}>
                 <Checkbox
-                  label="Année 4"
+                  label={i18n.t('year4.label',{lng}) } 
                   name="year"
                   value="A4"
                   onCheck={this.handleChange} />
               </Col>
               <Col md={3}>
                 <Checkbox
-                  label="Année 5"
+                  label={i18n.t('year5.label',{lng}) } 
                   name="year"
                   value="A5"
                   onCheck={this.handleChange} />
@@ -341,13 +345,13 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <SelectValidator
-                  multiple={true} hintText="Majeur(s) ciblée(s)*"
+                  multiple={true} hintText={i18n.t('majors.label',{lng}) } 
                   value={this.state.majors_concerned}
                   onChange={this.handleSpe.bind(this)} fullWidth={true}
                   name="majors_concerned"
-                  floatingLabelText="Majeur(s)*"
+                  floatingLabelText={i18n.t('majors.label',{lng}) }
                   validators = {["required"]}
-                  errorMessages = {["this field is required"]}>
+                  errorMessages = {i18n.t('field.label',{lng}) }>
                   
                   {this.majors.map((major) => <MenuItem
                     key={major.key}
@@ -362,12 +366,12 @@ class Deposit extends Component {
             <Row>
               <Col md={8} offset={{ md: 2 }}>
                 <TextValidator
-                  hintText="Description complete de votre projet*"
-                  floatingLabelText="Description*"
+                  hintText={i18n.t('descriptionProj.label',{lng}) }
+                  floatingLabelText="Description *"
                   multiLine={true}
                   value = {this.state.description}
                   validators = {["required"]}
-                  errorMessages = {["this field is required"]}
+                  errorMessages = {i18n.t('field.label',{lng}) }
                   rows={10}
                   name="description"
                   onChange={this.handleChange}
@@ -376,12 +380,12 @@ class Deposit extends Component {
             </Row>
             <Row>
               <Col md={8} offset={{ md: 2 }}>
-                <KeyWords change={this.handleKeyWords} />
+                <KeyWords lng={lng}  change={this.handleKeyWords} />
               </Col>
             </Row>
             <Row>
               <Col md={8} offset={{ md: 2 }}>
-                <FilesInputs change={this.handleFiles} />
+                <FilesInputs lng={lng}  change={this.handleFiles} />
               </Col>
             </Row>
           </Container>
@@ -391,10 +395,10 @@ class Deposit extends Component {
           return <CircularProgress />
         }
         else {
-          <Container>
+          <Container lng={lng} >
             <Row>
               <Col md={8} offset={{ md: 2 }}>
-                <div>  Merci, votre projet est maintenant en attente de validation par l'administration de l'école concerné. Un email vous a été envoyé avec un lien pour modifier votre projet. </div>
+                <div> {i18n.t('message.label', {lng})} </div>
               </Col>
             </Row>
           </Container>
@@ -405,30 +409,31 @@ class Deposit extends Component {
   }
 
   render() {
+    const lng = this.props.lng;
     const { finished, stepIndex } = this.state;
     return (
       <div id="deposit-body">
-        <Navs />
+      
         <Paper zDepth={1} style={{ width: '100%', maxWidth: 1000, margin: 'auto', marginTop: 10 }}>
           <Stepper activeStep={stepIndex}>
             <Step>
-              <StepLabel>Partner information</StepLabel>
+              <StepLabel lng={lng} >{i18n.t('partnerInfo.label', {lng})}</StepLabel>
             </Step>
             <Step>
-              <StepLabel>Project Information</StepLabel>
+              <StepLabel lng={lng} >{i18n.t('projectInfo.label', {lng})}</StepLabel>
             </Step>
             <Step>
-              <StepLabel>Submit your project</StepLabel>
+              <StepLabel lng={lng} >{i18n.t('submission.label', {lng})}</StepLabel>
             </Step>
           </Stepper>
 
           <div>
             {finished ? (
 
-              <Container>
+              <Container lng={lng} >
                 <Row>
                   <Col md={8} offset={{ md: 2 }}>
-                    {this.state.submited ? (<div><div>  Merci, votre projet est maintenant en attente de validation par l'administration de l'école concerné. Un email vous a été envoyé avec un lien pour modifier votre projet. </div>
+                    {this.state.submited ? (<div><div>{i18n.t('message.label', {lng})}</div>
                       <br />
                       <a
                         href="#"
@@ -449,14 +454,14 @@ class Deposit extends Component {
                   <ValidatorForm ref="form" onSubmit={this.handleNext}>
                     {this.getStepContent(stepIndex)}
                     <div style={{ marginTop: 12, paddingBottom: 30, textAlign: 'center' }}>
-                      <FlatButton
-                        label="Back"
+                      <FlatButton lng={lng} 
+                        label={i18n.t('back.label',{lng}) }
                         disabled={stepIndex === 0}
                         onClick={this.handlePrev}
                         style={{ marginRight: 12 }}
                       />
-                      <RaisedButton
-                        label={stepIndex === 2 ? 'Finish' : 'Next'}
+                      <RaisedButton lng={lng} 
+                        label={stepIndex === 2 ? i18n.t('finish.label',{lng}) : i18n.t('next.label',{lng}) }
                         type="submit"
                         primary={true}
                       />
