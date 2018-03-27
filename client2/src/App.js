@@ -15,7 +15,7 @@ import Nav from './components/nav/Navs'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { lng: 'en' }
+    this.state = { lng: 'fr' }
     this.handleLngChange = this.handleLngChange.bind(this);
   }
 
