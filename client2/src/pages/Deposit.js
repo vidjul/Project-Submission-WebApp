@@ -188,7 +188,7 @@ class Deposit extends Component {
           keywords: this.state.keyWords,
           email: this.state.email,
           company: this.state.company,
-          urls: this.state.urls,
+          media_files: this.state.urls,
           first_name: this.state.first_name,
           last_name: this.state.last_name
         }
