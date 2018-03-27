@@ -88,6 +88,7 @@ class ProjectCard extends React.Component {
         ];
         var project = this.props.project;
         let adminFooter = null;
+        var majors = project.majors_concerned.map((major => major + " "))
 
         const lng = this.props.lng;
 
@@ -120,13 +121,23 @@ class ProjectCard extends React.Component {
             }
             var userFooter = this.state.projectCardOpen ? <CardActions> {userAction.projectCardOpen}</CardActions> : <CardActions> {userAction.notprojectCardOpen}</CardActions>
         }
-       
+
+        var files = null;
+        if(this.state.project.media_files[0] !== undefined && this.state.project.media_files[0].filename !== undefined){
+            files = <Row>
+            <Col>
+                <label> Files : </label>
+                {project.media_files.map(file => <img src={file.destination + file.filename+".PNG"} />)}
+            </Col>
+        </Row>
+        }
+        
         return (
             <div>
                 <Card style={{ borderBottom: 2, marginBottom: 8 }}>
                     <CardHeader
                         title={project.title}
-                        subtitle={<label>{project.majors_concerned} - Le : {project.edit_date}</label>}
+                        subtitle={<label>{majors} - Le : {project.edit_date}</label>}
                         actAsExpander={true}
                         showExpandableButton={true}
                         style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
@@ -148,6 +159,7 @@ class ProjectCard extends React.Component {
                                          </Chip>)}</Row>) : ("Non spécifié")}
                                 </Col>
                             </Row>
+                            {files}
                         </Container>
                     </CardText>
                     {this.props.admin ? (adminFooter) : (userFooter)}
