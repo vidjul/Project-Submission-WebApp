@@ -99,7 +99,6 @@ class ProjectCard extends React.Component {
                     open={this.state.modal_validation}
                     onRequestClose={this.handleClose}
                 >
-                    The actions in this window were passed in as an array of React objects.
         </Dialog>
             </CardActions>
             /**

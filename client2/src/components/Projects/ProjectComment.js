@@ -13,14 +13,15 @@ export default class ProjectComment extends React.Component {
         project: this.props.project,
         comments: this.props.project.comments,
         projectCardOpen: this.props.projectCardOpen,
-        question: ''
+        question: '',
+        response: ''
     };
 
-    handleOpen = () => {
+    handleOpen = (item) => {
         this.setState({ open: true });
     };
 
-    handleClose = () => {
+    handleClose = (item) => {
         this.setState({ open: false });
     };
 
@@ -37,6 +38,8 @@ export default class ProjectComment extends React.Component {
             projectId: idProject,
             userId: userId
         }
+
+        console.log(idProject)
         fetch(`api/projects/${idProject}/comments`, {
             method: "POST",
             headers: {
@@ -48,21 +51,58 @@ export default class ProjectComment extends React.Component {
             .then((res) => { console.log(res) })
             .catch((err) => { console.log(err) })
     }
-    render() {
-        console.log(this.state.comments.length)
-        let comment;
-        let response = [<ListItem key={1} primaryText="Via le site web" />, <ListItem key={2} primaryText="Merci !" />]
 
+    handleResponse = (commentId) => {
+        console.log("COMMENT ID :" + commentId)
+        var userId = "5a6d011d063609d47c70fdda";
+        var body = {
+            content: this.state.response,
+            userId: userId,
+            id_project : this.state.project._id
+        }
+        fetch(`/api/projects/comment/${commentId}/responses`, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        }).then((res)=> {window.location.reload()})
+    }
+    render() {
+        console.log(this.state.project)
+        var comments = () => {
+            var tab = []
+            tab = this.state.project.comments.map(comment => {
+                var nesteds = [];
+                    comment.responses.forEach(answer => {
+                        console.log(answer)
+                        nesteds.push(<ListItem key={answer._id} primaryText={answer.content} />)
+                    });
+                
+                nesteds.push(
+                    <ListItem>
+                        <TextField name="response" floatingLabelText="Répondez" onChange={this.handleChange.bind(this)} />
+                        <RaisedButton onClick={() => this.handleResponse(comment._id)} secondary={true} label="envoyer" style={{ width: 75, height: 25, marginLeft: 25 }} />
+                    </ListItem>);
+
+                return <ListItem primaryText={comment.content}
+                    nestedItems={nesteds}
+                    leftIcon={<CommunicationComment />} />
+            });
+            console.log(tab)
+            return tab
+        }
+
+        var comment;
         if (this.state.projectCardOpen) {
             comment = <Container fluid>
                 <Row>
                     <Col>
                         <List>
-                            {this.state.project.comments.map(comment =>
-                                <ListItem primaryText={comment.content}
-                                    nestedItems={response}
-                                    leftIcon={<CommunicationComment />} />)}
-
+                            {
+                                comments()
+                            }
                         </List>
                     </Col>
                 </Row>

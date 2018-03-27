@@ -59,7 +59,8 @@ class Navs extends React.Component {
 			if (item.icon) {
 				switch (item.label) {
 					case "FR":
-						return (<IconButton onClick={this.handleLngChange} className = "FR">
+						return (
+						<IconButton onClick={this.handleLngChange} className = "FR">
 							<FlagIcon code = "FR"/>
 						</IconButton>)
 						break;

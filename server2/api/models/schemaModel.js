@@ -47,10 +47,10 @@ module.exports = mongoose.model('Administration', AdministrationSchema);
 
 //Comment Class
 var CommentSchema = new Schema({
-	id_project : {type : String , required : true},
+	id_project : {type : String},
 	author: { type: PersonSchema, required: true },
 	content: { type: String, required: true },
-	idMainComment: { type: String }
+	responses: [{ type: Schema.Types.ObjectId, ref : 'Comment' }] // CommentSchema
 });
 module.exports = mongoose.model('Comment', CommentSchema);
 
@@ -67,7 +67,7 @@ var ProjectSchema = new Schema({
 	edit_date: { type: Date, default: Date.now }, 
 	edit_key: { type: String, required: true }, 
 	likes: Array, //(StudentSchema)
-	comments: Array, //(CommentSchema)
+	comments: [{ type: Schema.Types.ObjectId, ref : 'Comment' }], //(CommentSchema)
 	partner: {type : PartnerSchema, required:true}
 })
 module.exports = mongoose.model('Project', ProjectSchema);
