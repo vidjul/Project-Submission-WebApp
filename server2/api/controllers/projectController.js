@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
 const Admin = mongoose.model('Administration');
+const Comment = mongoose.model('Comment');
 
 const mailer = require('nodemailer');
 const smtpTransporter = mailer.createTransport({
@@ -17,9 +18,12 @@ const smtpTransporter = mailer.createTransport({
 
 
 exports.list_all_projects = function (req, res) {
-  Project.find({}, function (err, task) {
+  Project.find({})
+  .populate({path : 'comments', populate : {path : 'responses'}})
+  .exec(function (err, task) {
     if (err)
       res.send(err);
+    console.log(task)
     res.json(task);
   });
 };
@@ -110,7 +114,9 @@ exports.create_a_project = function (req, res) {
 };
 
 exports.read_a_project = (req, res) => {
-  Project.findById(req.params.projectId, (err, project) => {
+  Project.findById(req.params.projectId)
+  .populate('comments')
+  .exec((err, project) => {
     if (err) {
       res.send(err);
     }
