@@ -49,22 +49,33 @@ class Deposit extends Component {
     this.handleKeyWords = this.handleKeyWords.bind(this);
     this.handleFiles = this.handleFiles.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-   
 
-    this.majors = [{ name: i18n.t('ibo.label', {lng}), key: "IBO" },
-    { name: i18n.t('ne.label',{lng}), key: "NE" },
-    { name: i18n.t('if.label',{lng}), key: "IF" },
-    { name: i18n.t('mnm.label',{lng}), key: "MNM" }]
+
+    this.majors = [{ name: i18n.t('ibo.label', { lng }), key: "IBO" },
+    { name: i18n.t('ne.label', { lng }), key: "NE" },
+    { name: i18n.t('if.label', { lng }), key: "IF" },
+    { name: i18n.t('mnm.label', { lng }), key: "MNM" }]
   }
+
+  componentWillUpdate(nextProps) {
+    if (this.props.lng != nextProps.lng) {
+      const lng = nextProps.lng;
+      this.majors = [{ name: i18n.t('ibo.label', { lng }), key: "IBO" },
+      { name: i18n.t('ne.label', { lng }), key: "NE" },
+      { name: i18n.t('if.label', { lng }), key: "IF" },
+      { name: i18n.t('mnm.label', { lng }), key: "MNM" }]
+    }
+  }
+
   //STEP
   handleNext = () => {
-    console.log("Finished :"+this.state.finished)
+    console.log("Finished :" + this.state.finished)
     const { stepIndex } = this.state;
-    if(!this.state.finished){
+    if (!this.state.finished) {
       this.setState({
         stepIndex: stepIndex + 1,
         finished: stepIndex >= 1
-      },()=>{
+      }, () => {
         this.handleSubmit();
       })
     }
@@ -135,7 +146,7 @@ class Deposit extends Component {
 
   addViewFile() {
 
-  let lng={lng} ;
+    let lng = { lng };
     var Delete = (e) => {
       const fileIdToRemove = e.target.getAttribute('data-key')
       this.state.files.splice(this.state.files.findIndex((file) => {
@@ -150,7 +161,7 @@ class Deposit extends Component {
           <a key={index} class="justify-content-between file-add list-group-item list-group-item-action">
             <div>
               <p>{file.name}</p>
-              <p data-key={file.id} className="text-right" onClick={Delete}>{ i18n.t('delete.label',{lng})} </p>
+              <p data-key={file.id} className="text-right" onClick={Delete}>{i18n.t('delete.label', { lng })} </p>
             </div>
           </a>)
       })
@@ -178,48 +189,48 @@ class Deposit extends Component {
   }
 
   handleSubmit() {
-    console.log("finished : "+this.state.finished)
-    if(this.state.finished){
-    console.log("Passed")
-    this.FilesUpload()
-      .then(() => {
-        const form = {
-          title: this.state.title,
-          study_year: this.state.study_year,
-          majors_concerned: this.state.majors_concerned,
-          description: this.state.description,
-          keywords: this.state.keyWords,
-          email: this.state.email,
-          company: this.state.company,
-          media_files: this.state.urls,
-          first_name: this.state.first_name,
-          last_name: this.state.last_name
-        }
+    console.log("finished : " + this.state.finished)
+    if (this.state.finished) {
+      console.log("Passed")
+      this.FilesUpload()
+        .then(() => {
+          const form = {
+            title: this.state.title,
+            study_year: this.state.study_year,
+            majors_concerned: this.state.majors_concerned,
+            description: this.state.description,
+            keywords: this.state.keyWords,
+            email: this.state.email,
+            company: this.state.company,
+            media_files: this.state.urls,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name
+          }
 
-        console.log(form);
-        try {
-          fetch('/api/projects', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(form)
-          })
-            .then((res) => {
-              this.setState({ submited: true })
-              console.log(res)
+          console.log(form);
+          try {
+            fetch('/api/projects', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(form)
             })
-            .catch((error) => {
-              console.log(error)
-            })
-        }
-        catch (error) {
-          return console.log(error);
-        }
-      })
-      .catch((err) => { console.log("ERROR UPLOAD FILE") })
-    this.handleNext();
+              .then((res) => {
+                this.setState({ submited: true })
+                console.log(res)
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          }
+          catch (error) {
+            return console.log(error);
+          }
+        })
+        .catch((err) => { console.log("ERROR UPLOAD FILE") })
+      this.handleNext();
     }
   }
 
@@ -237,7 +248,7 @@ class Deposit extends Component {
           }
         }
         console.log(this.state.study_year)
-        this.setState({study_year:temp});
+        this.setState({ study_year: temp });
         break;
 
       default:
@@ -255,14 +266,14 @@ class Deposit extends Component {
       //Information about the partner
       case 0:
         return <div>
-          <h2 lng={lng}  style={{ textAlign: 'center' }}>{i18n.t('tellus.label',{lng}) }</h2>
+          <h2 lng={lng} style={{ textAlign: 'center' }}>{i18n.t('tellus.label', { lng })}</h2>
           <Container >
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator  lng={lng} 
-                  floatingLabelText={i18n.t('email.label',{lng}) }
+                <TextValidator lng={lng}
+                  floatingLabelText={i18n.t('email.label', { lng })}
                   validators={['required', 'isEmail']}
-                  errorMessages={[i18n.t('field.label',{lng}) , i18n.t('notvalid.label',{lng}) ]}
+                  errorMessages={[i18n.t('field.label', { lng }), i18n.t('notvalid.label', { lng })]}
                   onChange={this.handleChange}
                   onBlur={this.handleBlur}
                   name="email"
@@ -273,10 +284,10 @@ class Deposit extends Component {
 
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator lng={lng} 
+                <TextValidator lng={lng}
                   validators={['required']}
-                  errorMessages={i18n.t('field.label',{lng}) }
-                  floatingLabelText={i18n.t('company.label',{lng})}
+                  errorMessages={i18n.t('field.label', { lng })}
+                  floatingLabelText={i18n.t('company.label', { lng })}
                   onChange={this.handleChange}
                   name="company" value={this.state.company}
                   fullWidth={true} />
@@ -285,20 +296,20 @@ class Deposit extends Component {
 
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator lng={lng} 
+                <TextValidator lng={lng}
                   validators={['required']}
-                  errorMessages={i18n.t('field.label',{lng}) }
-                  floatingLabelText={i18n.t('firstname.label',{lng}) }
+                  errorMessages={i18n.t('field.label', { lng })}
+                  floatingLabelText={i18n.t('firstname.label', { lng })}
                   onChange={this.handleChange} fullWidth={true}
                   name="first_name" value={this.state.first_name} />
               </Col>
             </Row>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
-                <TextValidator lng={lng} 
+                <TextValidator lng={lng}
                   validators={['required']}
-                  errorMessages={i18n.t('field.label',{lng}) }
-                  floatingLabelText={i18n.t('lastname.label',{lng}) }
+                  errorMessages={i18n.t('field.label', { lng })}
+                  floatingLabelText={i18n.t('lastname.label', { lng })}
                   onChange={this.handleChange} fullWidth={true}
                   name="last_name" value={this.state.last_name} />
               </Col>
@@ -312,30 +323,30 @@ class Deposit extends Component {
        */
       case 1:
         return <div lng={lng} >
-          <h2 style={{ textAlign: 'center' }}>{i18n.t('projectPres.h2',{lng}) }</h2>
+          <h2 style={{ textAlign: 'center' }}>{i18n.t('projectPres.h2', { lng })}</h2>
           <Container>
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <TextValidator
-                  floatingLabelText={i18n.t('titleproj.label',{lng}) }
+                  floatingLabelText={i18n.t('titleproj.label', { lng })}
                   onChange={this.handleChange} fullWidth={true}
                   name="title" value={this.state.title}
                   validators={['required']}
-                  errorMessages={i18n.t('field.label',{lng}) } />
+                  errorMessages={i18n.t('field.label', { lng })} />
               </Col>
             </Row>
             <br />
             <Row>
               <Col md={3} offset={{ md: 3 }}>
                 <Checkbox
-                  label={i18n.t('year4.label',{lng}) } 
+                  label={i18n.t('year4.label', { lng })}
                   name="year"
                   value="A4"
                   onCheck={this.handleChange} />
               </Col>
               <Col md={3}>
                 <Checkbox
-                  label={i18n.t('year5.label',{lng}) } 
+                  label={i18n.t('year5.label', { lng })}
                   name="year"
                   value="A5"
                   onCheck={this.handleChange} />
@@ -345,14 +356,14 @@ class Deposit extends Component {
             <Row>
               <Col md={6} offset={{ md: 3 }}>
                 <SelectValidator
-                  multiple={true} hintText={i18n.t('majors.label',{lng}) } 
+                  multiple={true} hintText={i18n.t('majors.label', { lng })}
                   value={this.state.majors_concerned}
                   onChange={this.handleSpe.bind(this)} fullWidth={true}
                   name="majors_concerned"
-                  floatingLabelText={i18n.t('majors.label',{lng}) }
-                  validators = {["required"]}
-                  errorMessages = {i18n.t('field.label',{lng}) }>
-                  
+                  floatingLabelText={i18n.t('majors.label', { lng })}
+                  validators={["required"]}
+                  errorMessages={i18n.t('field.label', { lng })}>
+
                   {this.majors.map((major) => <MenuItem
                     key={major.key}
                     insetChildren={true}
@@ -366,12 +377,12 @@ class Deposit extends Component {
             <Row>
               <Col md={8} offset={{ md: 2 }}>
                 <TextValidator
-                  hintText={i18n.t('descriptionProj.label',{lng}) }
+                  hintText={i18n.t('descriptionProj.label', { lng })}
                   floatingLabelText="Description *"
                   multiLine={true}
-                  value = {this.state.description}
-                  validators = {["required"]}
-                  errorMessages = {i18n.t('field.label',{lng}) }
+                  value={this.state.description}
+                  validators={["required"]}
+                  errorMessages={i18n.t('field.label', { lng })}
                   rows={10}
                   name="description"
                   onChange={this.handleChange}
@@ -380,12 +391,12 @@ class Deposit extends Component {
             </Row>
             <Row>
               <Col md={8} offset={{ md: 2 }}>
-                <KeyWords lng={lng}  change={this.handleKeyWords} />
+                <KeyWords lng={lng} change={this.handleKeyWords} />
               </Col>
             </Row>
             <Row>
               <Col md={8} offset={{ md: 2 }}>
-                <FilesInputs lng={lng}  change={this.handleFiles} />
+                <FilesInputs lng={lng} change={this.handleFiles} />
               </Col>
             </Row>
           </Container>
@@ -398,7 +409,7 @@ class Deposit extends Component {
           <Container lng={lng} >
             <Row>
               <Col md={8} offset={{ md: 2 }}>
-                <div> {i18n.t('message.label', {lng})} </div>
+                <div> {i18n.t('message.label', { lng })} </div>
               </Col>
             </Row>
           </Container>
@@ -413,17 +424,17 @@ class Deposit extends Component {
     const { finished, stepIndex } = this.state;
     return (
       <div id="deposit-body">
-      
+
         <Paper zDepth={1} style={{ width: '100%', maxWidth: 1000, margin: 'auto', marginTop: 10 }}>
           <Stepper activeStep={stepIndex}>
             <Step>
-              <StepLabel lng={lng} >{i18n.t('partnerInfo.label', {lng})}</StepLabel>
+              <StepLabel lng={lng} >{i18n.t('partnerInfo.label', { lng })}</StepLabel>
             </Step>
             <Step>
-              <StepLabel lng={lng} >{i18n.t('projectInfo.label', {lng})}</StepLabel>
+              <StepLabel lng={lng} >{i18n.t('projectInfo.label', { lng })}</StepLabel>
             </Step>
             <Step>
-              <StepLabel lng={lng} >{i18n.t('submission.label', {lng})}</StepLabel>
+              <StepLabel lng={lng} >{i18n.t('submission.label', { lng })}</StepLabel>
             </Step>
           </Stepper>
 
@@ -433,7 +444,7 @@ class Deposit extends Component {
               <Container lng={lng} >
                 <Row>
                   <Col md={8} offset={{ md: 2 }}>
-                    {this.state.submited ? (<div><div>{i18n.t('message.label', {lng})}</div>
+                    {this.state.submited ? (<div><div>{i18n.t('message.label', { lng })}</div>
                       <br />
                       <a
                         href="#"
@@ -442,9 +453,9 @@ class Deposit extends Component {
                           this.setState({ stepIndex: 0, finished: false });
                         }}
                       >
-                        {i18n.t('click.label', {lng})}
-                    </a> {i18n.t('example.label', {lng})}
-                  </div>) : (
+                        {i18n.t('click.label', { lng })}
+                      </a> {i18n.t('example.label', { lng })}
+                    </div>) : (
                         <div style={{ textAlign: 'center' }}><CircularProgress /></div>)}
                   </Col>
                 </Row>
@@ -454,14 +465,14 @@ class Deposit extends Component {
                   <ValidatorForm ref="form" onSubmit={this.handleNext}>
                     {this.getStepContent(stepIndex)}
                     <div style={{ marginTop: 12, paddingBottom: 30, textAlign: 'center' }}>
-                      <FlatButton lng={lng} 
-                        label={i18n.t('back.label',{lng}) }
+                      <FlatButton lng={lng}
+                        label={i18n.t('back.label', { lng })}
                         disabled={stepIndex === 0}
                         onClick={this.handlePrev}
                         style={{ marginRight: 12 }}
                       />
-                      <RaisedButton lng={lng} 
-                        label={stepIndex === 2 ? i18n.t('finish.label',{lng}) : i18n.t('next.label',{lng}) }
+                      <RaisedButton lng={lng}
+                        label={stepIndex === 2 ? i18n.t('finish.label', { lng }) : i18n.t('next.label', { lng })}
                         type="submit"
                         primary={true}
                       />
