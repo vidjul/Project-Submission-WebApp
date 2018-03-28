@@ -22,10 +22,11 @@ class Home extends Component {
   }
 
   render() {
+    const lng = this.props.lng;
     return (
       <div>
-        <JumbotronPresentation />
-        <JumbotronPULV />
+        <JumbotronPresentation lng={lng} />
+        <JumbotronPULV lng={lng}/>
         <Container>
           <Row>
             <Col md={8} offset={{ md: 2 }}>
