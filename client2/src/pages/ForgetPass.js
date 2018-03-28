@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Button, Input, Label } from 'reactstrap';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class ForgetPass extends Component {
 
@@ -29,6 +31,7 @@ class ForgetPass extends Component {
             })
                 .then((res) => {
                     console.log(res)
+                    window.location.reload()
                 })
                 .catch((error) => {
                     console.log(error);
@@ -47,19 +50,17 @@ class ForgetPass extends Component {
 
     render() {
         return (
-            <div>
-            <Form onSubmit={this.handleSubmit.bind(this)}>
-                <FormGroup>
-                    <Label for="Email"><h3>Votre email</h3></Label>
-                    <Input
+            <div style={{ fontSize: 15, marginTop:15, textAlign: 'center' }}>
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                    <p > Si vous avez perdu votre lien pour modifier votre projet, veuillez entrer votre mail pour le récupérer. </p>
+                    <TextField
+                        hintText="Entrez votre e-mail"
+                        floatingLabelText="Entrez votre e-mail"
                         onChange={this.handleChange.bind(this)}
-                        type="email" name="email"
-                        placeholder="Votre email" />
-                </FormGroup>
-                <FormGroup>
-                    <Button>Envoyer le projet</Button>
-                </FormGroup>
-            </Form>
+                        type="email"
+                    /><br/>
+                    <RaisedButton label="Envoyer" primary={true} type="submit"/>
+                </form>
             </div>
         )
     }

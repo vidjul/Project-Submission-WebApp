@@ -35,12 +35,34 @@ class ProjectCard extends React.Component {
             method: 'PUT',
             mode: 'cors',
             headers: new Headers({ 'content-type': 'application/json' }),
-            body: JSON.stringify({ "status": "validate", "editKey": null })
+            body: JSON.stringify({ "status": "validate", "edit_key": null })
         }
-
-        fetch("/api/projects/" + this.state.project._id, myInit)
+        let mailReq = {
+            method: 'POST',
+            mode: 'cors',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify({
+                recipient: this.state.project.partner.email,
+                subject: 'Félicitations, votre projet a été retenu! - ProjectWebApp',
+                content:
+                    `Bonjour ${this.state.project.partner.first_name}, \n
+                Votre soumission de projet (${this.state.project.title}) a été retenu par notre équipe. \n
+                Nous vous contacterons bientôt afin de pouvoir échanger davantage avec vous. \n
+                Merci de votre compréhension,
+                
+                L'équipe projet du PULV.`
+            })
+        };
+        fetch("/api/mail", mailReq)
             .then((res) => {
-                window.location.reload()
+                console.log(res);
+                fetch("/api/projects/" + this.state.project._id, myInit)
+                    .then((res) => {
+                        console.log(res);
+                        window.location.reload();
+                    })
+                    .catch((err) => { console.log("Error occured : " + err) })
+
             })
             .catch((err) => { console.log("Error occured : " + err) })
     }
@@ -55,11 +77,35 @@ class ProjectCard extends React.Component {
             headers: new Headers({ 'content-type': 'application/json' }),
             body: JSON.stringify({ "status": "refused" })
         }
-
-        fetch("/api/projects" + this.state.project._id, myInit)
-            .then((res) => {
-                window.location.reload()
+        console.log('refused');
+        let mailReq = {
+            method: 'POST',
+            mode: 'cors',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify({
+                recipient: this.state.project.partner.email,
+                subject: 'Refus de votre soumission - ProjectWebApp',
+                content:
+                    `Bonjour ${this.state.project.partner.first_name}, \n
+                Votre soumission de projet (${this.state.project.title}) n'a pas été retenu. \n
+                Merci de votre compréhension,
+                
+                L'équipe projet du PULV.`
             })
+        };
+        fetch("/api/mail", mailReq)
+            .then((res) => {
+                console.log(res);
+                fetch("/api/projects/" + this.state.project._id, myInit)
+                    .then((res) => {
+                        console.log(res);
+                        window.location.reload();
+                    })
+                    .catch((err) => { console.log("Error occured : " + err) })
+
+            })
+            .catch((err) => { console.log("Error occured : " + err) })
+
     }
 
     handleOpen = (e) => {

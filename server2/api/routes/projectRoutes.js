@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(app) {
+module.exports = function (app) {
   var project = require('../controllers/projectController');
 
   // projects routes
@@ -8,13 +8,19 @@ module.exports = function(app) {
     .post(project.create_a_project)
     .delete(project.destroy);
 
+  app.route('/api/export')
+    .get(project.exports_all_projects);
+
   app.route('/api/projects/:projectId')
-  .get(project.read_a_project)
-  .put(project.update_a_project)
-  .delete(project.delete_a_project);
+    .get(project.read_a_project)
+    .put(project.update_a_project)
+    .delete(project.delete_a_project);
 
   app.route('/api/edit/:editKey')
-  .get(project.find_by_edit_key);
+    .get(project.find_by_edit_key);
+
+  app.route('/api/export/:projectId')
+    .get(project.export_a_project);
 
 
   // app.route('/tasks/:taskId')
