@@ -35,12 +35,34 @@ class ProjectCard extends React.Component {
             method: 'PUT',
             mode: 'cors',
             headers: new Headers({ 'content-type': 'application/json' }),
-            body: JSON.stringify({ "status": "validate", "editKey": null })
+            body: JSON.stringify({ "status": "validate", "edit_key": null })
         }
-
-        fetch("/api/projects/" + this.state.project._id, myInit)
+        let mailReq = {
+            method: 'POST',
+            mode: 'cors',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify({
+                recipient: this.state.project.partner.email,
+                subject: 'Félicitations, votre projet a été retenu! - ProjectWebApp',
+                content:
+                    `Bonjour ${this.state.project.partner.first_name}, \n
+                Votre soumission de projet (${this.state.project.title}) a été retenu par notre équipe. \n
+                Nous vous contacterons bientôt afin de pouvoir échanger davantage avec vous. \n
+                Merci de votre compréhension,
+                
+                L'équipe projet du PULV.`
+            })
+        };
+        fetch("/api/mail", mailReq)
             .then((res) => {
-                window.location.reload()
+                console.log(res);
+                fetch("/api/projects/" + this.state.project._id, myInit)
+                    .then((res) => {
+                        console.log(res);
+                        window.location.reload();
+                    })
+                    .catch((err) => { console.log("Error occured : " + err) })
+
             })
             .catch((err) => { console.log("Error occured : " + err) })
     }
@@ -55,11 +77,35 @@ class ProjectCard extends React.Component {
             headers: new Headers({ 'content-type': 'application/json' }),
             body: JSON.stringify({ "status": "refused" })
         }
-
-        fetch("/api/projects" + this.state.project._id, myInit)
-            .then((res) => {
-                window.location.reload()
+        console.log('refused');
+        let mailReq = {
+            method: 'POST',
+            mode: 'cors',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: JSON.stringify({
+                recipient: this.state.project.partner.email,
+                subject: 'Refus de votre soumission - ProjectWebApp',
+                content:
+                    `Bonjour ${this.state.project.partner.first_name}, \n
+                Votre soumission de projet (${this.state.project.title}) n'a pas été retenu. \n
+                Merci de votre compréhension,
+                
+                L'équipe projet du PULV.`
             })
+        };
+        fetch("/api/mail", mailReq)
+            .then((res) => {
+                console.log(res);
+                fetch("/api/projects/" + this.state.project._id, myInit)
+                    .then((res) => {
+                        console.log(res);
+                        window.location.reload();
+                    })
+                    .catch((err) => { console.log("Error occured : " + err) })
+
+            })
+            .catch((err) => { console.log("Error occured : " + err) })
+
     }
 
     handleOpen = (e) => {
@@ -72,7 +118,7 @@ class ProjectCard extends React.Component {
     };
 
     render() {
-   
+
         const actions = [
             <FlatButton
                 label="Oui"
@@ -106,13 +152,13 @@ class ProjectCard extends React.Component {
                     open={this.state.modal_validation}
                     onRequestClose={this.handleClose}
                 >
-        </Dialog>
+                </Dialog>
             </CardActions>
             /**
              * -----------------------------
              * USER FOOTER
              */
-            
+
         }
         else {
             var userAction = {
@@ -123,15 +169,23 @@ class ProjectCard extends React.Component {
         }
 
         var files = null;
-        if(this.state.project.media_files[0] !== undefined && this.state.project.media_files[0].filename !== undefined){
+        if (this.state.project.media_files[0] !== undefined && this.state.project.media_files[0].filename !== undefined) {
+            console.log(this.state.project.media_files[0]);
             files = <Row>
-            <Col>
-                <label> Files : </label>
-                {project.media_files.map(file => <img src={file.destination + file.filename+".PNG"} />)}
-            </Col>
-        </Row>
+                <Col>
+                    <label> Files : </label>
+                    {project.media_files.map(file => {
+                        if (file.mimetype.includes('image')) {
+                            return <img src={`/static/${file.filename}`} />
+                        }
+                        else if (file.mimetype.includes('application')) {
+                            return <a href={`http://localhost:3001/static/${file.filename}`}> lien PDF </a>
+                        }
+                    })}
+                </Col>
+            </Row>
         }
-        
+
         return (
             <div>
                 <Card style={{ borderBottom: 2, marginBottom: 8 }}>
@@ -142,8 +196,8 @@ class ProjectCard extends React.Component {
                         showExpandableButton={true}
                         style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
                     >
-                        <label style={{ marginRight: 60 }}> {i18n.t('year.label', {lng})}: {project.study_year.map((year) => year + " ")} </label>
-                        {project.partner ? (<label> {i18n.t('partner.label', {lng})} : {project.partner.company} </label>) : ("Non spécifié")}
+                        <label style={{ marginRight: 60 }}> {i18n.t('year.label', { lng })}: {project.study_year.map((year) => year + " ")} </label>
+                        {project.partner ? (<label> {i18n.t('partner.label', { lng })} : {project.partner.company} </label>) : ("Non spécifié")}
                         <hr />
                     </CardHeader>
                     <CardText expandable={this.props.projectCardOpen ? false : true} style={{ marginBottom: 8 }}>
@@ -152,11 +206,11 @@ class ProjectCard extends React.Component {
                         <Container fluid>
                             <Row>
                                 <Col>
-                                    <label> {i18n.t('keywords.label', {lng})} : </label>
+                                    <label> {i18n.t('keywords.label', { lng })} : </label>
                                     {project.keywords ? (<Row>   {project.keywords.map(keyword =>
-                                        <Chip style={{margin : 4}} >
+                                        <Chip style={{ margin: 4 }} >
                                             {keyword}
-                                         </Chip>)}</Row>) : ("Non spécifié")}
+                                        </Chip>)}</Row>) : ("Non spécifié")}
                                 </Col>
                             </Row>
                             {files}

@@ -8,7 +8,6 @@ class ProjectValidation extends Component {
     render() {
         return (
             <div>
-                <Navs/>
                 <ProjectsListCard admin/>
             </div>
         )

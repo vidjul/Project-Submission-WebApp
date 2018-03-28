@@ -8,7 +8,8 @@ module.exports = function (app) {
     .post(partner.create_a_partner);
 
   app.route('/api/partners/:partnerId')
-    .put(partner.update_a_partner);
+    .put(partner.update_a_partner)
+    .delete(partner.delete_a_partner);
 
   app.route('/api/partners/:email')
     .get(partner.find_by_mail);

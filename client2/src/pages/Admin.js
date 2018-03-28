@@ -13,7 +13,6 @@ class Admin extends Component {
         console.log(this.props.match.path)
         return (
             <div>
-                <Navs />
                 <Container>
                     <CardDeck>
                         <Cards
