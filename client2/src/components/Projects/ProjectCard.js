@@ -35,7 +35,7 @@ class ProjectCard extends React.Component {
             method: 'PUT',
             mode: 'cors',
             headers: new Headers({ 'content-type': 'application/json' }),
-            body: JSON.stringify({ "status": "validate", "editKey": null })
+            body: JSON.stringify({ "status": "validate", "edit_key": null })
         }
 
         fetch("/api/projects/" + this.state.project._id, myInit)
@@ -56,6 +56,29 @@ class ProjectCard extends React.Component {
             body: JSON.stringify({ "status": "refused" })
         }
         console.log('refused');
+        let mailReq = {
+            method: 'POST',
+            mode: 'cors',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            body: {
+                recipient: this.state.project.partner.email,
+                subject: 'Refus de votre soumission - ProjectWebApp',
+                content:
+                    `Bonjour ${this.state.project.partner.first_name}, \n
+                Votre soumission de projet (${this.state.project.title}) n'a pas été retenu. \n
+                Merci de votre compréhension,
+                
+                L'équipe projet du PULV.`
+            }
+        }
+
+        fetch("/api/mail", maiReq)
+            .then((res) => {
+                console.log(res);
+                window.location.reload();
+            })
+            .catch((err) => { console.log("Error occured : " + err) })
+
         fetch("/api/projects/" + this.state.project._id, myInit)
             .then((res) => {
                 console.log(res);
