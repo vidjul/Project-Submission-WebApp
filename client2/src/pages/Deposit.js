@@ -74,7 +74,7 @@ class Deposit extends Component {
     if (!this.state.finished) {
       this.setState({
         stepIndex: stepIndex + 1,
-        finished: stepIndex >= 1
+        finished: stepIndex >= 2
       }, () => {
         this.handleSubmit();
       })
@@ -82,7 +82,7 @@ class Deposit extends Component {
     else {
       this.setState({
         stepIndex: stepIndex + 1,
-        finished: stepIndex >= 1
+        finished: stepIndex >= 2
       });
     }
 
@@ -266,6 +266,36 @@ class Deposit extends Component {
       //Information about the partner
       case 0:
         return <div>
+
+          <Container>
+            <h2>Proposer un projet a nos élèves</h2>
+            <p> Proposer un projet vous permettra de coopérer avec une équipe d'élèves ingénieurs motivés et innovants et de contribuer à leur formation en les impliquant dans des problématiques actuelles.
+Entreprises ou laboratoires, c'est aussi un moyen de vous faire connaître auprès de ceux qui répondront dans les années futures à vos offres de stages et d'emplois. </p>
+
+            <h2>Comment ça marche ?</h2>
+            <p>Un groupe projet est constitué de 4 élèves (3 ou 5 éventuellement) qui travailleront chacun une dizaine d'heures par semaine sur votre projet. Chaque groupe sera suivi et encadré par un enseignant de l'école ("directeur de projet") à même de les guider scientifiquement.
+Ces projets concernent les élèves d'année 4 et d'année 5, avec un fonctionnement similaire et un calendrier un peu différent : les projets démarrent pour tous mi/fin septembre, et se terminent fin janvier pour les années 5 et fin mars pour les années 4. Les élèves partant en stage après, il peut être possible que votre projet soit "poursuivi" en stage par un élève de l'équipe.
+</p>
+
+            <h2>Quel va être mon rôle ?</h2>
+            Si votre projet est choisi, vous devenez alors "partenaire du projet". L'équipe d'élèves prend alors contact avec vous pour démarrer le projet, puis vous tient au courant de l'évolution de ses travaux, par des échéances fixées ensemble, et enfin organise avec vous la clôture de projet la dernière semaine de janvier pour les années 5, de mars pour les années 4.
+L'équipe sera suivie régulièrement tout au long de son projet par son "directeur de projet", qui sera aussi chargé de l'évaluer. Plusieurs revues projets et pitchs jalonneront le projet, qui se terminera par un showroom auquel vous serez bien entendu invité.
+
+      <h2>Comment proposer un projet ?</h2>
+            Cliquez sur [SUIVANT] en bas de la page. Vous devrez alors donner des information sur le partenaire puis décrire le projet proposé, et cibler les compétences voulues et attendues.
+
+Pour plus d'informations, vous pouvez trouver une présentation succincte  de ces projets, ainsi que des exemples effectués les années précédentes en http://www.esilv.fr/formations/projets/projet-dinnovation-industrielle-5/ pour les années 5 et http://www.esilv.fr/formations/projets/projet-dinnovation-industrielle-4/ pour les années 4.
+Des renseignements plus précis, ainsi qu'un calendrier seront fournis en septembre.
+
+
+Pour toute question, n'hésitez pas à nous contacter : projetesilv@devinci.fr
+      </Container>
+        </div>
+
+        break
+
+      case 1:
+        return <div>
           <h2 lng={lng} style={{ textAlign: 'center' }}>{i18n.t('tellus.label', { lng })}</h2>
           <Container >
             <Row>
@@ -321,7 +351,7 @@ class Deposit extends Component {
       /**
        * Information about the project
        */
-      case 1:
+      case 2:
         return <div lng={lng} >
           <h2 style={{ textAlign: 'center' }}>{i18n.t('projectPres.h2', { lng })}</h2>
           <Container>
@@ -401,7 +431,7 @@ class Deposit extends Component {
             </Row>
           </Container>
         </div>;
-      case 2:
+      case 3:
         if (!this.state.submited) {
           return <CircularProgress />
         }
@@ -427,6 +457,9 @@ class Deposit extends Component {
 
         <Paper zDepth={1} style={{ width: '100%', maxWidth: 1000, margin: 'auto', marginTop: 10 }}>
           <Stepper activeStep={stepIndex}>
+            <Step>
+              <StepLabel>Appel à projets</StepLabel>
+            </Step>
             <Step>
               <StepLabel lng={lng} >{i18n.t('partnerInfo.label', { lng })}</StepLabel>
             </Step>
