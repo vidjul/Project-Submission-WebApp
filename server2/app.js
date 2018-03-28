@@ -40,6 +40,7 @@ api_routes(app);
 var comments_routes = require('./api/routes/commentsRoute')
 comments_routes(app);
 
+app.use('/static', express.static('./.uploads'));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

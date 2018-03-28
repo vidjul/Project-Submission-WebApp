@@ -2,18 +2,28 @@ const express = require('express');
 const fs = require('fs');
 const multer = require('multer');
 const router = express.Router();
-const upload = multer({dest: './.uploads/'});
+const path = require('path');
 
- module.exports = (app) => {
-     app.route('/api/addFile')
-     .post(upload.any(), function (req, res, next) {
-        if (!req.files) {
-           return next(new Error('No files uploaded'));
-        }
-     console.log(req.files);
-       /* req.files.forEach((file) => {
-           fs.unlinkSync(path.join(__dirname, file.path));
-        });*/
-        res.send(req.files)
-     });
- };
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '.uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({ storage: storage })
+
+module.exports = (app) => {
+    app.route('/api/addFile')
+        .post(upload.any(), function (req, res, next) {
+            if (!req.files) {
+                return next(new Error('No files uploaded'));
+            }
+            console.log(req.files);
+            /* req.files.forEach((file) => {
+                fs.unlinkSync(path.join(__dirname, file.path));
+             });*/
+            res.send(req.files)
+        });
+};

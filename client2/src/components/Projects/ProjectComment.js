@@ -99,7 +99,6 @@ export default class ProjectComment extends React.Component {
 
         var comment;
         const lng = this.props.lng
-        console.log('--- COMMENT -- :' + lng);
 
         if (this.state.projectCardOpen) {
             comment = <Container fluid>

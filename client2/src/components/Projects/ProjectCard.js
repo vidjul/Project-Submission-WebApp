@@ -8,6 +8,7 @@ import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
 import ProjectComment from './ProjectComment';
 import i18n from '../i18n';
+import Document from 'react-pdf';
 /**
  * Fast description of a project
  * use project props to set the project to display
@@ -72,7 +73,7 @@ class ProjectCard extends React.Component {
     };
 
     render() {
-   
+
         const actions = [
             <FlatButton
                 label="Oui"
@@ -106,13 +107,13 @@ class ProjectCard extends React.Component {
                     open={this.state.modal_validation}
                     onRequestClose={this.handleClose}
                 >
-        </Dialog>
+                </Dialog>
             </CardActions>
             /**
              * -----------------------------
              * USER FOOTER
              */
-            
+
         }
         else {
             var userAction = {
@@ -123,15 +124,23 @@ class ProjectCard extends React.Component {
         }
 
         var files = null;
-        if(this.state.project.media_files[0] !== undefined && this.state.project.media_files[0].filename !== undefined){
+        if (this.state.project.media_files[0] !== undefined && this.state.project.media_files[0].filename !== undefined) {
+            console.log(this.state.project.media_files[0]);
             files = <Row>
-            <Col>
-                <label> Files : </label>
-                {project.media_files.map(file => <img src={file.destination + file.filename+".PNG"} />)}
-            </Col>
-        </Row>
+                <Col>
+                    <label> Files : </label>
+                    {project.media_files.map(file => {
+                        if (file.mimetype.includes('image')) {
+                            <img src={`/static/${file.filename}`} />
+                        }
+                        else if (file.mimetype.includes('pdf')) {
+                            <Document file={`/static/${file.filename}`} />
+                        }
+                    })}
+                </Col>
+            </Row>
         }
-        
+
         return (
             <div>
                 <Card style={{ borderBottom: 2, marginBottom: 8 }}>
@@ -142,8 +151,8 @@ class ProjectCard extends React.Component {
                         showExpandableButton={true}
                         style={{ paddingLeft: 8, paddingTop: 8, paddingBottom: 0 }}
                     >
-                        <label style={{ marginRight: 60 }}> {i18n.t('year.label', {lng})}: {project.study_year.map((year) => year + " ")} </label>
-                        {project.partner ? (<label> {i18n.t('partner.label', {lng})} : {project.partner.company} </label>) : ("Non spécifié")}
+                        <label style={{ marginRight: 60 }}> {i18n.t('year.label', { lng })}: {project.study_year.map((year) => year + " ")} </label>
+                        {project.partner ? (<label> {i18n.t('partner.label', { lng })} : {project.partner.company} </label>) : ("Non spécifié")}
                         <hr />
                     </CardHeader>
                     <CardText expandable={this.props.projectCardOpen ? false : true} style={{ marginBottom: 8 }}>
@@ -152,11 +161,11 @@ class ProjectCard extends React.Component {
                         <Container fluid>
                             <Row>
                                 <Col>
-                                    <label> {i18n.t('keywords.label', {lng})} : </label>
+                                    <label> {i18n.t('keywords.label', { lng })} : </label>
                                     {project.keywords ? (<Row>   {project.keywords.map(keyword =>
-                                        <Chip style={{margin : 4}} >
+                                        <Chip style={{ margin: 4 }} >
                                             {keyword}
-                                         </Chip>)}</Row>) : ("Non spécifié")}
+                                        </Chip>)}</Row>) : ("Non spécifié")}
                                 </Col>
                             </Row>
                             {files}
