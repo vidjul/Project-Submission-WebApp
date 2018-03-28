@@ -55,11 +55,13 @@ class ProjectCard extends React.Component {
             headers: new Headers({ 'content-type': 'application/json' }),
             body: JSON.stringify({ "status": "refused" })
         }
-
-        fetch("/api/projects" + this.state.project._id, myInit)
+        console.log('refused');
+        fetch("/api/projects/" + this.state.project._id, myInit)
             .then((res) => {
-                window.location.reload()
+                console.log(res);
+                window.location.reload();
             })
+            .catch((err) => { console.log("Error occured : " + err) })
     }
 
     handleOpen = (e) => {

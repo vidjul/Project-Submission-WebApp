@@ -6,6 +6,7 @@ const Project = mongoose.model('Project');
 const Partner = mongoose.model('Partner');
 const Admin = mongoose.model('Administration');
 const Comment = mongoose.model('Comment');
+const PDFDocument = require('pdfkit');
 
 const mailer = require('nodemailer');
 const smtpTransporter = mailer.createTransport({
@@ -19,13 +20,13 @@ const smtpTransporter = mailer.createTransport({
 
 exports.list_all_projects = function (req, res) {
   Project.find({})
-  .populate({path : 'comments', populate : {path : 'responses'}})
-  .exec(function (err, task) {
-    if (err)
-      res.send(err);
-    console.log(task)
-    res.json(task);
-  });
+    .populate({ path: 'comments', populate: { path: 'responses' } })
+    .exec(function (err, task) {
+      if (err)
+        res.send(err);
+      console.log(task)
+      res.json(task);
+    });
 };
 
 exports.create_a_project = function (req, res) {
@@ -115,13 +116,13 @@ exports.create_a_project = function (req, res) {
 
 exports.read_a_project = (req, res) => {
   Project.findById(req.params.projectId)
-  .populate('comments')
-  .exec((err, project) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(project);
-  });
+    .populate('comments')
+    .exec((err, project) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(project);
+    });
 }
 
 exports.find_by_edit_key = (req, res) => {
@@ -134,7 +135,7 @@ exports.find_by_edit_key = (req, res) => {
 }
 
 exports.update_a_project = (req, res) => {
-  Project.findOneAndUpdate({ _id: req.params.projectId }, req.body, { new: true }, (err, project) => {
+  Project.update({ _id: req.params.projectId }, req.body, { new: true }, (err, project) => {
     if (err) {
       res.send(err);
     }
@@ -159,6 +160,42 @@ exports.delete_a_project = (req, res) => {
 
     res.send({ message: "Project deleted successfully!" })
   });
+}
+
+exports.export_a_project = (req, res) => {
+  let doc = new PDFDocument;
+  Project.findById(req.params.projectId)
+    .exec((err, project) => {
+      if (err) {
+        res.send(err);
+      }
+      doc.pipe(res);
+      doc.fontSize(15).text(project.title, 50, 50);
+      doc.fontSize(11).text(`proposé par: ${project.partner.first_name} ${project.partner.last_name} - ${project.partner.company}`);
+      doc.fontSize(11).text(`pour les étudiants: ${project.study_year.toString()}`);
+      doc.fontSize(10).text(project.description, 50, 100);
+      doc.end();
+    })
+}
+
+exports.exports_all_projects = (req, res) => {
+  let doc = new PDFDocument;
+  Project.find({})
+    .exec((err, projects) => {
+      if (err) {
+        res.send(err);
+      }
+      doc.pipe(res);
+      projects.forEach((project, index) => {
+        doc.fontSize(20).text(`Projet n°${index}`);
+        doc.fontSize(15).text(project.title);
+        doc.fontSize(11).text(`proposé par: ${project.partner.first_name} ${project.partner.last_name} - ${project.partner.company}`);
+        doc.fontSize(11).text(`pour les étudiants: ${project.study_year.toString()}`);
+        doc.fontSize(10).text(project.description);
+        doc.addPage();
+      });
+      doc.end();
+    })
 }
 
 exports.destroy = (req, res) => {
