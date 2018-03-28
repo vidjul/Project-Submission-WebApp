@@ -72,7 +72,7 @@ class ProjectCard extends React.Component {
             }
         }
 
-        fetch("/api/mail", maiReq)
+        fetch("/api/mail", mailReq)
             .then((res) => {
                 console.log(res);
                 window.location.reload();
