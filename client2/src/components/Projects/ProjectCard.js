@@ -8,7 +8,6 @@ import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
 import ProjectComment from './ProjectComment';
 import i18n from '../i18n';
-import Document from 'react-pdf';
 /**
  * Fast description of a project
  * use project props to set the project to display
@@ -131,10 +130,10 @@ class ProjectCard extends React.Component {
                     <label> Files : </label>
                     {project.media_files.map(file => {
                         if (file.mimetype.includes('image')) {
-                            <img src={`/static/${file.filename}`} />
+                            return <img src={`/static/${file.filename}`} />
                         }
-                        else if (file.mimetype.includes('pdf')) {
-                            <Document file={`/static/${file.filename}`} />
+                        else if (file.mimetype.includes('application')) {
+                            return <a href={`http://localhost:3001/static/${file.filename}`}> lien PDF </a>
                         }
                     })}
                 </Col>
