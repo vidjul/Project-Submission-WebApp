@@ -55,7 +55,30 @@ i18next
           dropfiles:{label:'Drop files here or click to upload',},
           acceptedfiles:{label:'Accepted files : png , pdf , csv ...',},
           click:{label:' Click here',},
-          example:{label:'to reset the example.',}
+          example:{label:'to reset the example.',},
+          welcomePlatform:{h1:'Welcome to DeVinci Platform',},
+          welcomePole:{h1:'Welcome to Leonard De Vinci Campus ',},
+          hybridation:{h2:'Hybridization and transversality',},
+          approche:{h3:'A unique transversal approach',},
+          presentation:{p:'The Leonardo da Vinci Pole Schools have developed a pedagogical transversality that encourages the opening up of teaching and allows students to work in multidisciplinary teams while progressing in their training and their digital knowledge.',},
+          transvality:{label:'The Transversality',},
+          keys:{label:'The Key numbers',},
+          projectt:{label:'The Project',},
+          program:{label:'The Programmes',},
+          schools:{h2:'Our Schools',},
+          campus:{h3:'One campus, four schools',},
+          leonard:{p:'The Leonardo da Vinci Campus is three schools in Paris-La Défense: an engineering school, a management school, a multimedia school. In addition, an Institute offers continuing education.',},
+          caouselTitle1:{label:'BermudZer: bermudean option pricing',},
+          carouselText1:{label:'Industrial Innovation Project of the 5th year, Major Financial Engineering 2014-2015',},
+          carouselTitle2:{label:'Vinci Eco Drive – Design and control of the engine block, Shell Eco-Marathon 2015',},
+          carouselText2:{label:'5th-year Industrial Innovation Project, Major Mechanical Numerical and Modeling 2014-2015',},
+          carouselTitle3:{label:'ID-cam: digital accessibility for the blind and visually impaired',},
+          carouselText3:{label:'2017-2018 project of the 5th year of the ESILV engineering student program, 2018 promo',},
+          carouselTitle4:{label:'Big Data analysis of Unesco sites via social networks',},
+          carouselText4:{label:'5th Year Industrial Innovation Project, Major in Computer Science and Digital Science 2014-2015',}
+
+
+          
         },
       },
       fr: {
@@ -106,8 +129,30 @@ i18next
             dropfiles:{label:'Déposez les fichiers ici ou cliquez pour télécharger',},
             acceptedfiles:{label:'Types de fichiers acceptés : png , pdf , csv ...',},
             click:{label:' Cliquez ici',},
-            example:{label:'pour réinitialiser l\'exemple.',}
-           
+            example:{label:'pour réinitialiser l\'exemple.',},
+            welcomePlatform:{h1:'Bienvenue sur la DeVinci Plateforme',},
+            welcomePole:{h1:'Bienvenue au Pôle Léonard de Vinci',},
+            hybridation:{h2:'Hybridation et transversalité',},
+            approche:{h3:'Une approche transversale unique',},
+            presentation:{p:'Les écoles du Pôle Léonard de Vinci ont développé une transversalité pédagogique qui encourage le décloisonnement des enseignements et permet aux étudiants de travailler en équipes pluridisciplinaires tout en progressant dans leur formation et leurs savoirs numériques.',},
+            transvality:{label:'La Transversalité',},
+            keys:{label:'Les Chiffres-clés',},
+            projectt:{label:'Le Projet',},
+            program:{label:'Les Programmes',},
+            schools:{h2:'Les écoles',},
+            campus:{h3:'Un campus, quatre écoles',},
+            leonard:{p:'Le Pôle Léonard de Vinci, c’est trois écoles à Paris-La Défense : une école d’ingénieurs, une école de management, une école multimédia. En complément, un Institut propose de la formation continue.',},
+            caouselTitle1:{label:'BermudZer : pricing d’options bermudéennes',},
+            carouselText1:{label:'Projet d’Innovation Industrielle de 5ème année, Majeure Ingénierie Financière 2014-2015',},
+            carouselTitle2:{label:'Vinci Eco Drive – Conception et pilotage du Bloc moteur, Shell Eco-Marathon 2015',},
+            carouselText2:{label:'Projet d’Innovation Industrielle de 5ème année, Majeure Mécanique numérique et modélisation 2014-2015',},
+            carouselTitle3:{label:'ID-cam : accessibilité numérique pour les non-voyants et mal-voyants',},
+            carouselText3:{label:'Projet 2017-2018 de 5e année du cursus d’élève ingénieur de l’ESILV, promo 2018',},
+            carouselTitle4:{label:'Analyse Big Data des sites Unesco via les réseaux sociaux',},
+            carouselText4:{label:'Projet d’Innovation Industrielle de 5ème année, Majeure Informatique et sciences du numérique 2014-2015',}
+
+
+
         },
       },
     },
