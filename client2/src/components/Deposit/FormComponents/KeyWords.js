@@ -9,12 +9,13 @@ class KeyWords extends Component {
         super(props);
 
         this.state = {
-            tags: [],                           //{ id: 1, text: "Big Data" }, { id: 2, text: "BlockChain" }, { id: 3, text: "Aeronautique" }
+            tags: this.props.tags ? this.props.tags : [],                           //{ id: 1, text: "Big Data" }, { id: 2, text: "BlockChain" }, { id: 3, text: "Aeronautique" }
             suggestions: ["Test", "Test2"]
         };
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
+        console.log(this.props)
     }
 
     handleDelete(i) {
